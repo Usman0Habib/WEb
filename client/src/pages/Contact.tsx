@@ -1,0 +1,179 @@
+import { useForm } from "react-hook-form";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { insertInquirySchema, type InsertInquiry } from "@shared/schema";
+import { useCreateInquiry } from "@/hooks/use-coaching-data";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
+import { Card, CardContent } from "@/components/ui/card";
+import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { useToast } from "@/hooks/use-toast";
+import { useLocation } from "wouter";
+
+export default function Contact() {
+  const { toast } = useToast();
+  const [location] = useLocation();
+  const searchParams = new URLSearchParams(window.location.search);
+  const courseInterest = searchParams.get("course");
+
+  const { mutate, isPending } = useCreateInquiry();
+
+  const form = useForm<InsertInquiry>({
+    resolver: zodResolver(insertInquirySchema),
+    defaultValues: {
+      name: "",
+      email: "",
+      phone: "",
+      message: courseInterest ? `I am interested in ${courseInterest} course.` : "",
+    },
+  });
+
+  function onSubmit(data: InsertInquiry) {
+    mutate(data, {
+      onSuccess: () => {
+        toast({
+          title: "Message Sent!",
+          description: "We will get back to you shortly.",
+        });
+        form.reset();
+      },
+      onError: (error) => {
+        toast({
+          title: "Error",
+          description: error.message,
+          variant: "destructive",
+        });
+      },
+    });
+  }
+
+  return (
+    <div className="min-h-screen bg-slate-50 pb-24">
+      <div className="bg-slate-900 text-white">
+        <div className="container mx-auto px-4 py-20 text-center">
+          <h1 className="text-4xl md:text-5xl font-display font-bold mb-4">
+            Contact Us
+          </h1>
+          <p className="text-xl text-slate-400 max-w-2xl mx-auto">
+            Have questions? We are here to help you start your journey.
+          </p>
+        </div>
+      </div>
+
+      <div className="container mx-auto px-4 -mt-16">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          
+          {/* Contact Info */}
+          <div className="lg:col-span-1 space-y-6">
+            {[
+              { icon: MapPin, title: "Head Office", desc: "123 Education Hub, South Ext-1, New Delhi" },
+              { icon: Phone, title: "Call Us", desc: "+91 98765 43210" },
+              { icon: Mail, title: "Email Us", desc: "admissions@careergoal.edu" },
+              { icon: Clock, title: "Office Hours", desc: "Mon - Sat: 9:00 AM - 7:00 PM" },
+            ].map((item, i) => (
+              <Card key={i} className="border-none shadow-md">
+                <CardContent className="p-6 flex items-start gap-4">
+                  <div className="p-3 bg-primary/10 text-primary rounded-lg shrink-0">
+                    <item.icon className="w-6 h-6" />
+                  </div>
+                  <div>
+                    <h3 className="font-bold text-lg text-slate-900">{item.title}</h3>
+                    <p className="text-slate-500">{item.desc}</p>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+
+          {/* Contact Form */}
+          <div className="lg:col-span-2">
+            <Card className="border-none shadow-xl overflow-hidden">
+              <CardContent className="p-8 md:p-12 bg-white">
+                <h2 className="text-3xl font-display font-bold text-slate-900 mb-6">Send us a message</h2>
+                <Form {...form}>
+                  <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-6">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                      <FormField
+                        control={form.control}
+                        name="name"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Full Name</FormLabel>
+                            <FormControl>
+                              <Input placeholder="John Doe" className="h-12 bg-slate-50" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                      <FormField
+                        control={form.control}
+                        name="phone"
+                        render={({ field }) => (
+                          <FormItem>
+                            <FormLabel>Phone Number</FormLabel>
+                            <FormControl>
+                              <Input placeholder="+91 99999 99999" className="h-12 bg-slate-50" {...field} />
+                            </FormControl>
+                            <FormMessage />
+                          </FormItem>
+                        )}
+                      />
+                    </div>
+
+                    <FormField
+                      control={form.control}
+                      name="email"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Email Address</FormLabel>
+                          <FormControl>
+                            <Input placeholder="john@example.com" className="h-12 bg-slate-50" {...field} />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <FormField
+                      control={form.control}
+                      name="message"
+                      render={({ field }) => (
+                        <FormItem>
+                          <FormLabel>Message / Query</FormLabel>
+                          <FormControl>
+                            <Textarea 
+                              placeholder="Tell us what course you are looking for..." 
+                              className="min-h-[150px] bg-slate-50 resize-none p-4" 
+                              {...field} 
+                            />
+                          </FormControl>
+                          <FormMessage />
+                        </FormItem>
+                      )}
+                    />
+
+                    <Button 
+                      type="submit" 
+                      size="lg" 
+                      className="w-full h-14 text-lg shadow-lg shadow-primary/25"
+                      disabled={isPending}
+                    >
+                      {isPending ? "Sending..." : (
+                        <span className="flex items-center gap-2">
+                          Send Message <Send className="w-5 h-5" />
+                        </span>
+                      )}
+                    </Button>
+                  </form>
+                </Form>
+              </CardContent>
+            </Card>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  );
+}

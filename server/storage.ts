@@ -1,38 +1,81 @@
-import { type User, type InsertUser } from "@shared/schema";
-import { randomUUID } from "crypto";
-
-// modify the interface with any CRUD methods
-// you might need
+import {
+  type Course,
+  type InsertCourse,
+  type Location,
+  type InsertLocation,
+  type Review,
+  type InsertReview,
+  type Inquiry,
+  type InsertInquiry,
+  courses,
+  locations,
+  reviews,
+  inquiries,
+} from "@shared/schema";
+import { db } from "./db";
+import { eq } from "drizzle-orm";
 
 export interface IStorage {
-  getUser(id: string): Promise<User | undefined>;
-  getUserByUsername(username: string): Promise<User | undefined>;
-  createUser(user: InsertUser): Promise<User>;
+  getCourses(): Promise<Course[]>;
+  getCourse(id: number): Promise<Course | undefined>;
+  getLocations(): Promise<Location[]>;
+  getReviews(): Promise<Review[]>;
+  createInquiry(inquiry: InsertInquiry): Promise<Inquiry>;
+  // Seeding methods
+  createCourse(course: InsertCourse): Promise<Course>;
+  createLocation(location: InsertLocation): Promise<Location>;
+  createReview(review: InsertReview): Promise<Review>;
 }
 
-export class MemStorage implements IStorage {
-  private users: Map<string, User>;
-
-  constructor() {
-    this.users = new Map();
+export class DatabaseStorage implements IStorage {
+  async getCourses(): Promise<Course[]> {
+    return await db.select().from(courses);
   }
 
-  async getUser(id: string): Promise<User | undefined> {
-    return this.users.get(id);
+  async getCourse(id: number): Promise<Course | undefined> {
+    const [course] = await db.select().from(courses).where(eq(courses.id, id));
+    return course;
   }
 
-  async getUserByUsername(username: string): Promise<User | undefined> {
-    return Array.from(this.users.values()).find(
-      (user) => user.username === username,
-    );
+  async getLocations(): Promise<Location[]> {
+    return await db.select().from(locations);
   }
 
-  async createUser(insertUser: InsertUser): Promise<User> {
-    const id = randomUUID();
-    const user: User = { ...insertUser, id };
-    this.users.set(id, user);
-    return user;
+  async getReviews(): Promise<Review[]> {
+    return await db.select().from(reviews);
+  }
+
+  async createInquiry(insertInquiry: InsertInquiry): Promise<Inquiry> {
+    const [inquiry] = await db
+      .insert(inquiries)
+      .values(insertInquiry)
+      .returning();
+    return inquiry;
+  }
+
+  async createCourse(insertCourse: InsertCourse): Promise<Course> {
+    const [course] = await db
+      .insert(courses)
+      .values(insertCourse)
+      .returning();
+    return course;
+  }
+
+  async createLocation(insertLocation: InsertLocation): Promise<Location> {
+    const [location] = await db
+      .insert(locations)
+      .values(insertLocation)
+      .returning();
+    return location;
+  }
+
+  async createReview(insertReview: InsertReview): Promise<Review> {
+    const [review] = await db
+      .insert(reviews)
+      .values(insertReview)
+      .returning();
+    return review;
   }
 }
 
-export const storage = new MemStorage();
+export const storage = new DatabaseStorage();

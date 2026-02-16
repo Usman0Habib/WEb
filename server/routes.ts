@@ -61,6 +61,13 @@ async function seedDatabase() {
       category: "NEET",
       duration: "2 Years",
       fee: 150000,
+      feeStructure: {
+        admissionFee: 20000,
+        tuitionFee: 100000,
+        studyMaterial: 15000,
+        testSeries: 15000,
+        total: 150000
+      },
       features: ["Daily Classes", "Weekly Tests", "Doubt Sessions", "Study Material"],
     });
     await storage.createCourse({
@@ -69,6 +76,13 @@ async function seedDatabase() {
       category: "IIT JEE",
       duration: "2 Years",
       fee: 180000,
+      feeStructure: {
+        admissionFee: 25000,
+        tuitionFee: 120000,
+        studyMaterial: 15000,
+        testSeries: 20000,
+        total: 180000
+      },
       features: ["Expert Faculty", "All India Test Series", "One-to-One Mentoring"],
     });
     await storage.createCourse({
@@ -77,6 +91,13 @@ async function seedDatabase() {
       category: "Foundation",
       duration: "1 Year",
       fee: 60000,
+      feeStructure: {
+        admissionFee: 10000,
+        tuitionFee: 40000,
+        studyMaterial: 5000,
+        testSeries: 5000,
+        total: 60000
+      },
       features: ["School Syllabus Covered", "Olympiad Prep", "Regular PTMs"],
     });
     await storage.createCourse({
@@ -85,6 +106,13 @@ async function seedDatabase() {
       category: "CUET",
       duration: "3 Months",
       fee: 25000,
+      feeStructure: {
+        admissionFee: 5000,
+        tuitionFee: 15000,
+        studyMaterial: 2500,
+        testSeries: 2500,
+        total: 25000
+      },
       features: ["Mock Tests", "Domain Subject Focus", "General Test Prep"],
     });
   }

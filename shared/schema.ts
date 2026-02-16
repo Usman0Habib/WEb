@@ -9,6 +9,13 @@ export const courses = pgTable("courses", {
   category: text("category").notNull(), // NEET, JEE, Foundation, CUET
   duration: text("duration").notNull(),
   fee: integer("fee").notNull(),
+  feeStructure: jsonb("fee_structure").$type<{
+    admissionFee: number;
+    tuitionFee: number;
+    studyMaterial: number;
+    testSeries: number;
+    total: number;
+  }>(),
   features: jsonb("features").$type<string[]>().default([]),
 });
 

@@ -2,7 +2,7 @@ import { useCourses } from "@/hooks/use-coaching-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { IndianRupee, BookOpen, FileText, CheckCircle2 } from "lucide-react";
+import { IndianRupee, BookOpen, FileText, CheckCircle2, GraduationCap } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Fees() {

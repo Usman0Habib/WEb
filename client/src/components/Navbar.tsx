@@ -21,8 +21,8 @@ export function Navbar() {
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-          <div className="p-2 bg-primary/10 rounded-xl group-hover:bg-primary/20 transition-colors">
-            <GraduationCap className="w-8 h-8 text-primary" />
+          <div className="p-1 bg-white rounded-lg transition-transform group-hover:scale-105">
+            <img src="/images/logo.png" alt="CGA Logo" className="w-12 h-12 object-contain" />
           </div>
           <div className="flex flex-col">
             <span className="font-display font-bold text-xl leading-none text-foreground">

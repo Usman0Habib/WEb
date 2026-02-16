@@ -9,8 +9,8 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <div className="p-2 bg-primary/20 rounded-xl">
-                <GraduationCap className="w-6 h-6 text-primary" />
+              <div className="p-1 bg-white rounded-lg">
+                <img src="/images/logo.png" alt="CGA Logo" className="w-10 h-10 object-contain" />
               </div>
               <span className="font-display font-bold text-xl text-white">Career Goal Academy</span>
             </div>

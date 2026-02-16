@@ -55,6 +55,40 @@ export async function registerRoutes(
 async function seedDatabase() {
   const existingCourses = await storage.getCourses();
   if (existingCourses.length === 0) {
+    const schoolFees = [
+      { title: "NURSERY", oldFee: 300, newFee: 300 },
+      { title: "LKG", oldFee: 300, newFee: 300 },
+      { title: "UKG", oldFee: 300, newFee: 300 },
+      { title: "1st to 3rd", oldFee: 300, newFee: 300 },
+      { title: "4th", oldFee: 400, newFee: 400 },
+      { title: "5th", oldFee: 500, newFee: 500 },
+      { title: "6th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 600, newFee: 700 },
+      { title: "7th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 700, newFee: 800 },
+      { title: "8th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 800, newFee: 900 },
+      { title: "9th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 900, newFee: 1000 },
+      { title: "10th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 1000, newFee: 1100 },
+      { title: "9th (ONLY MATHS; SCIENCE; S.ST; ENGLISH)", oldFee: 300, newFee: 300 },
+      { title: "10th (ONLY MATHS; SCIENCE; S.ST; ENGLISH)", oldFee: 300, newFee: 300 },
+    ];
+
+    for (const fee of schoolFees) {
+      await storage.createCourse({
+        title: `Class ${fee.title}`,
+        description: `Academic session for Class ${fee.title}`,
+        category: "School",
+        duration: "1 Year",
+        fee: fee.newFee,
+        feeStructure: {
+          admissionFee: 0,
+          tuitionFee: fee.newFee,
+          studyMaterial: 0,
+          testSeries: 0,
+          total: fee.newFee
+        },
+        features: ["Regular Classes", "Comprehensive Support"],
+      });
+    }
+
     await storage.createCourse({
       title: "NEET Comprehensive (2 Year)",
       description: "Complete preparation for NEET UG for Class 11 students.",

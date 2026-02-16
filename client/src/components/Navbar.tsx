@@ -55,9 +55,14 @@ export function Navbar() {
               </div>
             </Link>
           ))}
-          <Button variant="default" size="sm" className="ml-4 font-semibold shadow-lg shadow-primary/20" asChild>
-            <Link href="/contact">Contact Us</Link>
-          </Button>
+          <div className="flex items-center gap-3 ml-4">
+            <Button variant="outline" size="sm" className="font-semibold border-primary/20 text-primary hover:bg-primary/5" asChild>
+              <Link href="/payment">Pay Fees</Link>
+            </Button>
+            <Button variant="default" size="sm" className="font-semibold shadow-lg shadow-primary/20" asChild>
+              <Link href="/contact">Contact Us</Link>
+            </Button>
+          </div>
         </div>
 
         {/* Mobile Menu Button */}
@@ -93,9 +98,14 @@ export function Navbar() {
                   </div>
                 </Link>
               ))}
-              <Button className="w-full mt-4" asChild onClick={() => setIsOpen(false)}>
-                <Link href="/contact">Contact Us</Link>
-              </Button>
+              <div className="flex flex-col gap-3 mt-4">
+                <Button variant="outline" className="w-full" asChild onClick={() => setIsOpen(false)}>
+                  <Link href="/payment">Pay Fees</Link>
+                </Button>
+                <Button className="w-full" asChild onClick={() => setIsOpen(false)}>
+                  <Link href="/contact">Contact Us</Link>
+                </Button>
+              </div>
             </div>
           </motion.div>
         )}

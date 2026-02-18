@@ -60,7 +60,7 @@ export function Navbar() {
               <Link href="/payment">Pay Fees</Link>
             </Button>
             <Button variant="default" size="sm" className="font-semibold shadow-lg shadow-primary/20" asChild>
-              <Link href="/contact">Contact Us</Link>
+              <Link href="/auth">Login</Link>
             </Button>
           </div>
         </div>
@@ -103,7 +103,7 @@ export function Navbar() {
                   <Link href="/payment">Pay Fees</Link>
                 </Button>
                 <Button className="w-full" asChild onClick={() => setIsOpen(false)}>
-                  <Link href="/contact">Contact Us</Link>
+                  <Link href="/auth">Login</Link>
                 </Button>
               </div>
             </div>

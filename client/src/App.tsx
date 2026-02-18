@@ -11,6 +11,7 @@ import Courses from "@/pages/Courses";
 import Fees from "@/pages/Fees";
 import Payment from "@/pages/Payment";
 import Contact from "@/pages/Contact";
+import AuthPage from "@/pages/AuthPage";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 
@@ -37,6 +38,7 @@ function Router() {
           <Route path="/fees" component={Fees} />
           <Route path="/payment" component={Payment} />
           <Route path="/contact" component={Contact} />
+          <Route path="/auth" component={AuthPage} />
           <Route component={NotFound} />
         </Switch>
       </main>

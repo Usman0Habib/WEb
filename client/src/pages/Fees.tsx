@@ -2,8 +2,10 @@ import { useCourses } from "@/hooks/use-coaching-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { IndianRupee, BookOpen, FileText, CheckCircle2, GraduationCap } from "lucide-react";
+import { IndianRupee, BookOpen, FileText, CheckCircle2, GraduationCap, Phone } from "lucide-react";
 import { motion } from "framer-motion";
+import { Button } from "@/components/ui/button";
+import { Link } from "wouter";
 
 export default function Fees() {
   const { data: courses, isLoading } = useCourses();
@@ -30,14 +32,22 @@ export default function Fees() {
           >
             Course Fee Structure
           </motion.h1>
-          <motion.p 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="text-lg text-slate-600"
+            className="flex flex-col items-center gap-6"
           >
-            Transparent pricing for all our programs. Academic excellence made accessible.
-          </motion.p>
+            <p className="text-lg text-slate-600">
+              Transparent pricing for all our programs. Academic excellence made accessible.
+            </p>
+            <Button variant="outline" size="sm" className="gap-2 text-muted-foreground hover:text-primary" asChild>
+              <Link href="/contact">
+                <Phone className="w-4 h-4" />
+                Contact Us for Admission
+              </Link>
+            </Button>
+          </motion.div>
         </div>
 
         <div className="space-y-16 max-w-6xl mx-auto">

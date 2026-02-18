@@ -7,10 +7,13 @@ import {
   type InsertReview,
   type Inquiry,
   type InsertInquiry,
+  type User,
+  type InsertUser,
   courses,
   locations,
   reviews,
   inquiries,
+  users,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq } from "drizzle-orm";
@@ -21,6 +24,10 @@ export interface IStorage {
   getLocations(): Promise<Location[]>;
   getReviews(): Promise<Review[]>;
   createInquiry(inquiry: InsertInquiry): Promise<Inquiry>;
+  createUser(user: InsertUser): Promise<User>;
+  getUserByEmail(email: string): Promise<User | undefined>;
+  getUserByGoogleId(googleId: string): Promise<User | undefined>;
+  getUserById(id: number): Promise<User | undefined>;
   // Seeding methods
   createCourse(course: InsertCourse): Promise<Course>;
   createLocation(location: InsertLocation): Promise<Location>;
@@ -75,6 +82,29 @@ export class DatabaseStorage implements IStorage {
       .values(insertReview)
       .returning();
     return review;
+  }
+
+  async createUser(insertUser: InsertUser): Promise<User> {
+    const [user] = await db
+      .insert(users)
+      .values(insertUser)
+      .returning();
+    return user;
+  }
+
+  async getUserByEmail(email: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.email, email));
+    return user;
+  }
+
+  async getUserByGoogleId(googleId: string): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.googleId, googleId));
+    return user;
+  }
+
+  async getUserById(id: number): Promise<User | undefined> {
+    const [user] = await db.select().from(users).where(eq(users.id, id));
+    return user;
   }
 }
 

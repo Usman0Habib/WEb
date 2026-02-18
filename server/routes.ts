@@ -3,11 +3,120 @@ import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
 import { z } from "zod";
+import { setupAuth } from "./auth";
+import passport from "passport";
+import bcrypt from "bcrypt";
 
 export async function registerRoutes(
   httpServer: Server,
   app: Express
 ): Promise<Server> {
+  await setupAuth(app);
+
+  app.post("/api/auth/register", async (req, res) => {
+    try {
+      const { email, password, firstName, lastName } = req.body;
+      if (!email || !password || !firstName || !lastName) {
+        return res.status(400).json({ message: "All fields are required" });
+      }
+      const existing = await storage.getUserByEmail(email);
+      if (existing) {
+        return res.status(400).json({ message: "An account with this email already exists" });
+      }
+      const hashedPassword = await bcrypt.hash(password, 10);
+      const user = await storage.createUser({
+        email,
+        password: hashedPassword,
+        firstName,
+        lastName,
+        googleId: null,
+        profilePicture: null,
+      });
+      req.login(
+        {
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          profilePicture: user.profilePicture,
+          googleId: user.googleId,
+        },
+        (err) => {
+          if (err) {
+            return res.status(500).json({ message: "Login failed after registration" });
+          }
+          return res.status(201).json({
+            id: user.id,
+            email: user.email,
+            firstName: user.firstName,
+            lastName: user.lastName,
+            profilePicture: user.profilePicture,
+          });
+        }
+      );
+    } catch (err) {
+      console.error("Registration error:", err);
+      return res.status(500).json({ message: "Registration failed" });
+    }
+  });
+
+  app.post("/api/auth/login", (req, res, next) => {
+    passport.authenticate("local", (err: any, user: any, info: any) => {
+      if (err) {
+        return res.status(500).json({ message: "Login failed" });
+      }
+      if (!user) {
+        return res.status(401).json({ message: info?.message || "Incorrect email or password" });
+      }
+      req.login(user, (err) => {
+        if (err) {
+          return res.status(500).json({ message: "Login failed" });
+        }
+        return res.json({
+          id: user.id,
+          email: user.email,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          profilePicture: user.profilePicture,
+        });
+      });
+    })(req, res, next);
+  });
+
+  app.post("/api/auth/logout", (req, res) => {
+    req.logout((err) => {
+      if (err) {
+        return res.status(500).json({ message: "Logout failed" });
+      }
+      res.json({ message: "Logged out successfully" });
+    });
+  });
+
+  app.get("/api/auth/user", (req, res) => {
+    if (req.isAuthenticated()) {
+      return res.json(req.user);
+    }
+    return res.status(401).json({ message: "Not authenticated" });
+  });
+
+  app.get("/api/auth/google", (req, res, next) => {
+    if (!process.env.GOOGLE_CLIENT_ID) {
+      return res.status(503).json({ message: "Google auth not configured" });
+    }
+    passport.authenticate("google", { scope: ["profile", "email"] })(req, res, next);
+  });
+
+  app.get("/api/auth/google/callback",
+    passport.authenticate("google", { failureRedirect: "/auth?error=google_failed" }),
+    (req, res) => {
+      res.redirect("/");
+    }
+  );
+
+  app.get("/api/auth/google/status", (_req, res) => {
+    res.json({ enabled: !!(process.env.GOOGLE_CLIENT_ID && process.env.GOOGLE_CLIENT_SECRET) });
+  });
+
   app.get(api.courses.list.path, async (req, res) => {
     const courses = await storage.getCourses();
     res.json(courses);

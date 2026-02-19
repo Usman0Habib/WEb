@@ -109,7 +109,7 @@ export async function registerRoutes(
   app.get("/api/auth/google/callback",
     passport.authenticate("google", { failureRedirect: "/auth?error=google_failed" }),
     (req, res) => {
-      res.redirect("/");
+      res.redirect("/dashboard");
     }
   );
 

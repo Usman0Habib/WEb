@@ -91,6 +91,10 @@ export function Navbar() {
                     <p className="text-muted-foreground text-xs" data-testid="text-user-email">{user?.email}</p>
                   </div>
                   <DropdownMenuSeparator />
+                  <DropdownMenuItem onClick={() => setLocation("/dashboard")} data-testid="link-dashboard">
+                    <User className="mr-2 h-4 w-4" />
+                    <span>Dashboard</span>
+                  </DropdownMenuItem>
                   <DropdownMenuItem onClick={handleLogout} data-testid="button-logout">
                     <LogOut className="mr-2 h-4 w-4" />
                     <span>Log out</span>

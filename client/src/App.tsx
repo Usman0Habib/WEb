@@ -12,6 +12,7 @@ import Fees from "@/pages/Fees";
 import Payment from "@/pages/Payment";
 import Contact from "@/pages/Contact";
 import AuthPage from "@/pages/AuthPage";
+import Dashboard from "@/pages/Dashboard";
 import NotFound from "@/pages/not-found";
 import { useEffect } from "react";
 
@@ -25,7 +26,7 @@ function ScrollToTop() {
   return null;
 }
 
-function Router() {
+function PublicLayout() {
   return (
     <div className="flex flex-col min-h-screen">
       <ScrollToTop />
@@ -45,6 +46,16 @@ function Router() {
       <Footer />
     </div>
   );
+}
+
+function Router() {
+  const [location] = useLocation();
+
+  if (location === "/dashboard") {
+    return <Dashboard />;
+  }
+
+  return <PublicLayout />;
 }
 
 function App() {

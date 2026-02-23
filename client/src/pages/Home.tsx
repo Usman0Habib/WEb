@@ -73,8 +73,8 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-xl text-slate-600 max-w-2xl"
             >
-              India's premier coaching institute for JEE, NEET, and Foundation courses. 
-              Join 20,000+ successful students in their journey to excellence.
+              India's premier coaching institute for Foundation courses. 
+              Join 12,000+ successful students in their journey to excellence.
             </motion.p>
             
             <motion.div 
@@ -97,10 +97,10 @@ export default function Home() {
         <div className="container mx-auto px-4 mt-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { icon: Users, label: "20,000+ Students", sub: "Trusted by parents" },
-              { icon: Trophy, label: "1500+ Selections", sub: "In Top Colleges" },
+              { icon: Users, label: "16,870+ Students", sub: "Trusted by parents" },
+              { icon: Trophy, label: "1500+ Selections", sub: "In Schooll Toppers" },
               { icon: Award, label: "15+ Years", sub: "Of Excellence" },
-              { icon: MapPin, label: "12 Centres", sub: "Across Delhi" },
+              { icon: MapPin, label: "5 Centres", sub: "Across Faridabad,Haryana" },
             ].map((stat, i) => (
               <motion.div 
                 key={i}

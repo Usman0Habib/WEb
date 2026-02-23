@@ -46,7 +46,7 @@ export function Footer() {
               <li><Link href="/courses" className="hover:text-primary transition-colors text-left inline-block">Junior Programs<br />Class ( 1st to 8th )</Link></li>
               <li><Link href="/courses" className="hover:text-primary transition-colors">Foundation Classes (9th to 10th)</Link></li>
               <li><Link href="/courses" className="hover:text-primary transition-colors text-left inline-block">Senior Secondary Program<br />(Class 11–12)</Link></li>
-              <li><Link href="/courses" className="hover:text-primary transition-colors">CUET Preparation</Link></li>
+              <li><Link href="/courses" className="hover:text-primary transition-colors text-left inline-block">CA Foundation &<br />Intermediate Program</Link></li>
             </ul>
           </div>
 

@@ -56,7 +56,7 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span className="text-slate-400">123 Education Hub, South Extension Part 1, New Delhi, 110049</span>
+                <span className="text-slate-400">Street no. 4 , Part-2 , Om enclave , Faridabad-Haryana-121003</span>
               </li>
               <li className="flex items-center gap-3">
                 <Phone className="w-5 h-5 text-primary shrink-0" />
@@ -70,7 +70,6 @@ export function Footer() {
           </div>
         </div>
       </div>
-      
       <div className="border-t border-slate-900 py-6">
         <div className="container mx-auto px-4 flex flex-col md:flex-row justify-between items-center gap-4 text-sm text-slate-500">
           <p>© 2024 Career Goal Academy. All rights reserved.</p>

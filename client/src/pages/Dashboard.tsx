@@ -24,17 +24,10 @@ const sidebarItems = [
   { id: "profile", label: "My Profile", icon: UserCircle },
 ];
 
-const classTabs = [
-  { id: "live", label: "LIVE", icon: MonitorPlay },
-  { id: "upcoming", label: "UPCOMING", icon: Calendar },
-  { id: "completed", label: "COMPLETED", icon: CheckCircle2 },
-];
-
 export default function Dashboard() {
   const [, setLocation] = useLocation();
   const { user, isLoading, isAuthenticated, logoutMutation } = useAuth();
   const [activeSection, setActiveSection] = useState("classes");
-  const [activeTab, setActiveTab] = useState("live");
 
   useEffect(() => {
     if (!isLoading && !isAuthenticated) {
@@ -66,27 +59,6 @@ export default function Dashboard() {
             <h2 className="text-xl font-display font-semibold text-foreground mb-6" data-testid="text-section-title">
               My Classes
             </h2>
-            <div className="flex gap-1 border-b border-border mb-8">
-              {classTabs.map((tab) => (
-                <button
-                  key={tab.id}
-                  onClick={() => setActiveTab(tab.id)}
-                  className={cn(
-                    "flex items-center gap-2 px-4 py-2.5 text-sm font-medium transition-colors relative",
-                    activeTab === tab.id
-                      ? "text-primary"
-                      : "text-muted-foreground hover:text-foreground"
-                  )}
-                  data-testid={`tab-${tab.id}`}
-                >
-                  <tab.icon className="w-4 h-4" />
-                  {tab.label}
-                  {activeTab === tab.id && (
-                    <span className="absolute bottom-0 left-0 right-0 h-0.5 bg-primary rounded-full" />
-                  )}
-                </button>
-              ))}
-            </div>
             <div className="flex flex-col items-center justify-center py-16">
               <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-4">
                 <Video className="w-10 h-10 text-muted-foreground" />

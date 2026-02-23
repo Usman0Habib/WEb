@@ -44,7 +44,7 @@ export function Footer() {
             <h4 className="font-display font-bold text-lg text-white mb-6">Popular Courses</h4>
             <ul className="space-y-4 text-sm">
               <li><Link href="/courses" className="hover:text-primary transition-colors text-left inline-block">Junior Programs<br />Class ( 1st to 8th )</Link></li>
-              <li><Link href="/courses" className="hover:text-primary transition-colors">IIT JEE Mains + Advanced</Link></li>
+              <li><Link href="/courses" className="hover:text-primary transition-colors">Foundation Classes (9th to 10th)</Link></li>
               <li><Link href="/courses" className="hover:text-primary transition-colors">Foundation Class 10</Link></li>
               <li><Link href="/courses" className="hover:text-primary transition-colors">CUET Preparation</Link></li>
             </ul>

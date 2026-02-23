@@ -1,7 +1,7 @@
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
-import { Menu, X, GraduationCap, LogOut, User } from "lucide-react";
+import { Menu, X, GraduationCap, LogOut, User, ShieldCheck } from "lucide-react";
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/use-auth";
@@ -80,6 +80,9 @@ export function Navbar() {
                       </AvatarFallback>
                     </Avatar>
                     <span className="hidden lg:inline">{user?.firstName}</span>
+                    {user?.role === "admin" && (
+                      <ShieldCheck className="h-4 w-4 text-primary animate-pulse" />
+                    )}
                   </Button>
                 </DropdownMenuTrigger>
                 <DropdownMenuContent align="end">

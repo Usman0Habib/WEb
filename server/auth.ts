@@ -16,6 +16,7 @@ declare global {
       email: string;
       firstName: string;
       lastName: string;
+      role: string;
       profilePicture: string | null;
       googleId: string | null;
     }
@@ -70,6 +71,7 @@ export async function setupAuth(app: Express) {
             email: user.email,
             firstName: user.firstName,
             lastName: user.lastName,
+            role: user.role,
             profilePicture: user.profilePicture,
             googleId: user.googleId,
           });
@@ -109,6 +111,7 @@ export async function setupAuth(app: Express) {
                   email: existing.email,
                   firstName: existing.firstName,
                   lastName: existing.lastName,
+                  role: existing.role,
                   profilePicture: existing.profilePicture,
                   googleId: existing.googleId,
                 });
@@ -127,6 +130,7 @@ export async function setupAuth(app: Express) {
               email: user.email,
               firstName: user.firstName,
               lastName: user.lastName,
+              role: user.role,
               profilePicture: user.profilePicture,
               googleId: user.googleId,
             });
@@ -153,6 +157,7 @@ export async function setupAuth(app: Express) {
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
+        role: user.role,
         profilePicture: user.profilePicture,
         googleId: user.googleId,
       });

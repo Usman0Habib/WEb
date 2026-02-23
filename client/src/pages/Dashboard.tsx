@@ -237,7 +237,9 @@ export default function Dashboard() {
           </div>
 
           <div className="hidden md:block">
-            <h1 className="text-lg font-display font-semibold text-foreground">Student Dashboard</h1>
+            <h1 className="text-lg font-display font-semibold text-foreground">
+              {user?.role === "admin" ? "Admin Panel" : "Student Dashboard"}
+            </h1>
           </div>
 
           <div className="flex items-center gap-3">

@@ -183,15 +183,12 @@ export default function Dashboard() {
       <aside className="hidden md:flex flex-col w-64 border-r border-border bg-card" data-testid="dashboard-sidebar">
         <div className="p-4 border-b border-border">
           <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-            <div className="p-1 bg-white rounded-lg transition-transform group-hover:scale-105">
-              <GraduationCap className="w-8 h-8 text-primary" />
+            <div className="p-0 bg-transparent transition-transform group-hover:scale-105">
+              <img src="/images/logo.png" alt="Career Goal Academy Logo" className="w-10 h-10 object-contain" />
             </div>
             <div className="flex flex-col">
-              <span className="font-display font-bold text-base leading-none text-foreground">
-                Career Goal
-              </span>
-              <span className="font-body text-xs text-muted-foreground font-medium tracking-wider uppercase">
-                Academy
+              <span className="font-display font-bold text-base leading-none text-foreground whitespace-nowrap">
+                Career Goal Academy
               </span>
             </div>
           </Link>
@@ -234,8 +231,8 @@ export default function Dashboard() {
         <header className="flex items-center justify-between gap-4 px-6 h-16 border-b border-border bg-card" data-testid="dashboard-topbar">
           <div className="md:hidden">
             <Link href="/" className="flex items-center gap-2">
-              <GraduationCap className="w-6 h-6 text-primary" />
-              <span className="font-display font-bold text-sm text-foreground">CGA</span>
+              <img src="/images/logo.png" alt="Career Goal Academy Logo" className="w-8 h-8 object-contain" />
+              <span className="font-display font-bold text-sm text-foreground whitespace-nowrap">Career Goal Academy</span>
             </Link>
           </div>
 

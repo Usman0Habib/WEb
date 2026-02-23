@@ -9,10 +9,10 @@ export function Footer() {
           {/* Brand */}
           <div className="space-y-6">
             <div className="flex items-center gap-2">
-              <div className="p-1 bg-white rounded-lg">
-                <img src="/images/logo.png" alt="CGA Logo" className="w-10 h-10 object-contain" />
+              <div className="p-0 bg-transparent">
+                <img src="/images/logo.png" alt="Career Goal Academy Logo" className="w-10 h-10 object-contain" />
               </div>
-              <span className="font-display font-bold text-xl text-white">Career Goal Academy</span>
+              <span className="font-display font-bold text-xl text-white whitespace-nowrap">Career Goal Academy</span>
             </div>
             <p className="text-slate-400 text-sm leading-relaxed">
               Empowering students to achieve their dreams through quality education, 

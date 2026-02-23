@@ -85,15 +85,12 @@ export default function AuthPage() {
         className="max-w-md w-full"
       >
         <div className="text-center mb-8">
-          <div className="inline-flex items-center justify-center p-3 bg-primary/10 rounded-2xl mb-4">
-            <GraduationCap className="w-10 h-10 text-primary" />
+          <div className="inline-flex items-center justify-center p-0 bg-transparent mb-4">
+            <img src="/images/logo.png" alt="Career Goal Academy Logo" className="w-16 h-16 object-contain" />
           </div>
           <h2 className="text-3xl font-display font-bold text-slate-900" data-testid="text-auth-title">
-            Welcome to CGA
+            Welcome to Career Goal Academy
           </h2>
-          <p className="text-slate-600 mt-2">
-            Academy Management System
-          </p>
         </div>
 
         <Card className="border-none shadow-xl">

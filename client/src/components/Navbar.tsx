@@ -35,15 +35,12 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-          <div className="p-1 bg-white rounded-lg transition-transform group-hover:scale-105">
-            <img src="/images/logo.png" alt="CGA Logo" className="w-12 h-12 object-contain" />
+          <div className="p-0 bg-transparent transition-transform group-hover:scale-105">
+            <img src="/images/logo.png" alt="Career Goal Academy Logo" className="w-12 h-12 object-contain" />
           </div>
           <div className="flex flex-col">
-            <span className="font-display font-bold text-xl leading-none text-foreground">
-              Career Goal
-            </span>
-            <span className="font-body text-xs text-muted-foreground font-medium tracking-wider uppercase">
-              Academy
+            <span className="font-display font-bold text-xl leading-none text-foreground whitespace-nowrap">
+              Career Goal Academy
             </span>
           </div>
         </Link>

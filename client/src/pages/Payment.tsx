@@ -1,3 +1,4 @@
+import logoImg from "@/assets/logo.png";
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
@@ -28,7 +29,7 @@ export default function Payment() {
             <Card className="border-none shadow-2xl overflow-hidden">
               <CardHeader className="bg-slate-900 text-white p-8 text-center relative overflow-hidden">
                 <div className="absolute top-0 right-0 p-4 opacity-10">
-                  <img src="/images/logo.png" alt="" className="w-24 h-24 object-contain" />
+                  <img src={logoImg} alt="" className="w-24 h-24 object-contain" />
                 </div>
                 <CardTitle className="text-3xl font-display">Pay Your Fees</CardTitle>
                 <p className="text-slate-400 mt-2 text-sm uppercase tracking-widest font-medium">

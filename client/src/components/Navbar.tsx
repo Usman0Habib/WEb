@@ -1,3 +1,4 @@
+import logoImg from "@/assets/logo.png";
 import { Link, useLocation } from "wouter";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
@@ -35,17 +36,12 @@ export function Navbar() {
     <nav className="sticky top-0 z-50 w-full bg-white/80 backdrop-blur-md border-b border-border/40 shadow-sm">
       <div className="container mx-auto px-4 h-20 flex items-center justify-between">
         <Link href="/" className="flex items-center gap-2 group cursor-pointer">
-          <div className="p-1 bg-white rounded-lg transition-transform group-hover:scale-105">
-            <img src="/images/logo.png" alt="CGA Logo" className="w-12 h-12 object-contain" />
+          <div className="transition-transform group-hover:scale-105">
+            <img src={logoImg} alt="CGA Logo" className="w-14 h-14 object-contain" />
           </div>
-          <div className="flex flex-col">
-            <span className="font-display font-bold text-xl leading-none text-foreground">
-              Career Goal
-            </span>
-            <span className="font-body text-xs text-muted-foreground font-medium tracking-wider uppercase">
-              Academy
-            </span>
-          </div>
+          <span className="font-display font-bold text-xl leading-none text-foreground whitespace-nowrap">
+            Career Goal Academy
+          </span>
         </Link>
 
         <div className="hidden md:flex items-center gap-8">

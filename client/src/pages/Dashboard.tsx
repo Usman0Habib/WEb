@@ -350,28 +350,52 @@ function SentNotificationHistory() {
 function AdminContentUpload() {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
+  const [file, setFile] = useState<File | null>(null);
   const [fileUrl, setFileUrl] = useState("");
-  const [fileType, setFileType] = useState("pdf");
+  const [uploadType, setUploadType] = useState<"file" | "url">("file");
   const { toast } = useToast();
 
   const uploadMutation = useMutation({
-    mutationFn: async (data: any) => {
-      const res = await apiRequest("POST", "/api/content", data);
+    mutationFn: async (formData: FormData) => {
+      const res = await fetch("/api/content", {
+        method: "POST",
+        body: formData,
+      });
+      if (!res.ok) throw new Error("Upload failed");
       return res.json();
     },
     onSuccess: () => {
       toast({ title: "Content Uploaded", description: "Successfully uploaded to student dashboard." });
       setTitle("");
       setDescription("");
+      setFile(null);
       setFileUrl("");
       queryClient.invalidateQueries({ queryKey: ["/api/content"] });
+    },
+    onError: (err: any) => {
+      toast({ title: "Error", description: err.message, variant: "destructive" });
     },
   });
 
   const handleSubmit = (e: any) => {
     e.preventDefault();
-    if (!title || !fileUrl) return;
-    uploadMutation.mutate({ title, description, fileUrl, fileType });
+    if (!title) return;
+    
+    const formData = new FormData();
+    formData.append("title", title);
+    formData.append("description", description);
+    
+    if (uploadType === "file" && file) {
+      formData.append("file", file);
+    } else if (uploadType === "url" && fileUrl) {
+      formData.append("fileUrl", fileUrl);
+      formData.append("fileType", "link");
+    } else {
+      toast({ title: "Error", description: "Please provide a file or URL", variant: "destructive" });
+      return;
+    }
+
+    uploadMutation.mutate(formData);
   };
 
   return (
@@ -381,27 +405,49 @@ function AdminContentUpload() {
         <form onSubmit={handleSubmit} className="space-y-4">
           <div>
             <label className="text-sm font-medium">Title</label>
-            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Class 10th Notes" />
+            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Class 10th Notes" required />
           </div>
           <div>
             <label className="text-sm font-medium">Description</label>
             <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Brief description..." />
           </div>
-          <div>
-            <label className="text-sm font-medium">File URL (PDF/Image)</label>
-            <Input value={fileUrl} onChange={(e) => setFileUrl(e.target.value)} placeholder="https://..." />
-          </div>
-          <div>
-            <label className="text-sm font-medium">Type</label>
-            <select 
-              className="w-full p-2 rounded-md border border-input bg-background"
-              value={fileType}
-              onChange={(e) => setFileType(e.target.value)}
+          
+          <div className="flex gap-4 p-1 bg-muted rounded-lg">
+            <Button 
+              type="button" 
+              variant={uploadType === "file" ? "default" : "ghost"} 
+              className="flex-1"
+              onClick={() => setUploadType("file")}
             >
-              <option value="pdf">PDF Document</option>
-              <option value="image">Image/Poster</option>
-            </select>
+              Direct File
+            </Button>
+            <Button 
+              type="button" 
+              variant={uploadType === "url" ? "default" : "ghost"} 
+              className="flex-1"
+              onClick={() => setUploadType("url")}
+            >
+              External Link
+            </Button>
           </div>
+
+          {uploadType === "file" ? (
+            <div>
+              <label className="text-sm font-medium">Select File (PDF/Image)</label>
+              <Input 
+                type="file" 
+                onChange={(e) => setFile(e.target.files?.[0] || null)} 
+                accept=".pdf,image/*"
+                className="cursor-pointer"
+              />
+            </div>
+          ) : (
+            <div>
+              <label className="text-sm font-medium">File URL</label>
+              <Input value={fileUrl} onChange={(e) => setFileUrl(e.target.value)} placeholder="https://..." />
+            </div>
+          )}
+
           <Button type="submit" className="w-full" disabled={uploadMutation.isPending}>
             {uploadMutation.isPending ? "Uploading..." : "Upload Content"}
           </Button>

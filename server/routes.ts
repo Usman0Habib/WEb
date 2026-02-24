@@ -6,6 +6,19 @@ import { z } from "zod";
 import { setupAuth } from "./auth";
 import passport from "passport";
 import bcrypt from "bcrypt";
+import multer from "multer";
+import path from "path";
+import fs from "fs";
+
+const upload = multer({
+  storage: multer.diskStorage({
+    destination: "client/public/uploads",
+    filename: (req, file, cb) => {
+      const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
+      cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
+    },
+  }),
+});
 
 export async function registerRoutes(
   httpServer: Server,
@@ -306,7 +319,7 @@ export async function registerRoutes(
     res.json(content);
   });
 
-  app.post("/api/content", async (req, res) => {
+  app.post("/api/content", upload.single("file"), async (req, res) => {
     if (!req.isAuthenticated()) {
       return res.status(401).json({ message: "Not authenticated" });
     }
@@ -314,12 +327,19 @@ export async function registerRoutes(
     if (!user || user.role !== "admin") {
       return res.status(403).json({ message: "Admin access required" });
     }
-    const { title, description, fileUrl, fileType } = req.body;
+    
+    const { title, description, fileType } = req.body;
+    const fileUrl = req.file ? `/uploads/${req.file.filename}` : req.body.fileUrl;
+
+    if (!fileUrl) {
+      return res.status(400).json({ message: "File or URL is required" });
+    }
+
     const content = await storage.createContent({
       title,
       description,
       fileUrl,
-      fileType,
+      fileType: fileType || (req.file ? path.extname(req.file.originalname).substring(1) : "link"),
       uploadedBy: user.id,
     });
     res.status(201).json(content);

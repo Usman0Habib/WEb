@@ -17,21 +17,21 @@ export default function About() {
   ];
 
   const faculty = [
-    { name: "Vivek Jha", role: "Economics (11th-12th), Maths (9th-10th)", branch: "OE + RN + NV", phone: "8802807397", image: "https://images.unsplash.com/photo-1566492031773-4f4e44671857?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "CA Nikunj", role: "Accounts (11th-12th)", branch: "OE + RN", phone: "9899795706", image: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?q=80&w=400&h=400&auto=format&fit=crop" },
+    { name: "Vivek Jha", role: "Economics (11th-12th), Maths (9th-10th)", branch: "OE + RN + NV", phone: "8802807397", image: "/faculty/Vivek_Jha.jpg" },
+    { name: "CA Nikunj", role: "Accounts (11th-12th)", branch: "OE + RN", phone: "9899795706", image: "/faculty/Ca_Nikunj_Sharma.jpg" },
     { name: "CA Anuj Singh", role: "Accounts (11th-12th)", branch: "VN", phone: "96431 46105", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Sagar Sir", role: "Mathematics (9th-12th)", branch: "OE + VN + NV", phone: "8447083627", image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Neeraj Varma", role: "Physics & Maths (11th-12th), Maths & Science (9th-10th)", branch: "RN", phone: "9540139492", image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Sumit Shah", role: "Biology & Chemistry (11th-12th), Science (9th-10th)", branch: "VN", phone: "8595157784", image: "https://images.unsplash.com/photo-1531427186611-ecfd6d936c79?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Sumit Choudhary", role: "Physics & Biology (11th-12th), Science (9th-10th)", branch: "OE + VN", phone: "8178600078", image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Ajit Mishra", role: "Biology & Chemistry (11th-12th)", branch: "RN + NV", phone: "9354055230", image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Vikash Sir", role: "Pol. Science & History (11th-12th), S.ST (9th-10th)", branch: "OE + RN + NV", phone: "7678191864", image: "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Anjali Mam", role: "History (11th-12th)", branch: "VN", phone: "8368184330", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Ankush Sir", role: "Pol. Science (11th-12th)", branch: "VN", phone: "9311019383", image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Akash Sir", role: "Economics (11th-12th), English & S.ST (9th-10th)", branch: "OE + VN", phone: "9205088610", image: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Nidhi Mam", role: "Science (9th-10th)", branch: "NV", phone: "8178765101", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Anand Sir", role: "Accounts (11th-12th)", branch: "VN", phone: "N/A", image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Shahabuddin Sir", role: "English (9th-10th)", branch: "NV", phone: "N/A", image: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?q=80&w=400&h=400&auto=format&fit=crop" },
+    { name: "Sagar Sir", role: "Mathematics (9th-12th)", branch: "OE + VN + NV", phone: "8447083627", image: "/faculty/Sagar.png" },
+    { name: "Neeraj Varma", role: "Physics & Maths (11th-12th), Maths & Science (9th-10th)", branch: "RN", phone: "9540139492", image: "/faculty/Neeraj_Verma.jpg" },
+    { name: "Sumit Shah", role: "Biology & Chemistry (11th-12th), Science (9th-10th)", branch: "VN", phone: "8595157784", image: "/faculty/Sumit_Shah.jpg" },
+    { name: "Sumit Choudhary", role: "Physics & Biology (11th-12th), Science (9th-10th)", branch: "OE + VN", phone: "8178600078", image: "/faculty/Sumit_Chaudhari.jpg" },
+    { name: "Ajit Mishra", role: "Biology & Chemistry (11th-12th)", branch: "RN + NV", phone: "9354055230", image: "/faculty/Ajit_Mishra.png" },
+    { name: "Vikash Sir", role: "Pol. Science & History (11th-12th), S.ST (9th-10th)", branch: "OE + RN + NV", phone: "7678191864", image: "/faculty/Vikash.jpg" },
+    { name: "Anjali Mam", role: "History (11th-12th)", branch: "VN", phone: "8368184330", image: "/faculty/Anjali.png" },
+    { name: "Ankush Sir", role: "Pol. Science (11th-12th)", branch: "VN", phone: "9311019383", image: "/faculty/Ankush.png" },
+    { name: "Akash Sir", role: "Economics (11th-12th), English & S.ST (9th-10th)", branch: "OE + VN", phone: "9205088610", image: "/faculty/Akash.jpg" },
+    { name: "Nidhi Mam", role: "Science (9th-10th)", branch: "NV", phone: "8178765101", image: "/faculty/Nidhi_Ojha.jpg" },
+    { name: "Anand Sir", role: "Accounts (11th-12th)", branch: "VN", phone: "N/A", image: "/faculty/Anand.jpg" },
+    { name: "Shahabuddin Sir", role: "English (9th-10th)", branch: "NV", phone: "N/A", image: "/faculty/Shahabuddin.png" },
   ];
 
   const results = [

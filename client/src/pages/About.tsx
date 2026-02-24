@@ -29,7 +29,7 @@ export default function About() {
     { name: "Anjali Mam", role: "History", branch: "VN", phone: "8368184330", image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=400&h=400&auto=format&fit=crop" },
     { name: "Ankush Sir", role: "Pol. Science", branch: "VN", phone: "9311019383", image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?q=80&w=400&h=400&auto=format&fit=crop" },
     { name: "Akash Sir", role: "Economics", branch: "OE + VN", phone: "9205088610", image: "https://images.unsplash.com/photo-1501196354995-cbb51c65aaea?q=80&w=400&h=400&auto=format&fit=crop" },
-    { name: "Nidhi Ojha Mam", role: "Science", branch: "NV", phone: "8178765101", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=400&h=400&auto=format&fit=crop" },
+    { name: "Nidhi Mam", role: "Science", branch: "NV", phone: "8178765101", image: "https://images.unsplash.com/photo-1487412720507-e7ab37603c6f?q=80&w=400&h=400&auto=format&fit=crop" },
     { name: "Anand Sir", role: "Accounts", branch: "VN", phone: "N/A", image: "https://images.unsplash.com/photo-1568602471122-7832951cc4c5?q=80&w=400&h=400&auto=format&fit=crop" },
     { name: "Shahabuddin Sir", role: "English", branch: "NV", phone: "N/A", image: "https://images.unsplash.com/photo-1542909168-82c3e7fdca5c?q=80&w=400&h=400&auto=format&fit=crop" },
   ];

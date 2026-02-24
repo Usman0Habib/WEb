@@ -8,6 +8,7 @@ import { Footer } from "@/components/Footer";
 import Home from "@/pages/Home";
 import About from "@/pages/About";
 import Courses from "@/pages/Courses";
+import Results from "@/pages/Results";
 import Fees from "@/pages/Fees";
 import Payment from "@/pages/Payment";
 import Contact from "@/pages/Contact";
@@ -36,6 +37,7 @@ function PublicLayout() {
           <Route path="/" component={Home} />
           <Route path="/about" component={About} />
           <Route path="/courses" component={Courses} />
+          <Route path="/results" component={Results} />
           <Route path="/fees" component={Fees} />
           <Route path="/payment" component={Payment} />
           <Route path="/contact" component={Contact} />

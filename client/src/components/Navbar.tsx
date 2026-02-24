@@ -22,6 +22,7 @@ export function Navbar() {
   const links = [
     { href: "/", label: "Home" },
     { href: "/about", label: "About Us" },
+    { href: "/results", label: "Results" },
     { href: "/courses", label: "Courses" },
     { href: "/fees", label: "Fee Structure" },
   ];

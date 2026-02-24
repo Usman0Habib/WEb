@@ -79,6 +79,16 @@ export const userNotifications = pgTable("user_notifications", {
   readAt: timestamp("read_at"),
 });
 
+export const content = pgTable("content", {
+  id: serial("id").primaryKey(),
+  title: text("title").notNull(),
+  description: text("description"),
+  fileUrl: text("file_url").notNull(),
+  fileType: text("file_type").notNull(), // pdf, image, etc.
+  uploadedBy: integer("uploaded_by").notNull(),
+  createdAt: timestamp("created_at").defaultNow(),
+});
+
 export const pushSubscriptions = pgTable("push_subscriptions", {
   id: serial("id").primaryKey(),
   userId: integer("user_id").notNull(),
@@ -94,6 +104,7 @@ export const insertReviewSchema = createInsertSchema(reviews);
 export const insertInquirySchema = createInsertSchema(inquiries);
 export const insertNotificationSchema = createInsertSchema(notifications).omit({ id: true, createdAt: true });
 export const insertPushSubscriptionSchema = createInsertSchema(pushSubscriptions).omit({ id: true, createdAt: true });
+export const insertContentSchema = createInsertSchema(content).omit({ id: true, createdAt: true });
 
 export type Course = typeof courses.$inferSelect;
 export type InsertCourse = z.infer<typeof insertCourseSchema>;
@@ -107,3 +118,5 @@ export type Notification = typeof notifications.$inferSelect;
 export type InsertNotification = z.infer<typeof insertNotificationSchema>;
 export type PushSubscription = typeof pushSubscriptions.$inferSelect;
 export type InsertPushSubscription = z.infer<typeof insertPushSubscriptionSchema>;
+export type Content = typeof content.$inferSelect;
+export type InsertContent = z.infer<typeof insertContentSchema>;

@@ -297,6 +297,34 @@ export async function registerRoutes(
     res.json({ success: true });
   });
 
+  // --- Content Routes ---
+  app.get("/api/content", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    const content = await storage.getAllContent();
+    res.json(content);
+  });
+
+  app.post("/api/content", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    const user = await storage.getUserById((req.user as any).id);
+    if (!user || user.role !== "admin") {
+      return res.status(403).json({ message: "Admin access required" });
+    }
+    const { title, description, fileUrl, fileType } = req.body;
+    const content = await storage.createContent({
+      title,
+      description,
+      fileUrl,
+      fileType,
+      uploadedBy: user.id,
+    });
+    res.status(201).json(content);
+  });
+
   await seedDatabase();
 
   return httpServer;

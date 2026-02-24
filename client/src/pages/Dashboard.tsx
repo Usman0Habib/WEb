@@ -11,37 +11,34 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useToast } from "@/hooks/use-toast";
 import {
-  BookOpen,
-  Video,
-  Receipt,
-  UserCircle,
-  LogOut,
   Bell,
   Send,
   ShieldCheck,
   CheckCircle2,
   Clock,
+  FileText,
+  Download,
+  Plus,
+  LogOut,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 const studentSidebarItems = [
-  { id: "classes", label: "My Classes", icon: Video },
-  { id: "courses", label: "My Courses", icon: BookOpen },
-  { id: "history", label: "Purchase History", icon: Receipt },
-  { id: "profile", label: "My Profile", icon: UserCircle },
+  { id: "notifications", label: "Notification Center", icon: Bell },
+  { id: "content", label: "Content Section", icon: FileText },
 ];
 
 const adminSidebarItems = [
   { id: "send-notification", label: "Send Notification", icon: Send },
   { id: "sent-history", label: "Sent History", icon: Clock },
-  { id: "profile", label: "My Profile", icon: UserCircle },
+  { id: "upload-content", label: "Upload Content", icon: Plus },
 ];
 
 export default function Dashboard() {
   const [, setLocation] = useLocation();
   const { user, isLoading, isAuthenticated, logoutMutation } = useAuth();
   const isAdmin = user?.role === "admin";
-  const [activeSection, setActiveSection] = useState(isAdmin ? "send-notification" : "classes");
+  const [activeSection, setActiveSection] = useState("");
   const { toast } = useToast();
 
   useEffect(() => {
@@ -51,10 +48,10 @@ export default function Dashboard() {
   }, [isLoading, isAuthenticated, setLocation]);
 
   useEffect(() => {
-    if (user) {
-      setActiveSection(isAdmin ? "send-notification" : "classes");
+    if (user && !activeSection) {
+      setActiveSection(isAdmin ? "send-notification" : "notifications");
     }
-  }, [user, isAdmin]);
+  }, [user, isAdmin, activeSection]);
 
   if (isLoading || !isAuthenticated) {
     return (
@@ -80,107 +77,12 @@ export default function Dashboard() {
         return <AdminNotificationForm />;
       case "sent-history":
         return <SentNotificationHistory />;
-      case "classes":
-        return (
-          <div>
-            <h2 className="text-xl font-display font-semibold text-foreground mb-6" data-testid="text-section-title">
-              My Classes
-            </h2>
-            <div className="flex flex-col items-center justify-center py-16">
-              <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-4">
-                <Video className="w-10 h-10 text-muted-foreground" />
-              </div>
-              <p className="text-lg font-medium text-foreground mb-1" data-testid="text-empty-state">
-                No classes available yet.
-              </p>
-              <p className="text-sm text-muted-foreground">
-                Your enrolled classes will appear here.
-              </p>
-            </div>
-          </div>
-        );
-      case "courses":
-        return (
-          <div>
-            <h2 className="text-xl font-display font-semibold text-foreground mb-6" data-testid="text-section-title">
-              My Courses
-            </h2>
-            <div className="flex flex-col items-center justify-center py-16">
-              <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-4">
-                <BookOpen className="w-10 h-10 text-muted-foreground" />
-              </div>
-              <p className="text-lg font-medium text-foreground mb-1">No courses enrolled yet.</p>
-              <p className="text-sm text-muted-foreground mb-4">Browse our courses to get started.</p>
-              <Button variant="outline" asChild>
-                <Link href="/courses" data-testid="link-browse-courses">Browse Courses</Link>
-              </Button>
-            </div>
-          </div>
-        );
-      case "history":
-        return (
-          <div>
-            <h2 className="text-xl font-display font-semibold text-foreground mb-6" data-testid="text-section-title">
-              Purchase History
-            </h2>
-            <div className="flex flex-col items-center justify-center py-16">
-              <div className="w-24 h-24 rounded-full bg-muted flex items-center justify-center mb-4">
-                <Receipt className="w-10 h-10 text-muted-foreground" />
-              </div>
-              <p className="text-lg font-medium text-foreground mb-1">No purchase history.</p>
-              <p className="text-sm text-muted-foreground">Your transactions will appear here.</p>
-            </div>
-          </div>
-        );
-      case "profile":
-        return (
-          <div>
-            <h2 className="text-xl font-display font-semibold text-foreground mb-6" data-testid="text-section-title">
-              My Profile
-            </h2>
-            <Card className="max-w-md p-6">
-              <div className="flex items-center gap-4 mb-6">
-                <Avatar className="h-16 w-16">
-                  {user?.profilePicture && <AvatarImage src={user.profilePicture} />}
-                  <AvatarFallback className="text-lg bg-primary/10 text-primary">
-                    {user?.firstName?.[0]}{user?.lastName?.[0]}
-                  </AvatarFallback>
-                </Avatar>
-                <div>
-                  <p className="text-lg font-semibold text-foreground" data-testid="text-profile-name">
-                    {user?.firstName} {user?.lastName}
-                  </p>
-                  <p className="text-sm text-muted-foreground" data-testid="text-profile-email">
-                    {user?.email}
-                  </p>
-                  {isAdmin && (
-                    <span className="inline-flex items-center gap-1 text-xs font-bold text-primary mt-1">
-                      <ShieldCheck className="h-3 w-3" /> Admin
-                    </span>
-                  )}
-                </div>
-              </div>
-              <div className="space-y-3">
-                <div className="flex justify-between py-2 border-b border-border">
-                  <span className="text-sm text-muted-foreground">First Name</span>
-                  <span className="text-sm font-medium text-foreground">{user?.firstName}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-border">
-                  <span className="text-sm text-muted-foreground">Last Name</span>
-                  <span className="text-sm font-medium text-foreground">{user?.lastName}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-border">
-                  <span className="text-sm text-muted-foreground">Email</span>
-                  <span className="text-sm font-medium text-foreground">{user?.email}</span>
-                </div>
-                <div className="flex justify-between py-2 border-b border-border">
-                  <span className="text-sm text-muted-foreground">Role</span>
-                  <span className="text-sm font-medium text-foreground capitalize">{user?.role}</span>
-                </div>
-              </div>
-            </Card>
-          </div>
-        );
+      case "upload-content":
+        return <AdminContentUpload />;
+      case "notifications":
+        return <NotificationCenter />;
+      case "content":
+        return <StudentContentSection />;
       default:
         return null;
     }
@@ -437,6 +339,145 @@ function SentNotificationHistory() {
                   {formatDate(notif.createdAt)}
                 </span>
               </div>
+            </Card>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function AdminContentUpload() {
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
+  const [fileUrl, setFileUrl] = useState("");
+  const [fileType, setFileType] = useState("pdf");
+  const { toast } = useToast();
+
+  const uploadMutation = useMutation({
+    mutationFn: async (data: any) => {
+      const res = await apiRequest("POST", "/api/content", data);
+      return res.json();
+    },
+    onSuccess: () => {
+      toast({ title: "Content Uploaded", description: "Successfully uploaded to student dashboard." });
+      setTitle("");
+      setDescription("");
+      setFileUrl("");
+      queryClient.invalidateQueries({ queryKey: ["/api/content"] });
+    },
+  });
+
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    if (!title || !fileUrl) return;
+    uploadMutation.mutate({ title, description, fileUrl, fileType });
+  };
+
+  return (
+    <div>
+      <h2 className="text-xl font-display font-semibold text-foreground mb-6">Upload Content</h2>
+      <Card className="max-w-xl p-6">
+        <form onSubmit={handleSubmit} className="space-y-4">
+          <div>
+            <label className="text-sm font-medium">Title</label>
+            <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="e.g. Class 10th Notes" />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Description</label>
+            <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="Brief description..." />
+          </div>
+          <div>
+            <label className="text-sm font-medium">File URL (PDF/Image)</label>
+            <Input value={fileUrl} onChange={(e) => setFileUrl(e.target.value)} placeholder="https://..." />
+          </div>
+          <div>
+            <label className="text-sm font-medium">Type</label>
+            <select 
+              className="w-full p-2 rounded-md border border-input bg-background"
+              value={fileType}
+              onChange={(e) => setFileType(e.target.value)}
+            >
+              <option value="pdf">PDF Document</option>
+              <option value="image">Image/Poster</option>
+            </select>
+          </div>
+          <Button type="submit" className="w-full" disabled={uploadMutation.isPending}>
+            {uploadMutation.isPending ? "Uploading..." : "Upload Content"}
+          </Button>
+        </form>
+      </Card>
+    </div>
+  );
+}
+
+function NotificationCenter() {
+  const { data: notifications = [], isLoading } = useQuery<any[]>({
+    queryKey: ["/api/notifications"],
+  });
+
+  return (
+    <div className="max-w-2xl mx-auto">
+      <h2 className="text-xl font-display font-semibold text-foreground mb-6">Notification Center</h2>
+      {isLoading ? (
+        <div className="flex justify-center py-12">
+          <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
+        </div>
+      ) : notifications.length === 0 ? (
+        <div className="text-center py-12 text-muted-foreground">No notifications yet</div>
+      ) : (
+        <div className="space-y-4">
+          {notifications.map((notif) => (
+            <div key={notif.id} className="bg-card p-4 rounded-2xl border border-border shadow-sm">
+              <h3 className="font-bold text-primary mb-1">{notif.title}</h3>
+              <p className="text-sm text-foreground mb-2">{notif.message}</p>
+              <span className="text-[10px] text-muted-foreground">
+                {new Date(notif.createdAt).toLocaleString()}
+              </span>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
+
+function StudentContentSection() {
+  const { data: content = [], isLoading } = useQuery<any[]>({
+    queryKey: ["/api/content"],
+  });
+
+  return (
+    <div>
+      <h2 className="text-xl font-display font-semibold text-foreground mb-6">Study Material & Content</h2>
+      {isLoading ? (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[1, 2, 3].map((i) => (
+            <div key={i} className="h-48 bg-muted animate-pulse rounded-xl" />
+          ))}
+        </div>
+      ) : content.length === 0 ? (
+        <div className="text-center py-12 text-muted-foreground">No content available yet</div>
+      ) : (
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {content.map((item) => (
+            <Card key={item.id} className="p-4 flex flex-col justify-between">
+              <div>
+                <div className="flex items-center gap-2 mb-3">
+                  {item.fileType === "pdf" ? (
+                    <div className="p-2 bg-red-100 text-red-600 rounded-lg"><FileText className="w-5 h-5" /></div>
+                  ) : (
+                    <div className="p-2 bg-blue-100 text-blue-600 rounded-lg"><Download className="w-5 h-5" /></div>
+                  )}
+                  <h3 className="font-bold text-foreground line-clamp-1">{item.title}</h3>
+                </div>
+                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
+              </div>
+              <Button variant="outline" size="sm" className="w-full gap-2" asChild>
+                <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
+                  <Download className="w-4 h-4" /> Download {item.fileType.toUpperCase()}
+                </a>
+              </Button>
             </Card>
           ))}
         </div>

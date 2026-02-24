@@ -47,6 +47,9 @@ export interface IStorage {
   savePushSubscription(sub: InsertPushSubscription): Promise<void>;
   removePushSubscription(userId: number, endpoint: string): Promise<void>;
   getAllPushSubscriptions(): Promise<any[]>;
+  // Content methods
+  getAllContent(): Promise<Content[]>;
+  createContent(item: InsertContent): Promise<Content>;
 }
 
 export class DatabaseStorage implements IStorage {
@@ -225,6 +228,15 @@ export class DatabaseStorage implements IStorage {
 
   async getAllPushSubscriptions(): Promise<any[]> {
     return await db.select().from(pushSubscriptions);
+  }
+
+  async getAllContent(): Promise<Content[]> {
+    return await db.select().from(content).orderBy(desc(content.createdAt));
+  }
+
+  async createContent(item: InsertContent): Promise<Content> {
+    const [newItem] = await db.insert(content).values(item).returning();
+    return newItem;
   }
 }
 

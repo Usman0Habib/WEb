@@ -5,6 +5,7 @@ import { Menu, X, GraduationCap, LogOut, User, ShieldCheck } from "lucide-react"
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useAuth } from "@/hooks/use-auth";
+import { NotificationBell } from "@/components/NotificationBell";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -70,6 +71,7 @@ export function Navbar() {
             <Button variant="outline" size="sm" className="font-semibold border-primary/20 text-primary hover:bg-primary/5" asChild>
               <Link href="/payment">Pay Fees</Link>
             </Button>
+            {isAuthenticated && <NotificationBell />}
             {isAuthenticated ? (
               <DropdownMenu>
                 <DropdownMenuTrigger asChild>

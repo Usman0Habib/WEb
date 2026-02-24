@@ -40,3 +40,9 @@ waitForPort = 5000
 
 [agent]
 expertMode = true
+
+[userenv]
+
+[userenv.shared]
+VAPID_PUBLIC_KEY = "BICeQ6oeiH6quOT0dtu5X99LMLjbLwh9-t3y5_Iih2pUwY03wBUMgurEm0LllVrOEeQkpPPaJJxMk9gJjAR9N3E"
+VAPID_PRIVATE_KEY = "Q9sQPwBkyWi5B4_PWWR-n75IVq48kRHI4Ll2pUqdLSI"

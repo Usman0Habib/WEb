@@ -156,6 +156,147 @@ export async function registerRoutes(
     }
   });
 
+  // --- Notification Routes ---
+
+  // GET /api/notifications - Get notifications for logged-in user
+  app.get("/api/notifications", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    const userNotifs = await storage.getUserNotifications((req.user as any).id);
+    res.json(userNotifs);
+  });
+
+  // GET /api/notifications/unread-count - Get unread count
+  app.get("/api/notifications/unread-count", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    const count = await storage.getUnreadNotificationCount((req.user as any).id);
+    res.json({ count });
+  });
+
+  // PATCH /api/notifications/:id/read - Mark one as read
+  app.patch("/api/notifications/:id/read", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    await storage.markNotificationRead((req.user as any).id, Number(req.params.id));
+    res.json({ success: true });
+  });
+
+  // PATCH /api/notifications/read-all - Mark all as read
+  app.patch("/api/notifications/read-all", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    await storage.markAllNotificationsRead((req.user as any).id);
+    res.json({ success: true });
+  });
+
+  // POST /api/notifications - Admin send notification
+  app.post("/api/notifications", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    const user = await storage.getUserById((req.user as any).id);
+    if (!user || user.role !== "admin") {
+      return res.status(403).json({ message: "Admin access required" });
+    }
+    const { title, message } = req.body;
+    const notifSchema = z.object({ title: z.string().min(1), message: z.string().min(1) });
+    const parsed = notifSchema.safeParse({ title, message });
+    if (!parsed.success) {
+      return res.status(400).json({ message: parsed.error.errors[0].message });
+    }
+    const notification = await storage.createNotification({
+      title: parsed.data.title,
+      message: parsed.data.message,
+      sentBy: user.id,
+    });
+
+    // Send push notifications to all subscribers
+    try {
+      const webpush = require("web-push");
+      const vapidPublic = process.env.VAPID_PUBLIC_KEY;
+      const vapidPrivate = process.env.VAPID_PRIVATE_KEY;
+      if (vapidPublic && vapidPrivate) {
+        webpush.setVapidDetails("mailto:admin@careergoalacademy.com", vapidPublic, vapidPrivate);
+        const subs = await storage.getAllPushSubscriptions();
+        const payload = JSON.stringify({ title, body: message });
+        for (const sub of subs) {
+          try {
+            await webpush.sendNotification(
+              { endpoint: sub.endpoint, keys: { p256dh: sub.p256dh, auth: sub.auth } },
+              payload
+            );
+          } catch (err: any) {
+            if (err.statusCode === 410 || err.statusCode === 404) {
+              await storage.removePushSubscription(sub.userId, sub.endpoint);
+            }
+          }
+        }
+      }
+    } catch (err) {
+      console.error("Push notification error:", err);
+    }
+
+    res.status(201).json(notification);
+  });
+
+  // GET /api/admin/notifications - Admin: get all sent notifications
+  app.get("/api/admin/notifications", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    const user = await storage.getUserById((req.user as any).id);
+    if (!user || user.role !== "admin") {
+      return res.status(403).json({ message: "Admin access required" });
+    }
+    const notifs = await storage.getNotifications();
+    res.json(notifs);
+  });
+
+  // GET /api/push/vapid-key - Get public VAPID key
+  app.get("/api/push/vapid-key", (_req, res) => {
+    res.json({ publicKey: process.env.VAPID_PUBLIC_KEY || "" });
+  });
+
+  // POST /api/push/subscribe - Save push subscription
+  app.post("/api/push/subscribe", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    const subSchema = z.object({
+      endpoint: z.string().url(),
+      keys: z.object({ p256dh: z.string().min(1), auth: z.string().min(1) }),
+    });
+    const parsed = subSchema.safeParse(req.body);
+    if (!parsed.success) {
+      return res.status(400).json({ message: "Invalid subscription" });
+    }
+    const { endpoint, keys } = parsed.data;
+    await storage.savePushSubscription({
+      userId: (req.user as any).id,
+      endpoint,
+      p256dh: keys.p256dh,
+      auth: keys.auth,
+    });
+    res.json({ success: true });
+  });
+
+  // POST /api/push/unsubscribe - Remove push subscription
+  app.post("/api/push/unsubscribe", async (req, res) => {
+    if (!req.isAuthenticated()) {
+      return res.status(401).json({ message: "Not authenticated" });
+    }
+    const { endpoint } = req.body;
+    if (endpoint) {
+      await storage.removePushSubscription((req.user as any).id, endpoint);
+    }
+    res.json({ success: true });
+  });
+
   await seedDatabase();
 
   return httpServer;

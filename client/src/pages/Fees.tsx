@@ -70,10 +70,10 @@ export default function Fees() {
                     {courses?.map((course) => (
                       <TableRow key={course.id} className="hover:bg-slate-50 border-b">
                         <TableCell className="py-5 px-8 font-medium text-slate-700">
-                          {course.title.startsWith('Class ') ? course.title.replace('Class ', '') : course.title}
+                          {course.title}
                         </TableCell>
                         <TableCell className="text-right py-5 px-8 font-bold text-primary text-lg">
-                          ₹{course.category === 'School' ? course.fee.toLocaleString() : Math.round(course.fee / 12).toLocaleString()}
+                          ₹{course.fee.toLocaleString()}
                         </TableCell>
                       </TableRow>
                     ))}

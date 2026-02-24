@@ -110,7 +110,7 @@ export default function Fees() {
 
 const UPI_ID = "8130327618-2@axl";
 const UPI_NAME = "Career Goal Academy";
-const UPI_LINK = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&cu=INR&tn=${encodeURIComponent("Fee Payment")}`;
+const UPI_LINK = `upi://pay?pa=${encodeURIComponent(UPI_ID)}&pn=${encodeURIComponent(UPI_NAME)}&cu=INR&tn=${encodeURIComponent("Fee Payment")}`;
 
 function UpiPaymentSection() {
   const { toast } = useToast();

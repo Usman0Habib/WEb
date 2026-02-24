@@ -1,11 +1,10 @@
 import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { Award, GraduationCap, TrendingUp } from "lucide-react";
+import { Award, GraduationCap } from "lucide-react";
 
 // Import all poster images
 import result10th_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_1771931727439.jpeg";
-import result10th_2024_alt from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_(2)_1771931727438.jpeg";
 import result10th_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.55_AM_1771931727434.jpeg";
 import result10th_2023_alt from "@assets/WhatsApp_Image_2026-02-12_at_1.20.56_AM_1771931727435.jpeg";
 
@@ -66,7 +65,7 @@ const ResultsPage = () => {
             transition={{ delay: 0.2 }}
             className="text-lg text-slate-600 font-body"
           >
-            Showcasing the hard-earned success of our students across Class 10th and 12th.
+            Celebrating the outstanding achievements of our Class 10th and 12th students.
           </motion.p>
         </div>
       </section>
@@ -85,39 +84,27 @@ const ResultsPage = () => {
             </TabsList>
           </div>
 
-          <TabsContent value="class10" className="space-y-20">
-            <PosterSection images={[result10th_2024, result10th_2024_alt, result10th_2023, result10th_2023_alt]} />
+          <TabsContent value="class10" className="space-y-12">
+            <div className="text-center">
+               <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 10th Results</h2>
+               <p className="text-slate-600">Our foundation batch excellence</p>
+            </div>
+            <PosterSection images={[result10th_2024, result10th_2023, result10th_2023_alt]} />
           </TabsContent>
 
-          <TabsContent value="class12" className="space-y-20">
-            <Tabs defaultValue="science" className="space-y-12">
-              <div className="flex justify-center">
-                <TabsList className="bg-slate-200/50 p-1 rounded-xl h-11">
-                  <TabsTrigger value="science" className="rounded-lg px-8 h-full font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">
-                    Science
-                  </TabsTrigger>
-                  <TabsTrigger value="commerce" className="rounded-lg px-8 h-full font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">
-                    Commerce
-                  </TabsTrigger>
-                </TabsList>
-              </div>
-
-              <TabsContent value="science" className="space-y-12">
-                <div className="text-center">
-                   <h3 className="text-2xl font-display font-bold text-slate-900 mb-2">Science Stream Results</h3>
-                   <p className="text-slate-600">Physics, Chemistry, Maths & Biology</p>
-                </div>
-                <PosterSection images={[result12th_science, result12th_maths]} />
-              </TabsContent>
-
-              <TabsContent value="commerce" className="space-y-12">
-                <div className="text-center">
-                   <h3 className="text-2xl font-display font-bold text-slate-900 mb-2">Commerce Stream Results</h3>
-                   <p className="text-slate-600">Accounts & Economics</p>
-                </div>
-                <PosterSection images={[result12th_accounts_2024, result12th_economics_2024, result12th_accounts_2023, result12th_economics_2023]} />
-              </TabsContent>
-            </Tabs>
+          <TabsContent value="class12" className="space-y-12">
+            <div className="text-center">
+               <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 12th Results</h2>
+               <p className="text-slate-600">Science & Commerce Streams</p>
+            </div>
+            <PosterSection images={[
+              result12th_science, 
+              result12th_maths, 
+              result12th_accounts_2024, 
+              result12th_economics_2024, 
+              result12th_accounts_2023, 
+              result12th_economics_2023
+            ]} />
           </TabsContent>
         </Tabs>
       </section>

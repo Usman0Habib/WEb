@@ -2,7 +2,9 @@ import { useCourses } from "@/hooks/use-coaching-data";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { IndianRupee, BookOpen, FileText, CheckCircle2, GraduationCap, Phone } from "lucide-react";
+import { IndianRupee, BookOpen, FileText, CheckCircle2, GraduationCap, Phone, QrCode, Smartphone, Copy } from "lucide-react";
+import { useState } from "react";
+import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
@@ -97,8 +99,97 @@ export default function Fees() {
               </ul>
             </div>
           </Card>
+
+          {/* UPI PAYMENT */}
+          <UpiPaymentSection />
         </div>
       </div>
     </div>
+  );
+}
+
+const UPI_ID = "8130327618-2@axl";
+const UPI_NAME = "Career Goal Academy";
+const UPI_LINK = `upi://pay?pa=${UPI_ID}&pn=${encodeURIComponent(UPI_NAME)}&cu=INR&tn=${encodeURIComponent("Fee Payment")}`;
+
+function UpiPaymentSection() {
+  const { toast } = useToast();
+  const [copied, setCopied] = useState(false);
+
+  const copyUpiId = () => {
+    navigator.clipboard.writeText(UPI_ID);
+    setCopied(true);
+    toast({ title: "Copied!", description: "UPI ID copied to clipboard." });
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  return (
+    <motion.section
+      initial={{ opacity: 0, y: 20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ delay: 0.2 }}
+    >
+      <div className="flex items-center gap-3 mb-8">
+        <div className="p-2 bg-primary/10 rounded-lg">
+          <IndianRupee className="w-6 h-6 text-primary" />
+        </div>
+        <h2 className="text-2xl font-bold text-slate-900">Pay Online via UPI</h2>
+      </div>
+
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+        {/* Left: actions */}
+        <div className="flex flex-col gap-6">
+          <p className="text-slate-600 leading-relaxed">
+            Pay your fees instantly using any UPI app — PhonePe, Google Pay, Paytm, or your bank app. Tap the button below on your phone to open the payment screen directly.
+          </p>
+
+          {/* UPI ID display */}
+          <div className="flex items-center gap-3 bg-slate-100 rounded-xl px-5 py-4">
+            <div>
+              <p className="text-xs font-bold uppercase tracking-widest text-slate-400 mb-0.5">UPI ID</p>
+              <p className="font-mono font-bold text-slate-900 text-lg tracking-wide">{UPI_ID}</p>
+            </div>
+            <Button
+              variant="ghost"
+              size="icon"
+              className="ml-auto shrink-0 text-slate-400 hover:text-primary"
+              onClick={copyUpiId}
+              data-testid="button-copy-upi"
+            >
+              <Copy className="w-4 h-4" />
+            </Button>
+          </div>
+
+          {/* Pay Now button — UPI deep link */}
+          <a href={UPI_LINK} data-testid="link-upi-pay">
+            <Button size="lg" className="w-full gap-3 text-base font-bold shadow-lg">
+              <Smartphone className="w-5 h-5" />
+              Pay Now via UPI App
+            </Button>
+          </a>
+
+          <p className="text-xs text-slate-400 text-center">
+            Works on mobile with PhonePe, Google Pay, Paytm & all UPI apps.
+            <br />Scan the QR code if you're on desktop.
+          </p>
+        </div>
+
+        {/* Right: QR code */}
+        <div className="flex flex-col items-center gap-4">
+          <div className="bg-white p-5 rounded-3xl shadow-xl border border-slate-100">
+            <img
+              src="/images/upi-qr.jpeg"
+              alt="PhonePe UPI QR Code"
+              className="w-56 h-56 object-contain rounded-xl"
+              data-testid="img-upi-qr"
+            />
+          </div>
+          <div className="flex items-center gap-2 text-sm text-slate-500">
+            <QrCode className="w-4 h-4" />
+            Scan with any UPI app to pay
+          </div>
+        </div>
+      </div>
+    </motion.section>
   );
 }

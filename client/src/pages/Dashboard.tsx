@@ -33,6 +33,8 @@ const adminSidebarItems = [
   { id: "send-notification", label: "Send Notification", icon: Send },
   { id: "sent-history", label: "Sent History", icon: Clock },
   { id: "upload-content", label: "Upload Content", icon: Plus },
+  { id: "notifications", label: "Notification Center", icon: Bell },
+  { id: "content", label: "Content Section", icon: FileText },
 ];
 
 export default function Dashboard() {
@@ -108,24 +110,66 @@ export default function Dashboard() {
           </Link>
         </div>
 
-        <nav className="flex-1 p-3 space-y-1" data-testid="dashboard-nav">
-          {sidebarItems.map((item) => (
-            <Button
-              key={item.id}
-              variant="ghost"
-              onClick={() => setActiveSection(item.id)}
-              className={cn(
-                "flex items-center justify-start gap-3 w-full",
-                activeSection === item.id
-                  ? "bg-primary/10 text-primary"
-                  : "text-muted-foreground"
-              )}
-              data-testid={`nav-${item.id}`}
-            >
-              <item.icon className="w-4 h-4" />
-              {item.label}
-            </Button>
-          ))}
+        <nav className="flex-1 p-3 space-y-1 overflow-y-auto" data-testid="dashboard-nav">
+          {isAdmin ? (
+            <>
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground px-3 pt-1 pb-2">Admin Tools</p>
+              {adminSidebarItems.slice(0, 3).map((item) => (
+                <Button
+                  key={item.id}
+                  variant="ghost"
+                  onClick={() => setActiveSection(item.id)}
+                  className={cn(
+                    "flex items-center justify-start gap-3 w-full",
+                    activeSection === item.id
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground"
+                  )}
+                  data-testid={`nav-${item.id}`}
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.label}
+                </Button>
+              ))}
+              <div className="my-2 border-t border-border" />
+              <p className="text-[10px] font-bold uppercase tracking-widest text-muted-foreground px-3 pt-1 pb-2">Student Preview</p>
+              {adminSidebarItems.slice(3).map((item) => (
+                <Button
+                  key={item.id}
+                  variant="ghost"
+                  onClick={() => setActiveSection(item.id)}
+                  className={cn(
+                    "flex items-center justify-start gap-3 w-full",
+                    activeSection === item.id
+                      ? "bg-primary/10 text-primary"
+                      : "text-muted-foreground"
+                  )}
+                  data-testid={`nav-${item.id}`}
+                >
+                  <item.icon className="w-4 h-4" />
+                  {item.label}
+                </Button>
+              ))}
+            </>
+          ) : (
+            sidebarItems.map((item) => (
+              <Button
+                key={item.id}
+                variant="ghost"
+                onClick={() => setActiveSection(item.id)}
+                className={cn(
+                  "flex items-center justify-start gap-3 w-full",
+                  activeSection === item.id
+                    ? "bg-primary/10 text-primary"
+                    : "text-muted-foreground"
+                )}
+                data-testid={`nav-${item.id}`}
+              >
+                <item.icon className="w-4 h-4" />
+                {item.label}
+              </Button>
+            ))
+          )}
         </nav>
 
         <div className="p-3 border-t border-border">
@@ -179,7 +223,7 @@ export default function Dashboard() {
         </header>
 
         <div className="md:hidden flex border-b border-border bg-card overflow-x-auto">
-          {sidebarItems.map((item) => (
+          {(isAdmin ? adminSidebarItems : sidebarItems).map((item) => (
             <button
               key={item.id}
               onClick={() => setActiveSection(item.id)}
@@ -511,10 +555,38 @@ function NotificationCenter() {
   );
 }
 
+async function triggerDownload(fileUrl: string, filename: string) {
+  try {
+    const res = await fetch(fileUrl);
+    const blob = await res.blob();
+    const blobUrl = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = blobUrl;
+    a.download = filename;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(blobUrl);
+  } catch {
+    window.open(fileUrl, "_blank");
+  }
+}
+
 function StudentContentSection() {
   const { data: content = [], isLoading } = useQuery<any[]>({
     queryKey: ["/api/content"],
   });
+
+  const getIcon = (fileType: string) => {
+    if (fileType === "pdf") return <div className="p-2 bg-red-100 text-red-600 rounded-lg"><FileText className="w-5 h-5" /></div>;
+    if (["jpg", "jpeg", "png", "gif", "webp"].includes(fileType)) return <div className="p-2 bg-purple-100 text-purple-600 rounded-lg"><FileText className="w-5 h-5" /></div>;
+    return <div className="p-2 bg-blue-100 text-blue-600 rounded-lg"><Download className="w-5 h-5" /></div>;
+  };
+
+  const getFilename = (item: any) => {
+    const ext = item.fileType !== "link" ? `.${item.fileType}` : "";
+    return `${item.title.replace(/[^a-z0-9]/gi, "_")}${ext}`;
+  };
 
   return (
     <div>
@@ -526,27 +598,43 @@ function StudentContentSection() {
           ))}
         </div>
       ) : content.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground">No content available yet</div>
+        <div className="flex flex-col items-center justify-center py-20 bg-white rounded-3xl border border-dashed border-slate-200">
+          <FileText className="w-12 h-12 text-slate-300 mb-4" />
+          <p className="text-slate-500 font-medium">No content uploaded yet.</p>
+        </div>
       ) : (
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
           {content.map((item) => (
-            <Card key={item.id} className="p-4 flex flex-col justify-between">
+            <Card key={item.id} className="p-4 flex flex-col justify-between" data-testid={`content-card-${item.id}`}>
               <div>
                 <div className="flex items-center gap-2 mb-3">
-                  {item.fileType === "pdf" ? (
-                    <div className="p-2 bg-red-100 text-red-600 rounded-lg"><FileText className="w-5 h-5" /></div>
-                  ) : (
-                    <div className="p-2 bg-blue-100 text-blue-600 rounded-lg"><Download className="w-5 h-5" /></div>
-                  )}
+                  {getIcon(item.fileType)}
                   <h3 className="font-bold text-foreground line-clamp-1">{item.title}</h3>
                 </div>
-                <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
+                {item.description && (
+                  <p className="text-sm text-muted-foreground line-clamp-2 mb-4">{item.description}</p>
+                )}
+                <span className="inline-block text-[10px] font-bold uppercase tracking-widest px-2 py-0.5 rounded bg-muted text-muted-foreground mb-4">
+                  {item.fileType}
+                </span>
               </div>
-              <Button variant="outline" size="sm" className="w-full gap-2" asChild>
-                <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
+              {item.fileType === "link" ? (
+                <Button variant="outline" size="sm" className="w-full gap-2" asChild>
+                  <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
+                    <Download className="w-4 h-4" /> Open Link
+                  </a>
+                </Button>
+              ) : (
+                <Button
+                  variant="outline"
+                  size="sm"
+                  className="w-full gap-2"
+                  data-testid={`button-download-${item.id}`}
+                  onClick={() => triggerDownload(item.fileUrl, getFilename(item))}
+                >
                   <Download className="w-4 h-4" /> Download {item.fileType.toUpperCase()}
-                </a>
-              </Button>
+                </Button>
+              )}
             </Card>
           ))}
         </div>

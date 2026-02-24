@@ -3,6 +3,7 @@ import { Target, Lightbulb, Heart, Shield, Award, Users, ChevronDown, ChevronUp,
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState } from "react";
+import founderImg from "@/assets/images/founder.png";
 
 export default function About() {
   const [showAllResults, setShowAllResults] = useState(false);
@@ -12,13 +13,6 @@ export default function About() {
     { icon: Award, title: "Excellence", desc: "We strive for nothing less than the best in education quality." },
     { icon: Heart, title: "Personalized Care", desc: "Understanding and nurturing every student's unique potential." },
     { icon: Lightbulb, title: "Innovation", desc: "Constantly evolving our teaching methodologies for better results." },
-  ];
-
-  const timeline = [
-    { year: "2010", title: "Founded", desc: "Started with a vision and 10 dedicated students in a small classroom." },
-    { year: "2015", title: "Expansion", desc: "Opened our second branch and introduced advanced NEET/JEE modules." },
-    { year: "2018", title: "Digital Leap", desc: "Launched our online learning platform and smart classrooms." },
-    { year: "2023", title: "New Horizons", desc: "Expanded to a dedicated Library wing and state-of-the-art labs." },
   ];
 
   const faculty = [
@@ -139,7 +133,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Director's Message */}
+      {/* Founder's Message */}
       <section className="py-24 bg-white">
         <div className="container mx-auto px-4">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -152,8 +146,8 @@ export default function About() {
               <div className="relative">
                 <div className="absolute -inset-4 bg-primary/20 rounded-3xl blur-2xl" />
                 <img 
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?q=80&w=800&auto=format&fit=crop" 
-                  alt="Director" 
+                  src={founderImg} 
+                  alt="Founder" 
                   className="relative rounded-3xl shadow-2xl w-full object-cover aspect-[4/5]"
                 />
               </div>
@@ -165,7 +159,7 @@ export default function About() {
               className="w-full lg:w-1/2 space-y-8"
             >
               <div className="inline-block px-4 py-2 bg-primary/10 text-primary font-bold rounded-full text-sm tracking-widest uppercase">
-                Director's Message
+                Founder's Message
               </div>
               <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900 leading-tight">
                 "Our philosophy is simple: Every student is a leader in waiting."
@@ -179,7 +173,7 @@ export default function About() {
                 </p>
               </div>
               <div className="pt-6 border-t border-slate-100">
-                <p className="text-2xl font-display font-bold text-slate-900">Dr. S.K. Sharma</p>
+                <p className="text-2xl font-display font-bold text-slate-900">Vivek Jha</p>
                 <p className="text-primary font-bold">Founder & Managing Director</p>
               </div>
             </motion.div>
@@ -187,45 +181,8 @@ export default function About() {
         </div>
       </section>
 
-      {/* Our Story Timeline */}
-      <section className="py-24 bg-slate-50">
-        <div className="container mx-auto px-4">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900">Our Journey</h2>
-            <p className="text-slate-500 mt-4 max-w-2xl mx-auto">A decade of growth, stability, and thousands of success stories.</p>
-          </div>
-          <div className="relative">
-            {/* Center Line */}
-            <div className="absolute left-1/2 transform -translate-x-1/2 h-full w-1 bg-slate-200 hidden md:block" />
-            
-            <div className="space-y-16">
-              {timeline.map((item, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className={`flex flex-col md:flex-row items-center ${i % 2 !== 0 ? 'md:flex-row-reverse' : ''}`}
-                >
-                  <div className="flex-1 w-full md:w-auto text-center md:text-left px-8">
-                    <div className={`p-8 rounded-2xl bg-white shadow-xl border border-slate-100 ${i % 2 !== 0 ? 'md:text-left' : 'md:text-right'}`}>
-                      <span className="text-3xl font-display font-bold text-primary mb-2 block">{item.year}</span>
-                      <h3 className="text-2xl font-display font-bold text-slate-900 mb-3">{item.title}</h3>
-                      <p className="text-slate-600 font-body">{item.desc}</p>
-                    </div>
-                  </div>
-                  <div className="w-12 h-12 rounded-full bg-primary border-4 border-white shadow-xl z-10 my-4 md:my-0" />
-                  <div className="flex-1 hidden md:block" />
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Faculty Spotlight */}
-      <section className="py-24 bg-white">
+      <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-20">
             <h2 className="text-4xl md:text-5xl font-display font-bold text-slate-900">The Mentors</h2>
@@ -257,9 +214,6 @@ export default function About() {
           </div>
         </div>
       </section>
-
-      {/* Results & Wall of Fame */}
-      <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-[150px]" />
           <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-blue-600 rounded-full blur-[150px]" />

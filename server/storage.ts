@@ -11,7 +11,10 @@ import {
   type InsertUser,
   type Notification,
   type InsertNotification,
+  type PushSubscription,
   type InsertPushSubscription,
+  type Content,
+  type InsertContent,
   courses,
   locations,
   reviews,
@@ -20,6 +23,7 @@ import {
   notifications,
   userNotifications,
   pushSubscriptions,
+  content,
 } from "@shared/schema";
 import { db } from "./db";
 import { eq, desc, and } from "drizzle-orm";

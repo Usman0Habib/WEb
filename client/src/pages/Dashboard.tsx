@@ -464,23 +464,45 @@ function NotificationCenter() {
 
   return (
     <div className="max-w-2xl mx-auto">
-      <h2 className="text-xl font-display font-semibold text-foreground mb-6">Notification Center</h2>
+      <h2 className="text-2xl font-display font-bold text-slate-900 mb-8 px-2">Notification Center</h2>
       {isLoading ? (
         <div className="flex justify-center py-12">
           <div className="w-8 h-8 border-2 border-primary border-t-transparent rounded-full animate-spin" />
         </div>
       ) : notifications.length === 0 ? (
-        <div className="text-center py-12 text-muted-foreground">No notifications yet</div>
+        <div className="flex flex-col items-center justify-center py-20 bg-white rounded-3xl border border-dashed border-slate-200">
+          <Bell className="w-12 h-12 text-slate-300 mb-4" />
+          <p className="text-slate-500 font-medium">No updates yet. Stay tuned!</p>
+        </div>
       ) : (
-        <div className="space-y-4">
+        <div className="space-y-6">
           {notifications.map((notif) => (
-            <div key={notif.id} className="bg-card p-4 rounded-2xl border border-border shadow-sm">
-              <h3 className="font-bold text-primary mb-1">{notif.title}</h3>
-              <p className="text-sm text-foreground mb-2">{notif.message}</p>
-              <span className="text-[10px] text-muted-foreground">
-                {new Date(notif.createdAt).toLocaleString()}
-              </span>
-            </div>
+            <motion.div 
+              key={notif.id} 
+              initial={{ opacity: 0, y: 10 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm hover:shadow-md transition-shadow"
+            >
+              <div className="flex items-start justify-between gap-4 mb-3">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-full bg-primary/10 flex items-center justify-center">
+                    <Bell className="w-5 h-5 text-primary" />
+                  </div>
+                  <h3 className="font-bold text-lg text-slate-900 leading-tight">{notif.title}</h3>
+                </div>
+                <span className="text-[10px] font-bold text-slate-400 uppercase tracking-widest bg-slate-50 px-2 py-1 rounded">
+                  {new Date(notif.createdAt).toLocaleDateString()}
+                </span>
+              </div>
+              <div className="pl-13">
+                <p className="text-slate-600 leading-relaxed whitespace-pre-wrap">{notif.message}</p>
+                <div className="mt-4 flex items-center justify-end">
+                  <span className="text-[10px] text-slate-400">
+                    {new Date(notif.createdAt).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}
+                  </span>
+                </div>
+              </div>
+            </motion.div>
           ))}
         </div>
       )}

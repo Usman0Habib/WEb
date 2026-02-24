@@ -230,7 +230,7 @@ export async function registerRoutes(
 
     // Send push notifications to all subscribers
     try {
-      const webpush = require("web-push");
+      const webpush = (await import("web-push")).default;
       const vapidPublic = process.env.VAPID_PUBLIC_KEY;
       const vapidPrivate = process.env.VAPID_PRIVATE_KEY;
       if (vapidPublic && vapidPrivate) {

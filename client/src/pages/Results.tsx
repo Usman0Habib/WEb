@@ -17,31 +17,25 @@ import result12th_economics_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20
 import result12th_accounts_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.55_AM_(1)_1771931727433.jpeg";
 import result12th_economics_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.56_AM_(1)_1771931727435.jpeg";
 
-const PosterSection = ({ title, description, images }: { title: string, description: string, images: string[] }) => (
-  <div className="space-y-12">
-    <div className="text-center max-w-2xl mx-auto">
-      <h2 className="text-3xl font-display font-bold text-slate-900 mb-3">{title}</h2>
-      <p className="text-slate-600 font-body">{description}</p>
-    </div>
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
-      {images.map((img, idx) => (
-        <motion.div
-          key={idx}
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: idx * 0.1 }}
-        >
-          <Card className="overflow-hidden border-8 border-white shadow-2xl hover:shadow-primary/10 transition-shadow duration-500 rounded-3xl">
-            <img 
-              src={img} 
-              alt={`${title} Poster ${idx + 1}`}
-              className="w-full h-auto object-contain bg-slate-100"
-            />
-          </Card>
-        </motion.div>
-      ))}
-    </div>
+const PosterSection = ({ images }: { images: string[] }) => (
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+    {images.map((img, idx) => (
+      <motion.div
+        key={idx}
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        transition={{ delay: idx * 0.1 }}
+      >
+        <Card className="overflow-hidden border-8 border-white shadow-2xl hover:shadow-primary/10 transition-shadow duration-500 rounded-3xl">
+          <img 
+            src={img} 
+            alt={`Result Poster ${idx + 1}`}
+            className="w-full h-auto object-contain bg-slate-100"
+          />
+        </Card>
+      </motion.div>
+    ))}
   </div>
 );
 
@@ -72,8 +66,7 @@ const ResultsPage = () => {
             transition={{ delay: 0.2 }}
             className="text-lg text-slate-600 font-body"
           >
-            The original posters of our outstanding performers. 
-            Success is a legacy at Career Goal Academy.
+            Showcasing the hard-earned success of our students across Class 10th and 12th.
           </motion.p>
         </div>
       </section>
@@ -93,54 +86,38 @@ const ResultsPage = () => {
           </div>
 
           <TabsContent value="class10" className="space-y-20">
-            <PosterSection 
-              title="Class 10th Excellence (2024-25)"
-              description="Our foundation batch achieving remarkable scores across all subjects under expert guidance."
-              images={[result10th_2024, result10th_2024_alt]}
-            />
-            <PosterSection 
-              title="Previous Success (2023-24)"
-              description="Consistently delivering top-tier results year after year."
-              images={[result10th_2023, result10th_2023_alt]}
-            />
+            <PosterSection images={[result10th_2024, result10th_2024_alt, result10th_2023, result10th_2023_alt]} />
           </TabsContent>
 
-          <TabsContent value="class12" className="space-y-32">
-            <div className="space-y-20">
-              <div className="text-center space-y-4">
-                <div className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-sm">
-                  <TrendingUp className="w-4 h-4" /> Science Stream
-                </div>
+          <TabsContent value="class12" className="space-y-20">
+            <Tabs defaultValue="science" className="space-y-12">
+              <div className="flex justify-center">
+                <TabsList className="bg-slate-200/50 p-1 rounded-xl h-11">
+                  <TabsTrigger value="science" className="rounded-lg px-8 h-full font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                    Science
+                  </TabsTrigger>
+                  <TabsTrigger value="commerce" className="rounded-lg px-8 h-full font-bold data-[state=active]:bg-white data-[state=active]:shadow-sm">
+                    Commerce
+                  </TabsTrigger>
+                </TabsList>
               </div>
-              <PosterSection 
-                title="Physics, Chemistry & Biology"
-                description="Future doctors and scientists excelling in core science subjects."
-                images={[result12th_science]}
-              />
-              <PosterSection 
-                title="Mathematics Specialization"
-                description="Exceptional performance in 12th Mathematics under our expert faculty."
-                images={[result12th_maths]}
-              />
-            </div>
 
-            <div className="space-y-20 pt-16 border-t border-slate-200">
-              <div className="text-center space-y-4">
-                <div className="inline-flex items-center gap-2 text-primary font-bold uppercase tracking-widest text-sm">
-                  <TrendingUp className="w-4 h-4" /> Commerce Stream
+              <TabsContent value="science" className="space-y-12">
+                <div className="text-center">
+                   <h3 className="text-2xl font-display font-bold text-slate-900 mb-2">Science Stream Results</h3>
+                   <p className="text-slate-600">Physics, Chemistry, Maths & Biology</p>
                 </div>
-              </div>
-              <PosterSection 
-                title="Accounts & Economics (2024-25)"
-                description="Our commerce toppers mastering the world of finance and accounts."
-                images={[result12th_accounts_2024, result12th_economics_2024]}
-              />
-              <PosterSection 
-                title="Commerce Hall of Fame (2023-24)"
-                description="Legacy of excellence in professional commerce coaching."
-                images={[result12th_accounts_2023, result12th_economics_2023]}
-              />
-            </div>
+                <PosterSection images={[result12th_science, result12th_maths]} />
+              </TabsContent>
+
+              <TabsContent value="commerce" className="space-y-12">
+                <div className="text-center">
+                   <h3 className="text-2xl font-display font-bold text-slate-900 mb-2">Commerce Stream Results</h3>
+                   <p className="text-slate-600">Accounts & Economics</p>
+                </div>
+                <PosterSection images={[result12th_accounts_2024, result12th_economics_2024, result12th_accounts_2023, result12th_economics_2023]} />
+              </TabsContent>
+            </Tabs>
           </TabsContent>
         </Tabs>
       </section>
@@ -153,8 +130,7 @@ const ResultsPage = () => {
             <GraduationCap className="w-16 h-16 text-primary mx-auto" />
             <h2 className="text-3xl md:text-5xl font-display font-bold">Be Part of Next Year's Poster</h2>
             <p className="text-slate-400 max-w-2xl mx-auto text-lg">
-              Join Career Goal Academy today and start your journey towards academic excellence. 
-              Our expert faculty and personalized guidance will help you reach your goals.
+              Join Career Goal Academy today and start your journey towards academic excellence.
             </p>
             <div className="pt-6">
               <button className="bg-primary text-white hover:bg-primary/90 px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all">

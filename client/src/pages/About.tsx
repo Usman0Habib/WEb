@@ -17,20 +17,20 @@ export default function About() {
   ];
 
   const faculty = [
-    { name: "Vivek Jha", role: "Economics (11th-12th), Maths (9th-10th)", branch: "OE + RN + NV", phone: "8802807397", image: "/faculty/Vivek_Jha.jpg" },
-    { name: "CA Nikunj", role: "Accounts (11th-12th)", branch: "OE + RN", phone: "9899795706", image: "/faculty/Ca_Nikunj_Sharma.jpg" },
-    { name: "Sagar Sir", role: "Mathematics (9th-12th)", branch: "OE + VN + NV", phone: "8447083627", image: "/faculty/Sagar.png" },
-    { name: "Neeraj Varma", role: "Physics & Maths (11th-12th), Maths & Science (9th-10th)", branch: "RN", phone: "9540139492", image: "/faculty/Neeraj_Verma.jpg" },
-    { name: "Sumit Shah", role: "Biology & Chemistry (11th-12th), Science (9th-10th)", branch: "VN", phone: "8595157784", image: "/faculty/Sumit_Shah.jpg" },
-    { name: "Sumit Choudhary", role: "Physics & Biology (11th-12th), Science (9th-10th)", branch: "OE + VN", phone: "8178600078", image: "/faculty/Sumit_Chaudhari.jpg" },
-    { name: "Ajit Mishra", role: "Biology & Chemistry (11th-12th)", branch: "RN + NV", phone: "9354055230", image: "/faculty/Ajit_Mishra.png" },
-    { name: "Vikash Sir", role: "Pol. Science & History (11th-12th), S.ST (9th-10th)", branch: "OE + RN + NV", phone: "7678191864", image: "/faculty/Vikash.jpg" },
-    { name: "Anjali Mam", role: "History (11th-12th)", branch: "VN", phone: "8368184330", image: "/faculty/Anjali.png" },
-    { name: "Ankush Sir", role: "Pol. Science (11th-12th)", branch: "VN", phone: "9311019383", image: "/faculty/Ankush.png" },
-    { name: "Akash Sir", role: "Economics (11th-12th), English & S.ST (9th-10th)", branch: "OE + VN", phone: "9205088610", image: "/faculty/Akash.jpg" },
-    { name: "Nidhi Mam", role: "Science (9th-10th)", branch: "NV", phone: "8178765101", image: "/faculty/Nidhi_Ojha.jpg" },
-    { name: "Anand Sir", role: "Accounts (11th-12th)", branch: "VN", phone: "N/A", image: "/faculty/Anand.jpg" },
-    { name: "Shahabuddin Sir", role: "English (9th-10th)", branch: "NV", phone: "N/A", image: "/faculty/Shahabuddin.png" },
+    { name: "Vivek Jha", role: "Economics (11th-12th), Maths (9th-10th)", branch: "Om Enclave + Roshan nagar + Nikhil Vihar", phone: "8802807397", image: "/faculty/Vivek_Jha.jpg" },
+    { name: "CA Nikunj", role: "Accounts (11th-12th)", branch: "Om Enclave + Roshan nagar", phone: "9899795706", image: "/faculty/Ca_Nikunj_Sharma.jpg" },
+    { name: "Sagar Sir", role: "Mathematics (9th-12th)", branch: "Om Enclave + Vinay nagar + Nikhil Vihar", phone: "8447083627", image: "/faculty/Sagar.png" },
+    { name: "Neeraj Varma", role: "Physics & Maths (11th-12th), Maths & Science (9th-10th)", branch: "Roshan nagar", phone: "9540139492", image: "/faculty/Neeraj_Verma.jpg" },
+    { name: "Sumit Shah", role: "Biology & Chemistry (11th-12th), Science (9th-10th)", branch: "Vinay nagar", phone: "8595157784", image: "/faculty/Sumit_Shah.jpg" },
+    { name: "Sumit Choudhary", role: "Physics & Biology (11th-12th), Science (9th-10th)", branch: "Om Enclave + Vinay nagar", phone: "8178600078", image: "/faculty/Sumit_Chaudhari.jpg" },
+    { name: "Ajit Mishra", role: "Biology & Chemistry (11th-12th)", branch: "Roshan nagar + Nikhil Vihar", phone: "9354055230", image: "/faculty/Ajit_Mishra.png" },
+    { name: "Vikash Sir", role: "Pol. Science & History (11th-12th), S.ST (9th-10th)", branch: "Om Enclave + Roshan nagar + Nikhil Vihar", phone: "7678191864", image: "/faculty/Vikash.jpg" },
+    { name: "Anjali Mam", role: "History (11th-12th)", branch: "Vinay nagar", phone: "8368184330", image: "/faculty/Anjali.png" },
+    { name: "Ankush Sir", role: "Pol. Science (11th-12th)", branch: "Vinay nagar", phone: "9311019383", image: "/faculty/Ankush.png" },
+    { name: "Akash Sir", role: "Economics (11th-12th), English & S.ST (9th-10th)", branch: "Om Enclave + Vinay nagar", phone: "9205088610", image: "/faculty/Akash.jpg" },
+    { name: "Nidhi Mam", role: "Science (9th-10th)", branch: "Nikhil Vihar", phone: "8178765101", image: "/faculty/Nidhi_Ojha.jpg" },
+    { name: "Anand Sir", role: "Accounts (11th-12th)", branch: "Vinay nagar", phone: "N/A", image: "/faculty/Anand.jpg" },
+    { name: "Shahabuddin Sir", role: "English (9th-10th)", branch: "Nikhil Vihar", phone: "N/A", image: "/faculty/Shahabuddin.png" },
   ];
 
   const results = [

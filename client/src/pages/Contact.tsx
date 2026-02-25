@@ -30,12 +30,21 @@ export default function Contact() {
     },
   });
 
-  function onSubmit(data: InsertInquiry) {
-    const subject = `Inquiry from ${data.name}`;
-    const body = `Name: ${data.name}\nPhone: ${data.phone}\n\nMessage:\n${data.message}`;
-    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=careergoalacademy00@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  function openEmail(name: string, phone: string, message: string) {
+    const subject = `Inquiry from ${name}`;
+    const body = `Name: ${name}\nPhone: ${phone}\n\nMessage:\n${message}`;
+    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+    if (isMobile) {
+      const link = document.createElement("a");
+      link.href = `mailto:careergoalacademy00@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      link.click();
+    } else {
+      window.open(`https://mail.google.com/mail/?view=cm&to=careergoalacademy00@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, "_blank");
+    }
+  }
 
-    window.open(gmailUrl, "_blank");
+  function onSubmit(data: InsertInquiry) {
+    openEmail(data.name, data.phone, data.message);
 
     mutate({ ...data, email: data.email || "" }, {
       onSuccess: () => {
@@ -93,7 +102,19 @@ export default function Contact() {
                 icon: Mail, 
                 title: "Email Us", 
                 desc: (
-                  <a href="https://mail.google.com/mail/?view=cm&to=careergoalacademy00@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors break-all">
+                  <a
+                    href="#"
+                    onClick={(e) => {
+                      e.preventDefault();
+                      const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+                      if (isMobile) {
+                        window.location.href = "mailto:careergoalacademy00@gmail.com";
+                      } else {
+                        window.open("https://mail.google.com/mail/?view=cm&to=careergoalacademy00@gmail.com", "_blank");
+                      }
+                    }}
+                    className="hover:text-primary transition-colors break-all"
+                  >
                     careergoalacademy00@gmail.com
                   </a>
                 )

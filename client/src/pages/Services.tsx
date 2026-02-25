@@ -285,7 +285,7 @@ export default function Services() {
                     <img src={play1} className="w-full h-full object-cover aspect-[3/4]" />
                   </Card>
                   <Card className="overflow-hidden rounded-3xl border-4 border-white shadow-xl rotate-[1deg]">
-                    <img src={libBuilding} className="w-full h-full object-cover aspect-square" />
+                    <img src={playActivity1} className="w-full h-full object-cover aspect-square" />
                   </Card>
                 </div>
                 <div className="space-y-4 pt-8">

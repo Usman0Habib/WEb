@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Book, Clock, Wifi, Coffee, ShieldCheck, MapPin, Heart, Sparkles, Users, Baby } from "lucide-react";
 
 // Library images
-import libBuilding from "@assets/9317eea2-39b9-4835-83ed-612ad7894eea_1771995038648.png";
+import libBuilding from "@assets/WhatsApp_Image_2026-02-25_at_10.43.08_AM_1771997291123.jpeg";
 import libInfo from "@assets/2024-12-20_(1)_1771995038637.webp";
 import libInterior1 from "@assets/2024-12-29_(6)_1771995038643.webp";
 import libInterior2 from "@assets/2024-12-29_(7)_1771995038644.webp";

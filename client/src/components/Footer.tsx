@@ -1,7 +1,13 @@
-import { GraduationCap, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail } from "lucide-react";
+import { GraduationCap, Facebook, Twitter, Instagram, Linkedin, MapPin, Phone, Mail, Youtube } from "lucide-react";
 import { Link } from "wouter";
 
 export function Footer() {
+  const socialLinks = [
+    { icon: Facebook, href: "https://www.facebook.com/share/17WrpEbFyS/", label: "Facebook" },
+    { icon: Instagram, href: "https://www.instagram.com/vivekjha3017?utm_source=qr&igsh=MWd0dzV6eDAxYWhpOQ==", label: "Instagram" },
+    { icon: Youtube, href: "https://youtube.com/@cga10th?si=kPSsHOeKhelD0jhm", label: "YouTube" },
+  ];
+
   return (
     <footer className="bg-slate-950 text-slate-200 border-t border-slate-800">
       <div className="container mx-auto px-4 py-16">
@@ -19,9 +25,16 @@ export function Footer() {
               expert guidance, and a commitment to excellence since 2010.
             </p>
             <div className="flex gap-4">
-              {[Facebook, Twitter, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="p-2 rounded-full bg-slate-900 hover:bg-primary/20 hover:text-primary transition-colors">
-                  <Icon className="w-5 h-5" />
+              {socialLinks.map((social, i) => (
+                <a 
+                  key={i} 
+                  href={social.href} 
+                  target="_blank" 
+                  rel="noopener noreferrer" 
+                  className="p-2 rounded-full bg-slate-900 hover:bg-primary/20 hover:text-primary transition-colors"
+                  aria-label={social.label}
+                >
+                  <social.icon className="w-5 h-5" />
                 </a>
               ))}
             </div>
@@ -56,16 +69,21 @@ export function Footer() {
             <ul className="space-y-4 text-sm">
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
-                <span className="text-slate-400">Head Office -Street no. 4 , Part-2 , Om enclave , Faridabad-Haryana-121003</span>
+                <span className="text-slate-400">
+                  Main Centre: Om Enclave Centre<br />
+                  Plot No. 1, Om Enclave, Part-1, Near Vinay Nagar, New Delhi
+                </span>
               </li>
-              <li className="flex items-center gap-3">
-                <Phone className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-slate-400">+91 8802807397
-                +91 7042456947</span>
+              <li className="flex items-start gap-3">
+                <Phone className="w-5 h-5 text-primary shrink-0 mt-0.5" />
+                <span className="text-slate-400">
+                  +91 88028 07397<br />
+                  +91 70424 56947
+                </span>
               </li>
               <li className="flex items-center gap-3">
                 <Mail className="w-5 h-5 text-primary shrink-0" />
-                <span className="text-slate-400">admissions@careergoal.edu</span>
+                <span className="text-slate-400">careergoalacademy00@gmail.com</span>
               </li>
             </ul>
           </div>

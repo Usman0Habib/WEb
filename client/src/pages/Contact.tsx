@@ -67,9 +67,26 @@ export default function Contact() {
           {/* Contact Info */}
           <div className="lg:col-span-1 space-y-6">
             {[
-              { icon: MapPin, title: "Head Office", desc: "123 Education Hub, South Ext-1, New Delhi" },
-              { icon: Phone, title: "Call Us", desc: "+91 98765 43210" },
-              { icon: Mail, title: "Email Us", desc: "admissions@careergoal.edu" },
+              { 
+                icon: MapPin, 
+                title: "Main Centre", 
+                desc: "Om Enclave Centre, Plot No. 1, Om Enclave, Part-1, Near Vinay Nagar, New Delhi" 
+              },
+              { 
+                icon: Phone, 
+                title: "Call Us", 
+                desc: (
+                  <>
+                    +91 88028 07397<br />
+                    +91 70424 56947
+                  </>
+                )
+              },
+              { 
+                icon: Mail, 
+                title: "Email Us", 
+                desc: "careergoalacademy00@gmail.com" 
+              },
               { icon: Clock, title: "Office Hours", desc: "Mon - Sat: 9:00 AM - 7:00 PM" },
             ].map((item, i) => (
               <Card key={i} className="border-none shadow-md">
@@ -79,7 +96,7 @@ export default function Contact() {
                   </div>
                   <div>
                     <h3 className="font-bold text-lg text-slate-900">{item.title}</h3>
-                    <p className="text-slate-500">{item.desc}</p>
+                    <div className="text-slate-500">{item.desc}</div>
                   </div>
                 </CardContent>
               </Card>

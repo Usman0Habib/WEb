@@ -6,7 +6,7 @@ import { Link } from "wouter";
 
 export default function Payment() {
   // Replace with actual UPI details
-  const upiId = "coaching@upi";
+  const upiId = "cavkjha45@okaxis";
   const name = "Career Goal Academy";
   const upiUrl = `upi://pay?pa=${upiId}&pn=${encodeURIComponent(name)}&cu=INR`;
 

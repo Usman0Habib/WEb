@@ -59,9 +59,6 @@ export default function Home() {
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
-              <span className="px-4 py-2 rounded-full bg-primary/10 text-primary font-semibold text-sm mb-4 inline-block">
-                🚀 Admissions Open for 2025-26 Batch
-              </span>
               <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tight text-slate-900 leading-[1.1]">
                 Shape Your Future with <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Career Goal Academy</span>
               </h1>

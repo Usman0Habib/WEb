@@ -21,10 +21,6 @@ export default function Home() {
   const { data: locations } = useLocations();
   const { data: reviews } = useReviews();
 
-  const openGoogleMaps = (lat: string, lng: string) => {
-    window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, '_blank');
-  };
-
   const featuredCourses = courses?.slice(0, 6);
 
   return (
@@ -140,50 +136,45 @@ export default function Home() {
             <p className="text-slate-500">Find a learning center near you in Delhi. Click on markers to view on Google Maps.</p>
           </div>
 
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
-            {/* Map Container */}
-            <div className="lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-200 h-[500px] relative">
-              <iframe
-                title="Career Goal Academy Locations"
-                width="100%"
-                height="100%"
-                style={{ border: 0 }}
-                loading="lazy"
-                allowFullScreen
-                src="https://maps.google.com/maps?q=Career+Goal+Academy,+Om+Enclave,+Faridabad,+Haryana&output=embed"
-              />
-            </div>
-
-            {/* Locations List */}
-            <div className="space-y-4 h-[500px] overflow-y-auto pr-2 custom-scrollbar">
-              {locations?.map((loc) => (
-                <div 
-                  key={loc.id} 
-                  onClick={() => openGoogleMaps(loc.latitude, loc.longitude)}
-                  className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 hover:border-primary/30 transition-all cursor-pointer group hover:shadow-md"
-                >
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 bg-primary/5 text-primary rounded-lg group-hover:bg-primary group-hover:text-white transition-colors">
-                      <MapPin className="w-5 h-5" />
+          {/* 2x2 Branch Map Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+            {locations?.map((loc) => (
+              <a
+                key={loc.id}
+                href={`https://www.google.com/maps/search/?api=1&query=${loc.latitude},${loc.longitude}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group block rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-xl hover:border-primary/40 transition-all"
+              >
+                <div className="relative h-48 pointer-events-none">
+                  <iframe
+                    title={loc.name}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    loading="lazy"
+                    src={`https://maps.google.com/maps?q=${loc.latitude},${loc.longitude}&z=15&output=embed`}
+                  />
+                  {/* Transparent overlay so the anchor handles the click */}
+                  <div className="absolute inset-0" />
+                </div>
+                <div className="bg-white p-4 flex items-start gap-3">
+                  <div className="p-2 bg-primary/10 text-primary rounded-lg shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                    <MapPin className="w-4 h-4" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <div className="flex justify-between items-start gap-2">
+                      <h4 className="font-bold text-slate-900 text-sm leading-tight">{loc.name}</h4>
+                      <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-primary transition-colors shrink-0 mt-0.5" />
                     </div>
-                    <div className="flex-1">
-                      <div className="flex justify-between items-start">
-                        <h4 className="font-bold text-lg text-slate-900 mb-1">{loc.name}</h4>
-                        <ExternalLink className="w-4 h-4 text-slate-400 group-hover:text-primary transition-colors mt-1" />
-                      </div>
-                      <p className="text-sm text-slate-500 leading-relaxed mb-3">{loc.address}</p>
-                      <div className="flex gap-2">
-                        <Badge variant="outline" className="text-xs bg-slate-50">Open Now</Badge>
-                        <Badge variant="outline" className="text-xs bg-slate-50 px-2 py-0.5 border-primary/20 text-primary">Directions</Badge>
-                      </div>
-                    </div>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed line-clamp-2">{loc.address}</p>
                   </div>
                 </div>
-              ))}
-              {!locations?.length && (
-                 <div className="text-center p-8 text-muted-foreground">Loading locations...</div>
-              )}
-            </div>
+              </a>
+            ))}
+            {!locations?.length && (
+              <div className="col-span-2 text-center p-8 text-muted-foreground">Loading locations...</div>
+            )}
           </div>
         </div>
       </section>

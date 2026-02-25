@@ -15,31 +15,11 @@ import {
 import { motion } from "framer-motion";
 import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
-import GoogleMapReact from 'google-map-react';
-
-const Marker = ({ text, onClick }: any) => (
-  <div 
-    onClick={onClick}
-    className="group relative flex flex-col items-center cursor-pointer"
-  >
-    <div className="p-1.5 bg-primary text-white rounded-full shadow-lg border-2 border-white hover:scale-110 transition-transform">
-      <MapPin className="w-5 h-5" />
-    </div>
-    <div className="absolute bottom-full mb-2 bg-slate-900 text-white text-xs py-1 px-2 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap z-50">
-      {text}
-    </div>
-  </div>
-);
 
 export default function Home() {
   const { data: courses, isLoading: coursesLoading } = useCourses();
   const { data: locations } = useLocations();
   const { data: reviews } = useReviews();
-
-  const delhiCenter = {
-    lat: 28.6139,
-    lng: 77.2090
-  };
 
   const openGoogleMaps = (lat: string, lng: string) => {
     window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, '_blank');
@@ -163,21 +143,15 @@ export default function Home() {
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             {/* Map Container */}
             <div className="lg:col-span-2 bg-white rounded-2xl overflow-hidden shadow-xl border border-slate-200 h-[500px] relative">
-              <GoogleMapReact
-                bootstrapURLKeys={{ key: "" }} // User can add their API key in secrets if needed
-                defaultCenter={delhiCenter}
-                defaultZoom={11}
-              >
-                {locations?.map((loc) => (
-                  <Marker
-                    key={loc.id}
-                    lat={Number(loc.latitude)}
-                    lng={Number(loc.longitude)}
-                    text={loc.name}
-                    onClick={() => openGoogleMaps(loc.latitude, loc.longitude)}
-                  />
-                ))}
-              </GoogleMapReact>
+              <iframe
+                title="Career Goal Academy Locations"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                loading="lazy"
+                allowFullScreen
+                src="https://maps.google.com/maps?q=Career+Goal+Academy,+Om+Enclave,+Faridabad,+Haryana&output=embed"
+              />
             </div>
 
             {/* Locations List */}

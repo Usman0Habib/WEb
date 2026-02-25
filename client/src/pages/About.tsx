@@ -3,10 +3,17 @@ import { Target, Lightbulb, Heart, Shield, Award, Users, ChevronDown, ChevronUp,
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useState, useRef } from "react";
+import { useLocation } from "wouter";
 import founderImg from "@/assets/images/founder.png";
 
+// Import poster images for the results preview
+import result12th_science from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_(1)_1771931727437.jpeg";
+import result12th_accounts_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.57_AM_(2)_1771971254687.jpeg";
+import result12th_physics_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.57_AM_(4)_1771971325002.jpeg";
+import result10th_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_1771931727439.jpeg";
+
 export default function About() {
-  const [showAllResults, setShowAllResults] = useState(false);
+  const [, setLocation] = useLocation();
   const scrollRef = useRef<HTMLDivElement>(null);
 
   const values = [
@@ -33,19 +40,11 @@ export default function About() {
     { name: "Shahabuddin Sir", role: "English (9th-10th)", branch: "Nikhil Vihar", phone: "N/A", image: "/faculty/Shahabuddin.png" },
   ];
 
-  const results = [
-    { name: "Aryan Singh", rank: "AIR 42", exam: "NEET 2024", score: "710/720", comment: "CGA's test series was the game changer for me." },
-    { name: "Isha Gupta", rank: "AIR 156", exam: "JEE Adv 2024", score: "285/360", comment: "The faculty support here is unparalleled." },
-    { name: "Rohan Das", rank: "AIR 210", exam: "NEET 2024", score: "695/720", comment: "Personalized attention helped me clear my basics." },
-    { name: "Sanya Malik", rank: "AIR 450", exam: "JEE Main 2024", score: "99.8%ile", comment: "Structured curriculum and regular PTMs kept me on track." },
-    // Mock data for show more
-    ...Array(16).fill(null).map((_, i) => ({
-      name: `Student ${i + 5}`,
-      rank: `Rank ${1000 + i * 100}`,
-      exam: "Competitive Exam",
-      score: "Excellent",
-      comment: "A great learning experience at Career Goal Academy."
-    }))
+  const resultPosters = [
+    result12th_science,
+    result12th_accounts_2024,
+    result12th_physics_2024,
+    result10th_2024
   ];
 
   const scroll = (direction: "left" | "right") => {
@@ -242,7 +241,7 @@ export default function About() {
         </div>
       </section>
 
-      {/* Results & Wall of Fame */}
+      {/* Results Section */}
       <section className="py-24 bg-slate-900 text-white relative overflow-hidden">
         <div className="absolute top-0 left-0 w-full h-full opacity-10 pointer-events-none">
           <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full blur-[150px]" />
@@ -250,67 +249,39 @@ export default function About() {
         </div>
         
         <div className="container mx-auto px-4 relative z-10">
-          <div className="text-center mb-20">
-            <h2 className="text-4xl md:text-5xl font-display font-bold">Wall of Fame</h2>
-            <div className="flex flex-wrap justify-center gap-12 mt-12">
-              <div className="text-center">
-                <div className="text-5xl font-bold text-primary mb-2">1500+</div>
-                <p className="text-slate-400 uppercase tracking-widest text-sm font-bold">Selections</p>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold text-primary mb-2">98%</div>
-                <p className="text-slate-400 uppercase tracking-widest text-sm font-bold">Pass Rate</p>
-              </div>
-              <div className="text-center">
-                <div className="text-5xl font-bold text-primary mb-2">50+</div>
-                <p className="text-slate-400 uppercase tracking-widest text-sm font-bold">Top 100 Ranks</p>
-              </div>
-            </div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-display font-bold mb-4">Wall of Fame</h2>
+            <p className="text-slate-400 text-lg">Celebrating our top performers and their success stories.</p>
           </div>
 
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-            {(showAllResults ? results : results.slice(0, 4)).map((r, i) => (
+            {resultPosters.map((poster, i) => (
               <motion.div
                 key={i}
                 initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ delay: (i % 4) * 0.1 }}
-                className="bg-slate-800/50 backdrop-blur-md p-6 rounded-3xl border border-white/10 hover:border-primary/50 transition-colors"
+                whileInView={{ opacity: 1, scale: 1 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.1 }}
               >
-                <div className="flex items-center gap-4 mb-6">
-                  <div className="w-16 h-16 rounded-full bg-slate-700 flex items-center justify-center border-2 border-primary overflow-hidden">
-                    <GraduationCap className="w-8 h-8 text-primary" />
-                  </div>
-                  <div>
-                    <h4 className="font-bold text-xl">{r.name}</h4>
-                    <p className="text-primary font-bold">{r.rank}</p>
-                  </div>
-                </div>
-                <div className="space-y-4">
-                  <div className="flex justify-between text-sm">
-                    <span className="text-slate-400">{r.exam}</span>
-                    <span className="text-white font-bold">{r.score}</span>
-                  </div>
-                  <p className="text-slate-400 font-body text-sm italic italic leading-relaxed">
-                    "{r.comment}"
-                  </p>
-                </div>
+                <Card className="overflow-hidden border-4 border-white shadow-2xl hover:shadow-primary/20 transition-all duration-300 rounded-2xl group">
+                  <img 
+                    src={poster} 
+                    alt={`Result Poster ${i + 1}`}
+                    className="w-full h-auto object-contain bg-slate-100 group-hover:scale-105 transition-transform duration-500"
+                  />
+                </Card>
               </motion.div>
             ))}
           </div>
 
           <div className="mt-16 text-center">
             <Button 
-              onClick={() => setShowAllResults(!showAllResults)}
+              onClick={() => setLocation("/results")}
               variant="outline" 
               size="lg"
-              className="bg-transparent border-white/20 text-white hover:bg-white hover:text-slate-900 h-14 px-10 text-lg rounded-full"
+              className="bg-transparent border-white/20 text-white hover:bg-white hover:text-slate-900 h-14 px-10 text-lg rounded-full transition-all duration-300 group"
             >
-              {showAllResults ? (
-                <>Show Less <ChevronUp className="ml-2" /></>
-              ) : (
-                <>View All Achievements <ChevronDown className="ml-2" /></>
-              )}
+              See More <ChevronDown className="ml-2 group-hover:translate-x-1 transition-transform rotate-[-90deg]" />
             </Button>
           </div>
         </div>

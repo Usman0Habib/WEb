@@ -3,9 +3,9 @@ import { Link } from "wouter";
 
 export function Footer() {
   const socialLinks = [
-    { icon: Facebook, href: "https://www.facebook.com/share/17WrpEbFyS/", label: "Facebook" },
-    { icon: Instagram, href: "https://www.instagram.com/vivekjha3017?utm_source=qr&igsh=MWd0dzV6eDAxYWhpOQ==", label: "Instagram" },
-    { icon: Youtube, href: "https://youtube.com/@cga10th?si=kPSsHOeKhelD0jhm", label: "YouTube" },
+    { icon: Facebook, href: "https://www.facebook.com/share/17WrpEbFyS/", label: "Facebook", bg: "#1877F2" },
+    { icon: Instagram, href: "https://www.instagram.com/vivekjha3017?utm_source=qr&igsh=MWd0dzV6eDAxYWhpOQ==", label: "Instagram", bg: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)" },
+    { icon: Youtube, href: "https://youtube.com/@cga10th?si=kPSsHOeKhelD0jhm", label: "YouTube", bg: "#FF0000" },
   ];
 
   return (
@@ -31,10 +31,11 @@ export function Footer() {
                   href={social.href} 
                   target="_blank" 
                   rel="noopener noreferrer" 
-                  className="p-2 rounded-full bg-slate-900 hover:bg-primary/20 hover:text-primary transition-colors"
+                  className="p-2 rounded-full transition-all hover:scale-110 hover:shadow-lg hover:shadow-black/30"
+                  style={{background: social.bg}}
                   aria-label={social.label}
                 >
-                  <social.icon className="w-5 h-5" />
+                  <social.icon className="w-5 h-5 text-white" />
                 </a>
               ))}
             </div>

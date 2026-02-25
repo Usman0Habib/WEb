@@ -77,7 +77,7 @@ export default function Contact() {
         </div>
       </div>
 
-      <div className="container mx-auto px-4 -mt-16">
+      <div className="container mx-auto px-4 pt-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           
           {/* Contact Info */}
@@ -135,18 +135,18 @@ export default function Contact() {
             ))}
             
             {/* Socials Section */}
-            <Card className="border-none shadow-md bg-slate-900 text-white">
+            <Card className="border-none shadow-md bg-white">
               <CardContent className="p-6">
-                <h3 className="font-bold text-lg mb-4">Follow Us</h3>
+                <h3 className="font-bold text-lg mb-4 text-slate-900">Follow Us</h3>
                 <div className="flex gap-4">
-                  <a href="https://www.facebook.com/share/17WrpEbFyS/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors">
-                    <Facebook className="w-6 h-6" />
+                  <a href="https://www.facebook.com/share/17WrpEbFyS/" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full transition-all hover:scale-110 hover:shadow-lg" style={{backgroundColor: "#1877F2"}} aria-label="Facebook">
+                    <Facebook className="w-6 h-6 text-white" />
                   </a>
-                  <a href="https://www.instagram.com/vivekjha3017?utm_source=qr&igsh=MWd0dzV6eDAxYWhpOQ==" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors">
-                    <Instagram className="w-6 h-6" />
+                  <a href="https://www.instagram.com/vivekjha3017?utm_source=qr&igsh=MWd0dzV6eDAxYWhpOQ==" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full transition-all hover:scale-110 hover:shadow-lg" style={{background: "radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%,#d6249f 60%,#285AEB 90%)"}} aria-label="Instagram">
+                    <Instagram className="w-6 h-6 text-white" />
                   </a>
-                  <a href="https://youtube.com/@cga10th?si=kPSsHOeKhelD0jhm" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors">
-                    <Youtube className="w-6 h-6" />
+                  <a href="https://youtube.com/@cga10th?si=kPSsHOeKhelD0jhm" target="_blank" rel="noopener noreferrer" className="p-3 rounded-full transition-all hover:scale-110 hover:shadow-lg" style={{backgroundColor: "#FF0000"}} aria-label="YouTube">
+                    <Youtube className="w-6 h-6 text-white" />
                   </a>
                 </div>
               </CardContent>

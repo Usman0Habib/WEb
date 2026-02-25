@@ -452,34 +452,28 @@ async function seedDatabase() {
   const existingLocations = await storage.getLocations();
   if (existingLocations.length === 0) {
     await storage.createLocation({
-      name: "Connaught Place Centre",
-      address: "2nd Floor, Outer Circle, Connaught Place, New Delhi",
-      latitude: "28.6315",
-      longitude: "77.2167",
+      name: "Om Enclave Centre",
+      address: "Plot No. 1, Om Enclave, Part-1, Near Vinay Nagar, New Delhi",
+      latitude: "28.5135",
+      longitude: "77.3001",
     });
     await storage.createLocation({
-      name: "South Extension Centre",
-      address: "E-15, South Extension Part 2, New Delhi",
-      latitude: "28.5680",
-      longitude: "77.2190",
+      name: "Vinay Nagar Centre",
+      address: "Vinay Nagar, Sector 37, Faridabad (Bordering Delhi)",
+      latitude: "28.5085",
+      longitude: "77.3045",
     });
     await storage.createLocation({
-      name: "Janakpuri Centre",
-      address: "District Centre, Janakpuri, New Delhi",
-      latitude: "28.6219",
-      longitude: "77.0878",
+      name: "Roshan Nagar Centre",
+      address: "Roshan Nagar, Agwanpur, Faridabad",
+      latitude: "28.4982",
+      longitude: "77.2954",
     });
     await storage.createLocation({
-      name: "Laxmi Nagar Centre",
-      address: "Vikas Marg, Laxmi Nagar, New Delhi",
-      latitude: "28.6304",
-      longitude: "77.2773",
-    });
-    await storage.createLocation({
-      name: "Dwarka Centre",
-      address: "Sector 12, Dwarka, New Delhi",
-      latitude: "28.5921",
-      longitude: "77.0460",
+      name: "Nikhil Vihar Centre",
+      address: "Nikhil Vihar, Near Mithapur, Badarpur, New Delhi",
+      latitude: "28.5021",
+      longitude: "77.3105",
     });
   }
 

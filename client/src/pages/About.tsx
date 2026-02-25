@@ -19,7 +19,6 @@ export default function About() {
   const faculty = [
     { name: "Vivek Jha", role: "Economics (11th-12th), Maths (9th-10th)", branch: "OE + RN + NV", phone: "8802807397", image: "/faculty/Vivek_Jha.jpg" },
     { name: "CA Nikunj", role: "Accounts (11th-12th)", branch: "OE + RN", phone: "9899795706", image: "/faculty/Ca_Nikunj_Sharma.jpg" },
-    { name: "CA Anuj Singh", role: "Accounts (11th-12th)", branch: "VN", phone: "96431 46105", image: "https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?q=80&w=400&h=400&auto=format&fit=crop" },
     { name: "Sagar Sir", role: "Mathematics (9th-12th)", branch: "OE + VN + NV", phone: "8447083627", image: "/faculty/Sagar.png" },
     { name: "Neeraj Varma", role: "Physics & Maths (11th-12th), Maths & Science (9th-10th)", branch: "RN", phone: "9540139492", image: "/faculty/Neeraj_Verma.jpg" },
     { name: "Sumit Shah", role: "Biology & Chemistry (11th-12th), Science (9th-10th)", branch: "VN", phone: "8595157784", image: "/faculty/Sumit_Shah.jpg" },

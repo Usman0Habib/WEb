@@ -31,13 +31,11 @@ export default function Contact() {
   });
 
   function onSubmit(data: InsertInquiry) {
-    const mailtoUrl = `mailto:careergoalacademy00@gmail.com?subject=Inquiry from ${encodeURIComponent(data.name)}&body=${encodeURIComponent(
-      `Name: ${data.name}\nPhone: ${data.phone}\n\nMessage:\n${data.message}`
-    )}`;
+    const subject = `Inquiry from ${data.name}`;
+    const body = `Name: ${data.name}\nPhone: ${data.phone}\n\nMessage:\n${data.message}`;
+    const gmailUrl = `https://mail.google.com/mail/?view=cm&to=careergoalacademy00@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
 
-    const link = document.createElement("a");
-    link.href = mailtoUrl;
-    link.click();
+    window.open(gmailUrl, "_blank");
 
     mutate({ ...data, email: data.email || "" }, {
       onSuccess: () => {
@@ -95,7 +93,7 @@ export default function Contact() {
                 icon: Mail, 
                 title: "Email Us", 
                 desc: (
-                  <a href="mailto:careergoalacademy00@gmail.com" className="hover:text-primary transition-colors">
+                  <a href="https://mail.google.com/mail/?view=cm&to=careergoalacademy00@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-primary transition-colors break-all">
                     careergoalacademy00@gmail.com
                   </a>
                 )

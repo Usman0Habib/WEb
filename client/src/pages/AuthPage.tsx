@@ -6,14 +6,12 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { GraduationCap, AlertCircle } from "lucide-react";
-import { SiGoogle } from "react-icons/si";
 import { motion } from "framer-motion";
 import { useAuth } from "@/hooks/use-auth";
-import { Separator } from "@/components/ui/separator";
 
 export default function AuthPage() {
   const [, setLocation] = useLocation();
-  const { user, loginMutation, registerMutation, googleEnabled } = useAuth();
+  const { user, loginMutation, registerMutation } = useAuth();
   const [loginEmail, setLoginEmail] = useState("");
   const [loginPassword, setLoginPassword] = useState("");
   const [regFirstName, setRegFirstName] = useState("");
@@ -71,10 +69,6 @@ export default function AuthPage() {
     } catch (err: any) {
       setError(parseErrorMessage(err, "Registration failed. Please try again."));
     }
-  };
-
-  const handleGoogleLogin = () => {
-    window.location.href = "/api/auth/google";
   };
 
   return (
@@ -205,27 +199,6 @@ export default function AuthPage() {
               </TabsContent>
             </Tabs>
 
-            <div className="mt-6">
-              <div className="relative">
-                <div className="absolute inset-0 flex items-center">
-                  <Separator />
-                </div>
-                <div className="relative flex justify-center text-xs uppercase">
-                  <span className="bg-card px-2 text-muted-foreground">Or continue with</span>
-                </div>
-              </div>
-
-              <Button
-                variant="outline"
-                className="w-full mt-4 gap-2"
-                onClick={handleGoogleLogin}
-                disabled={!googleEnabled}
-                data-testid="button-google-login"
-              >
-                <SiGoogle className="w-4 h-4" />
-                {googleEnabled ? "Login with Google" : "Google Login (Not configured)"}
-              </Button>
-            </div>
           </CardContent>
         </Card>
       </motion.div>

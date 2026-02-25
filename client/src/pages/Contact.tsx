@@ -30,12 +30,17 @@ export default function Contact() {
   });
 
   function onSubmit(data: InsertInquiry) {
+    const mailtoUrl = `mailto:careergoalacademy00@gmail.com?subject=Inquiry from ${encodeURIComponent(data.name)}&body=${encodeURIComponent(
+      `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+    )}`;
+    
     mutate(data, {
       onSuccess: () => {
         toast({
-          title: "Message Sent!",
-          description: "We will get back to you shortly.",
+          title: "Form Submitted!",
+          description: "Opening your email client to send the message...",
         });
+        window.location.href = mailtoUrl;
         form.reset();
       },
       onError: (error) => {

@@ -10,6 +10,7 @@ import About from "@/pages/About";
 import Courses from "@/pages/Courses";
 import Results from "@/pages/Results";
 import Fees from "@/pages/Fees";
+import Services from "@/pages/Services";
 import Payment from "@/pages/Payment";
 import Contact from "@/pages/Contact";
 import AuthPage from "@/pages/AuthPage";
@@ -39,6 +40,7 @@ function PublicLayout() {
           <Route path="/courses" component={Courses} />
           <Route path="/results" component={Results} />
           <Route path="/fees" component={Fees} />
+          <Route path="/services" component={Services} />
           <Route path="/payment" component={Payment} />
           <Route path="/contact" component={Contact} />
           <Route path="/auth" component={AuthPage} />

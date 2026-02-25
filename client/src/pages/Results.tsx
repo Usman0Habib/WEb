@@ -9,9 +9,9 @@ import result10th_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.55_AM_177
 import result10th_2023_alt from "@assets/WhatsApp_Image_2026-02-12_at_1.20.56_AM_1771931727435.jpeg";
 
 import result12th_science from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_(1)_1771931727437.jpeg";
-import result12th_maths from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_(2)_1771931727438.jpeg";
+import result12th_accounts_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.57_AM_(2)_1771971254687.jpeg";
+import result12th_physics_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.57_AM_(4)_1771971325002.jpeg";
 
-import result12th_accounts_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.57_AM_(3)_1771931727436.jpeg";
 import result12th_economics_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.59_AM_1771931727433.jpeg";
 import result12th_accounts_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.55_AM_(1)_1771931727433.jpeg";
 import result12th_economics_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.56_AM_(1)_1771931727435.jpeg";
@@ -99,8 +99,8 @@ const ResultsPage = () => {
             </div>
             <PosterSection images={[
               result12th_science, 
-              result12th_maths, 
-              result12th_accounts_2024, 
+              result12th_accounts_2024,
+              result12th_physics_2024,
               result12th_economics_2024, 
               result12th_accounts_2023, 
               result12th_economics_2023

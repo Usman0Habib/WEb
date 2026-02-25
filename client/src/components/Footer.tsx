@@ -16,7 +16,7 @@ export function Footer() {
           <div className="space-y-6">
             <div className="flex items-center gap-2">
               <div className="p-0 bg-transparent">
-                <img src="/images/logo.png" alt="Career Goal Academy Logo" className="w-10 h-10 object-contain" />
+                <img src="/images/logo.png" alt="Career Goal Academy Logo" className="w-10 h-10 object-contain bg-white rounded-lg p-0.5" />
               </div>
               <span className="font-display font-bold text-xl text-white whitespace-nowrap">Career Goal Academy</span>
             </div>

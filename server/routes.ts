@@ -353,100 +353,54 @@ export async function registerRoutes(
 async function seedDatabase() {
   const existingCourses = await storage.getCourses();
   if (existingCourses.length === 0) {
-    const schoolFees = [
-      { title: "NURSERY", oldFee: 300, newFee: 300 },
-      { title: "LKG", oldFee: 300, newFee: 300 },
-      { title: "UKG", oldFee: 300, newFee: 300 },
-      { title: "1st to 3rd", oldFee: 300, newFee: 300 },
-      { title: "4th", oldFee: 400, newFee: 400 },
-      { title: "5th", oldFee: 500, newFee: 500 },
-      { title: "6th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 600, newFee: 700 },
-      { title: "7th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 700, newFee: 800 },
-      { title: "8th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 800, newFee: 900 },
-      { title: "9th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 900, newFee: 1000 },
-      { title: "10th (MATHS & SCIENCE + S.ST + ENGLISH)", oldFee: 1000, newFee: 1100 },
-      { title: "9th (ONLY MATHS; SCIENCE; S.ST; ENGLISH)", oldFee: 300, newFee: 300 },
-      { title: "10th (ONLY MATHS; SCIENCE; S.ST; ENGLISH)", oldFee: 300, newFee: 300 },
+    const courseData = [
+      { title: "Nursery", fee: 300 },
+      { title: "LKG", fee: 300 },
+      { title: "UKG", fee: 300 },
+      { title: "Class 1st", fee: 300 },
+      { title: "Class 2nd", fee: 300 },
+      { title: "Class 3rd", fee: 300 },
+      { title: "Class 4th", fee: 400 },
+      { title: "Class 5th", fee: 500 },
+      { title: "Class 6th", fee: 700 },
+      { title: "Class 7th", fee: 800 },
+      { title: "Class 8th", fee: 900 },
+      { title: "Class 9th", fee: 1000 },
+      { title: "Class 10th", fee: 1100 },
+      { title: "Class 11th Economics", fee: 500 },
+      { title: "Class 11th Accountancy", fee: 500 },
+      { title: "Class 11th Mathematics", fee: 500 },
+      { title: "Class 11th Physics", fee: 500 },
+      { title: "Class 11th Chemistry", fee: 500 },
+      { title: "Class 11th Biology", fee: 500 },
+      { title: "Class 11th Political Science", fee: 300 },
+      { title: "Class 11th History", fee: 300 },
+      { title: "Class 11th English", fee: 350 },
+      { title: "Class 11th Geography", fee: 350 },
+      { title: "Class 12th Economics", fee: 550 },
+      { title: "Class 12th Accountancy", fee: 550 },
+      { title: "Class 12th Mathematics", fee: 550 },
+      { title: "Class 12th Physics", fee: 550 },
+      { title: "Class 12th Chemistry", fee: 550 },
+      { title: "Class 12th Biology", fee: 550 },
+      { title: "Class 12th Political Science", fee: 350 },
+      { title: "Class 12th History", fee: 350 },
+      { title: "Class 12th English", fee: 350 },
+      { title: "Class 12th Geography", fee: 350 },
+      { title: "English Spoken", fee: 450 },
     ];
 
-    for (const fee of schoolFees) {
+    for (const c of courseData) {
       await storage.createCourse({
-        title: `Class ${fee.title}`,
-        description: `Academic session for Class ${fee.title}`,
+        title: c.title,
+        description: "Monthly academic session",
         category: "School",
-        duration: "1 Year",
-        fee: fee.newFee,
-        feeStructure: {
-          admissionFee: 0,
-          tuitionFee: fee.newFee,
-          studyMaterial: 0,
-          testSeries: 0,
-          total: fee.newFee
-        },
-        features: ["Regular Classes", "Comprehensive Support"],
+        duration: "1 Month",
+        fee: c.fee,
+        feeStructure: null,
+        features: [],
       });
     }
-
-    await storage.createCourse({
-      title: "NEET Comprehensive (2 Year)",
-      description: "Complete preparation for NEET UG for Class 11 students.",
-      category: "NEET",
-      duration: "2 Years",
-      fee: 150000,
-      feeStructure: {
-        admissionFee: 20000,
-        tuitionFee: 100000,
-        studyMaterial: 15000,
-        testSeries: 15000,
-        total: 150000
-      },
-      features: ["Daily Classes", "Weekly Tests", "Doubt Sessions", "Study Material"],
-    });
-    await storage.createCourse({
-      title: "IIT JEE Mains + Advanced",
-      description: "Rigorous training for JEE aspirants aiming for top IITs.",
-      category: "IIT JEE",
-      duration: "2 Years",
-      fee: 180000,
-      feeStructure: {
-        admissionFee: 25000,
-        tuitionFee: 120000,
-        studyMaterial: 15000,
-        testSeries: 20000,
-        total: 180000
-      },
-      features: ["Expert Faculty", "All India Test Series", "One-to-One Mentoring"],
-    });
-    await storage.createCourse({
-      title: "Foundation Course (Class 10)",
-      description: "Build strong fundamentals for future competitive exams.",
-      category: "Foundation",
-      duration: "1 Year",
-      fee: 60000,
-      feeStructure: {
-        admissionFee: 10000,
-        tuitionFee: 40000,
-        studyMaterial: 5000,
-        testSeries: 5000,
-        total: 60000
-      },
-      features: ["School Syllabus Covered", "Olympiad Prep", "Regular PTMs"],
-    });
-    await storage.createCourse({
-      title: "CUET Crash Course",
-      description: "Fast-track preparation for Common University Entrance Test.",
-      category: "CUET",
-      duration: "3 Months",
-      fee: 25000,
-      feeStructure: {
-        admissionFee: 5000,
-        tuitionFee: 15000,
-        studyMaterial: 2500,
-        testSeries: 2500,
-        total: 25000
-      },
-      features: ["Mock Tests", "Domain Subject Focus", "General Test Prep"],
-    });
   }
 
   const existingLocations = await storage.getLocations();

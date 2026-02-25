@@ -55,7 +55,7 @@ export function CourseCard({ course }: CourseCardProps) {
           {course.fee.toLocaleString()}
         </div>
         <Button asChild className="shadow-lg shadow-primary/20 group-hover:translate-x-1 transition-transform">
-          <Link href={`/contact?course=${course.title}`}>Enroll Now</Link>
+          <Link href={`/contact`}>Enroll Now</Link>
         </Button>
       </CardFooter>
     </Card>

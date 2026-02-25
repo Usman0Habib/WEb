@@ -45,7 +45,7 @@ export default function Home() {
     window.open(`https://www.google.com/maps/search/?api=1&query=${lat},${lng}`, '_blank');
   };
 
-  const featuredCourses = courses?.slice(0, 3);
+  const featuredCourses = courses?.slice(0, 6);
 
   return (
     <div className="min-h-screen">

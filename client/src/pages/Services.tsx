@@ -89,7 +89,7 @@ export default function Services() {
                 <Book className="w-4 h-4" />
                 Premium Facility
               </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 mb-6">
                 My Library
               </h2>
               <p className="text-slate-600 text-lg mb-8 leading-relaxed">
@@ -206,7 +206,7 @@ export default function Services() {
                 <Heart className="w-4 h-4" />
                 Aangan Bachpan Ka
               </div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-6">
+              <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 mb-6">
                 Maatri Chhaya Play School
               </h2>
               <p className="text-slate-600 text-lg mb-8 leading-relaxed">

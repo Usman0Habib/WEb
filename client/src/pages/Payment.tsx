@@ -1,8 +1,9 @@
 import { motion } from "framer-motion";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { QrCode, CreditCard, ArrowLeft } from "lucide-react";
+import { CreditCard, ArrowLeft } from "lucide-react";
 import { Link } from "wouter";
+import upiQr from "@assets/upi_1771995496074.jpeg";
 
 export default function Payment() {
   // Replace with actual UPI details
@@ -37,13 +38,11 @@ export default function Payment() {
               </CardHeader>
               <CardContent className="p-8 flex flex-col items-center text-center">
                 <div className="mb-8 p-4 bg-white rounded-2xl shadow-lg border-2 border-slate-100">
-                  {/* Placeholder for QR Code - In a real app, this would be a dynamic or static QR image */}
-                  <div className="w-64 h-64 bg-slate-100 flex flex-col items-center justify-center rounded-xl border-2 border-dashed border-slate-300">
-                    <QrCode className="w-16 h-16 text-slate-400 mb-2" />
-                    <p className="text-xs text-slate-500 font-medium px-4">
-                      QR Code for {upiId}
-                    </p>
-                  </div>
+                  <img
+                    src={upiQr}
+                    alt={`UPI QR Code for ${upiId}`}
+                    className="w-64 h-64 object-contain rounded-xl"
+                  />
                 </div>
 
                 <div className="space-y-6 w-full max-w-sm">

@@ -70,7 +70,6 @@ const ResultsPage = () => {
           </motion.p>
         </div>
       </section>
-
       {/* Results Tabs */}
       <section className="container mx-auto px-4 max-w-6xl">
         <Tabs defaultValue="class12" className="space-y-16">
@@ -109,7 +108,6 @@ const ResultsPage = () => {
           </TabsContent>
         </Tabs>
       </section>
-
       {/* Bottom CTA */}
       <section className="container mx-auto px-4 mt-32">
         <div className="bg-slate-900 rounded-[3rem] p-12 text-center text-white relative overflow-hidden">
@@ -122,9 +120,7 @@ const ResultsPage = () => {
             </p>
             <div className="pt-6">
               <Link href="/contact">
-                <button className="bg-primary text-white hover:bg-primary/90 px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all">
-                  Enroll Now for 2025-26
-                </button>
+                <button className="bg-primary text-white hover:bg-primary/90 px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all">Enroll Now</button>
               </Link>
             </div>
           </div>

@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Award, GraduationCap } from "lucide-react";
+import { Link } from "wouter";
 
 // Import all poster images
 import result10th_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_1771931727439.jpeg";
@@ -120,9 +121,11 @@ const ResultsPage = () => {
               Join Career Goal Academy today and start your journey towards academic excellence.
             </p>
             <div className="pt-6">
-              <button className="bg-primary text-white hover:bg-primary/90 px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all">
-                Enroll Now for 2025-26
-              </button>
+              <Link href="/contact">
+                <button className="bg-primary text-white hover:bg-primary/90 px-12 py-4 rounded-full font-bold text-lg shadow-xl hover:shadow-primary/20 transition-all">
+                  Enroll Now for 2025-26
+                </button>
+              </Link>
             </div>
           </div>
         </div>

@@ -7,7 +7,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
 import { Card, CardContent } from "@/components/ui/card";
-import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { MapPin, Phone, Mail, Clock, Send, Facebook, Instagram, Youtube } from "lucide-react";
 import { useToast } from "@/hooks/use-toast";
 import { useLocation } from "wouter";
 
@@ -76,16 +76,20 @@ export default function Contact() {
                 icon: Phone, 
                 title: "Call Us", 
                 desc: (
-                  <>
-                    +91 88028 07397<br />
-                    +91 70424 56947
-                  </>
+                  <div className="flex flex-col gap-1">
+                    <a href="tel:+918802807397" className="hover:text-primary transition-colors">+91 88028 07397</a>
+                    <a href="tel:+917042456947" className="hover:text-primary transition-colors">+91 70424 56947</a>
+                  </div>
                 )
               },
               { 
                 icon: Mail, 
                 title: "Email Us", 
-                desc: "careergoalacademy00@gmail.com" 
+                desc: (
+                  <a href="mailto:careergoalacademy00@gmail.com" className="hover:text-primary transition-colors">
+                    careergoalacademy00@gmail.com
+                  </a>
+                )
               },
               { icon: Clock, title: "Office Hours", desc: "Mon - Sat: 9:00 AM - 7:00 PM" },
             ].map((item, i) => (
@@ -101,6 +105,24 @@ export default function Contact() {
                 </CardContent>
               </Card>
             ))}
+            
+            {/* Socials Section */}
+            <Card className="border-none shadow-md bg-slate-900 text-white">
+              <CardContent className="p-6">
+                <h3 className="font-bold text-lg mb-4">Follow Us</h3>
+                <div className="flex gap-4">
+                  <a href="https://www.facebook.com/share/17WrpEbFyS/" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors">
+                    <Facebook className="w-6 h-6" />
+                  </a>
+                  <a href="https://www.instagram.com/vivekjha3017?utm_source=qr&igsh=MWd0dzV6eDAxYWhpOQ==" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors">
+                    <Instagram className="w-6 h-6" />
+                  </a>
+                  <a href="https://youtube.com/@cga10th?si=kPSsHOeKhelD0jhm" target="_blank" rel="noopener noreferrer" className="p-3 bg-white/10 rounded-full hover:bg-primary transition-colors">
+                    <Youtube className="w-6 h-6" />
+                  </a>
+                </div>
+              </CardContent>
+            </Card>
           </div>
 
           {/* Contact Form */}

@@ -27,6 +27,7 @@ export function Navbar() {
     { href: "/courses", label: "Courses" },
     { href: "/fees", label: "Fee Structure" },
     { href: "/services", label: "Other Services" },
+    { href: "/contact", label: "Contact Us" },
   ];
 
   const handleLogout = async () => {

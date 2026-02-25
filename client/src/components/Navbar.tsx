@@ -114,13 +114,16 @@ export function Navbar() {
           </div>
         </div>
 
-        <button
-          className="md:hidden p-2 text-muted-foreground hover:text-foreground"
-          onClick={() => setIsOpen(!isOpen)}
-          data-testid="button-mobile-menu"
-        >
-          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-        </button>
+        <div className="flex items-center gap-2 md:hidden">
+          {isAuthenticated && <NotificationBell />}
+          <button
+            className="p-2 text-muted-foreground hover:text-foreground"
+            onClick={() => setIsOpen(!isOpen)}
+            data-testid="button-mobile-menu"
+          >
+            {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+          </button>
+        </div>
       </div>
 
       <AnimatePresence>
@@ -132,6 +135,29 @@ export function Navbar() {
             className="md:hidden border-b bg-background overflow-hidden"
           >
             <div className="container px-4 py-6 flex flex-col gap-4">
+              {isAuthenticated && (
+                <div className="flex items-center gap-3 px-2 py-4 mb-2 border-b border-border/40">
+                  <Avatar className="h-12 w-12 border-2 border-primary/20">
+                    {user?.profilePicture && <AvatarImage src={user.profilePicture} />}
+                    <AvatarFallback className="bg-primary/5 text-primary text-lg">
+                      {user?.firstName?.[0]}{user?.lastName?.[0]}
+                    </AvatarFallback>
+                  </Avatar>
+                  <div className="flex flex-col">
+                    <div className="flex items-center gap-1.5">
+                      <span className="font-bold text-foreground text-lg leading-none" data-testid="text-mobile-user-name">
+                        {user?.firstName} {user?.lastName}
+                      </span>
+                      {user?.role === "admin" && (
+                        <ShieldCheck className="h-4 w-4 text-primary animate-pulse" />
+                      )}
+                    </div>
+                    <span className="text-sm text-muted-foreground mt-1" data-testid="text-mobile-user-email">
+                      {user?.email}
+                    </span>
+                  </div>
+                </div>
+              )}
               {links.map((link) => (
                 <Link key={link.href} href={link.href} onClick={() => setIsOpen(false)}>
                   <div
@@ -147,21 +173,38 @@ export function Navbar() {
                 </Link>
               ))}
               <div className="flex flex-col gap-3 mt-4">
-                <Button variant="outline" className="w-full" asChild onClick={() => setIsOpen(false)}>
-                  <Link href="/payment">Pay Fees</Link>
+                <Button variant="outline" className="w-full justify-start gap-3 h-12" asChild onClick={() => setIsOpen(false)}>
+                  <Link href="/payment">
+                    <GraduationCap className="w-5 h-5 text-primary" />
+                    <span>Pay Fees</span>
+                  </Link>
                 </Button>
                 {isAuthenticated ? (
-                  <Button
-                    variant="outline"
-                    className="w-full gap-2"
-                    onClick={() => { handleLogout(); setIsOpen(false); }}
-                    data-testid="button-mobile-logout"
-                  >
-                    <LogOut className="w-4 h-4" />
-                    Log out ({user?.firstName})
-                  </Button>
+                  <div className="flex flex-col gap-3">
+                    <Button 
+                      variant="default" 
+                      className="w-full justify-start gap-3 h-12 shadow-lg shadow-primary/20" 
+                      asChild 
+                      onClick={() => setIsOpen(false)}
+                      data-testid="link-mobile-dashboard"
+                    >
+                      <Link href="/dashboard">
+                        <User className="w-5 h-5" />
+                        <span>Dashboard</span>
+                      </Link>
+                    </Button>
+                    <Button
+                      variant="outline"
+                      className="w-full justify-start gap-3 h-12 text-muted-foreground"
+                      onClick={() => { handleLogout(); setIsOpen(false); }}
+                      data-testid="button-mobile-logout"
+                    >
+                      <LogOut className="w-5 h-5" />
+                      <span>Log out</span>
+                    </Button>
+                  </div>
                 ) : (
-                  <Button className="w-full" asChild onClick={() => setIsOpen(false)}>
+                  <Button className="w-full h-12 text-lg shadow-lg shadow-primary/20" asChild onClick={() => setIsOpen(false)}>
                     <Link href="/auth">Login</Link>
                   </Button>
                 )}

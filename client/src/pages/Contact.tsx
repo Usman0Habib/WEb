@@ -1,6 +1,7 @@
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { insertInquirySchema, type InsertInquiry } from "@shared/schema";
+import { insertInquirySchema } from "@shared/schema";
+import type { InsertInquiry } from "@shared/schema";
 import { useCreateInquiry } from "@/hooks/use-coaching-data";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -20,7 +21,7 @@ export default function Contact() {
   const { mutate, isPending } = useCreateInquiry();
 
   const form = useForm<InsertInquiry>({
-    resolver: zodResolver(insertInquirySchema),
+    resolver: zodResolver(insertInquirySchema.extend({ email: insertInquirySchema.shape.email.optional().default("") })),
     defaultValues: {
       name: "",
       email: "",
@@ -31,16 +32,19 @@ export default function Contact() {
 
   function onSubmit(data: InsertInquiry) {
     const mailtoUrl = `mailto:careergoalacademy00@gmail.com?subject=Inquiry from ${encodeURIComponent(data.name)}&body=${encodeURIComponent(
-      `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email}\n\nMessage:\n${data.message}`
+      `Name: ${data.name}\nPhone: ${data.phone}\n\nMessage:\n${data.message}`
     )}`;
-    
-    mutate(data, {
+
+    const link = document.createElement("a");
+    link.href = mailtoUrl;
+    link.click();
+
+    mutate({ ...data, email: data.email || "" }, {
       onSuccess: () => {
         toast({
-          title: "Form Submitted!",
-          description: "Opening your email client to send the message...",
+          title: "Message sent!",
+          description: "Your inquiry has been submitted successfully.",
         });
-        window.location.href = mailtoUrl;
         form.reset();
       },
       onError: (error) => {
@@ -165,20 +169,6 @@ export default function Contact() {
                         )}
                       />
                     </div>
-
-                    <FormField
-                      control={form.control}
-                      name="email"
-                      render={({ field }) => (
-                        <FormItem>
-                          <FormLabel>Email Address</FormLabel>
-                          <FormControl>
-                            <Input placeholder="john@example.com" className="h-12 bg-slate-50" {...field} />
-                          </FormControl>
-                          <FormMessage />
-                        </FormItem>
-                      )}
-                    />
 
                     <FormField
                       control={form.control}

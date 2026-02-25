@@ -7,7 +7,8 @@ import { useState } from "react";
 import { useToast } from "@/hooks/use-toast";
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
-import { Link } from "wouter";
+import result12th_economics_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.56_AM_(1)_1771931727435.jpeg";
+import upiQrImage from "@assets/image_1772002788429.png";
 
 export default function Fees() {
   const { data: courses, isLoading } = useCourses();
@@ -178,8 +179,8 @@ function UpiPaymentSection() {
         <div className="flex flex-col items-center gap-4">
           <div className="bg-white p-5 rounded-3xl shadow-xl border border-slate-100">
             <img
-              src="/images/upi-qr.jpeg"
-              alt="PhonePe UPI QR Code"
+              src={upiQrImage}
+              alt="UPI QR Code"
               className="w-56 h-56 object-contain rounded-xl"
               data-testid="img-upi-qr"
             />

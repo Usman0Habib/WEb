@@ -17,7 +17,7 @@ import result12th_accounts_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.
 import result12th_economics_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.56_AM_(1)_1771931727435.jpeg";
 
 const PosterSection = ({ images }: { images: string[] }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 items-start">
     {images.map((img, idx) => (
       <motion.div
         key={idx}

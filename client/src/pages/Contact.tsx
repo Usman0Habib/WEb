@@ -32,21 +32,19 @@ export default function Contact() {
 
   function openEmail(name: string, phone: string, message: string) {
     const subject = `Inquiry from ${name}`;
-    const body = `Name: ${name}\nPhone: ${phone}\n\nMessage:\n${message}`;
+    const body = `Name: ${name}%0D%0APhone: ${phone}%0D%0AMessage: ${message}`;
     const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
     if (isMobile) {
-      const link = document.createElement("a");
-      link.href = `mailto:careergoalacademy00@gmail.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      link.click();
+      window.location.href = `mailto:careergoalacademy00@gmail.com?subject=${subject}&body=${body}`;
     } else {
-      window.open(`https://mail.google.com/mail/?view=cm&to=careergoalacademy00@gmail.com&su=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`, "_blank");
+      window.open(`https://mail.google.com/mail/?view=cm&to=careergoalacademy00@gmail.com&su=${subject}&body=${body}`, "_blank");
     }
   }
 
   function onSubmit(data: InsertInquiry) {
     openEmail(data.name, data.phone, data.message);
 
-    mutate({ ...data, email: data.email || "" }, {
+    mutate({ ...data, email: "" }, {
       onSuccess: () => {
         toast({
           title: "Message sent!",

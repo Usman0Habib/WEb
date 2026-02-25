@@ -1,8 +1,6 @@
 import { useCourses } from "@/hooks/use-coaching-data";
 import { CourseCard } from "@/components/CourseCard";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { motion } from "framer-motion";
 
 export default function Courses() {
   const { data: courses, isLoading } = useCourses();

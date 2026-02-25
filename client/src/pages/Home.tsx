@@ -73,8 +73,8 @@ export default function Home() {
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-xl text-slate-600 max-w-2xl"
             >
-              India's premier coaching institute for Foundation courses. 
-              Join 12,000+ successful students in their journey to excellence.
+              India's premier academic coaching institute. 
+              Join 12,000+ successful students in their journey to school excellence.
             </motion.p>
             
             <motion.div 
@@ -98,7 +98,7 @@ export default function Home() {
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
               { icon: Users, label: "16,870+ Students", sub: "Trusted by parents" },
-              { icon: Trophy, label: "1500+ Selections", sub: "In Schooll Toppers" },
+              { icon: Trophy, label: "1500+ Selections", sub: "In School Toppers" },
               { icon: Award, label: "15+ Years", sub: "Of Excellence" },
               { icon: MapPin, label: "5 Centres", sub: "Across Faridabad,Haryana" },
             ].map((stat, i) => (
@@ -226,7 +226,7 @@ export default function Home() {
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
             <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Success Stories</h2>
-            <p className="text-primary-foreground/80 text-lg">Hear from our students who made their dreams a reality</p>
+            <p className="text-primary-foreground/80 text-lg">Hear from our students who achieved academic excellence</p>
           </div>
 
           <div className="max-w-4xl mx-auto">

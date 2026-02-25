@@ -2,6 +2,23 @@ import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Book, Clock, Wifi, Coffee, ShieldCheck, MapPin, Heart, Sparkles, Users, Baby } from "lucide-react";
 
+// Library images
+import libBuilding from "@assets/9317eea2-39b9-4835-83ed-612ad7894eea_1771995038648.png";
+import libInfo from "@assets/2024-12-20_(1)_1771995038637.webp";
+import libInterior1 from "@assets/2024-12-29_(6)_1771995038643.webp";
+import libInterior2 from "@assets/2024-12-29_(7)_1771995038644.webp";
+import libInterior3 from "@assets/2024-12-29_(8)_1771995038644.webp";
+import libInterior4 from "@assets/2024-12-29_1771995038646.jpg";
+import libInterior5 from "@assets/2024-12-29_1771995038647.webp";
+import libFrames from "@assets/2024-12-29_(1)_1771995038639.webp";
+import libPlantWall from "@assets/2024-12-29_(2)_1771995038639.webp";
+import libPlant1 from "@assets/2024-12-29_(3)_1771995038640.webp";
+import libPlant2 from "@assets/2024-12-29_(9)_1771995038645.webp";
+import libRules from "@assets/2024-12-29_(4)_1771995038641.webp";
+import libCCTV from "@assets/2024-12-29_(5)_1771995038642.webp";
+import libFees from "@assets/2024-12-20_1771995038638.webp";
+
+// Playschool images
 import play1 from "@assets/WhatsApp_Image_2026-02-25_at_9.30.30_AM_1771993817210.jpeg";
 import play2 from "@assets/WhatsApp_Image_2026-02-25_at_9.30.31_AM_(1)_1771993817211.jpeg";
 import play3 from "@assets/WhatsApp_Image_2026-02-25_at_9.30.31_AM_(2)_1771993817211.jpeg";
@@ -19,13 +36,22 @@ import playAdmission from "@assets/WhatsApp_Image_2026-02-25_at_9.40.09_AM_17719
 import playActivity3 from "@assets/WhatsApp_Image_2026-02-25_at_9.40.10_AM_(1)_1771993817219.jpeg";
 import playActivity4 from "@assets/WhatsApp_Image_2026-02-25_at_9.40.10_AM_1771993817219.jpeg";
 
-const libraryImages = [
-  "/images/library/2024-12-20_1771970787394.png",
-  "/images/library/2024-12-29_(1)_1771970787395.png",
-  "/images/library/2024-12-29_(2)_1771970787396.png",
-  "/images/library/2024-12-29_(3)_1771970787396.png",
-  "/images/library/2024-12-29_(4)_1771970787397.png",
-  "/images/library/2024-12-29_(5)_1771970787397.png",
+// Gallery: interior shots first, decor, rules/cctv, info poster, then fees last
+const libraryGallery = [
+  { src: libInterior1, label: "Study Hall" },
+  { src: libInterior2, label: "Cabin Area" },
+  { src: libInterior3, label: "Reading Zone" },
+  { src: libInterior5, label: "Main Hall" },
+  { src: libInterior4, label: "Overview" },
+  { src: libBuilding, label: "Our Building" },
+  { src: libFrames, label: "Inspiration Wall" },
+  { src: libPlantWall, label: "Decor" },
+  { src: libPlant1, label: "Green Space" },
+  { src: libPlant2, label: "Green Space" },
+  { src: libRules, label: "Library Rules" },
+  { src: libCCTV, label: "CCTV Security" },
+  { src: libInfo, label: "Facilities" },
+  { src: libFees, label: "Fee Structure" },
 ];
 
 export default function Services() {
@@ -116,7 +142,7 @@ export default function Services() {
               viewport={{ once: true }}
               className="grid grid-cols-2 gap-4"
             >
-              {libraryImages.slice(0, 4).map((img, index) => (
+              {[libInterior1, libInterior2, libInterior3, libInterior5].map((img, index) => (
                 <div key={index} className={cn(
                   "relative aspect-[4/3] rounded-2xl overflow-hidden shadow-lg border-4 border-white",
                   index === 1 || index === 2 ? "mt-8" : ""
@@ -128,21 +154,43 @@ export default function Services() {
           </div>
 
           {/* Full Gallery */}
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
-            {libraryImages.map((img, index) => (
+          <div className="mb-6">
+            <h3 className="text-xl font-display font-bold text-slate-800 mb-2 text-center">Inside My Library</h3>
+            <p className="text-slate-500 text-center mb-8">A premium, peaceful space built for focus and success</p>
+          </div>
+          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 mb-6">
+            {libraryGallery.slice(0, -1).map((item, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.1 }}
-                className="group relative aspect-square rounded-xl overflow-hidden cursor-pointer shadow-md hover:shadow-xl transition-all"
+                transition={{ delay: index * 0.05 }}
+                className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all border-2 border-white"
               >
-                <img src={img} alt={`Library gallery ${index + 1}`} className="w-full h-full object-cover transition-transform group-hover:scale-110" />
-                <div className="absolute inset-0 bg-primary/20 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <img src={item.src} alt={item.label} className="w-full aspect-[4/3] object-cover transition-transform duration-500 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                <span className="absolute bottom-2 left-3 text-white text-xs font-bold opacity-0 group-hover:opacity-100 transition-opacity">{item.label}</span>
               </motion.div>
             ))}
           </div>
+
+          {/* Fees Poster — last, full width */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="max-w-xl mx-auto"
+          >
+            <div className="text-center mb-4">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 text-primary text-sm font-bold">
+                <Book className="w-4 h-4" /> Affordable Fee Structure
+              </span>
+            </div>
+            <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white">
+              <img src={libFees} alt="Library Fee Structure" className="w-full h-auto object-contain" />
+            </div>
+          </motion.div>
         </section>
 
         {/* Matri Chhaya Playschool Section */}

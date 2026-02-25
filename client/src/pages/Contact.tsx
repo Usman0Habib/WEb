@@ -119,7 +119,7 @@ export default function Contact() {
                   </a>
                 )
               },
-              { icon: Clock, title: "Office Hours", desc: "Mon - Sat: 9:00 AM - 7:00 PM" },
+              { icon: Clock, title: "Office Hours", desc: "Mon - Sat: 8:00 AM - 7:00 PM" },
             ].map((item, i) => (
               <Card key={i} className="border-none shadow-md">
                 <CardContent className="p-6 flex items-start gap-4">

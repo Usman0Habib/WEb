@@ -36,7 +36,7 @@ export async function setupAuth(app: Express) {
     session({
       store: new PgStore({
         pool: pool,
-        createTableIfMissing: true,
+        createTableIfMissing: false,
       }),
       secret: process.env.SESSION_SECRET,
       resave: false,

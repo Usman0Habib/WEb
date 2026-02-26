@@ -1,4 +1,4 @@
-import type { Express } from "express";
+import express, { type Express } from "express";
 import type { Server } from "http";
 import { storage } from "./storage";
 import { api } from "@shared/routes";
@@ -10,9 +10,31 @@ import multer from "multer";
 import path from "path";
 import fs from "fs";
 
+const UPLOAD_DIR = path.join(process.cwd(), "uploads");
+if (!fs.existsSync(UPLOAD_DIR)) {
+  fs.mkdirSync(UPLOAD_DIR, { recursive: true });
+}
+
+const CONTENT_TYPES: Record<string, string> = {
+  ".pdf":  "application/pdf",
+  ".jpg":  "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".png":  "image/png",
+  ".gif":  "image/gif",
+  ".webp": "image/webp",
+  ".doc":  "application/msword",
+  ".docx": "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ".xls":  "application/vnd.ms-excel",
+  ".xlsx": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+  ".ppt":  "application/vnd.ms-powerpoint",
+  ".pptx": "application/vnd.openxmlformats-officedocument.presentationml.presentation",
+  ".txt":  "text/plain",
+  ".zip":  "application/zip",
+};
+
 const upload = multer({
   storage: multer.diskStorage({
-    destination: "client/public/uploads",
+    destination: UPLOAD_DIR,
     filename: (req, file, cb) => {
       const uniqueSuffix = Date.now() + "-" + Math.round(Math.random() * 1e9);
       cb(null, file.fieldname + "-" + uniqueSuffix + path.extname(file.originalname));
@@ -25,6 +47,16 @@ export async function registerRoutes(
   app: Express
 ): Promise<Server> {
   await setupAuth(app);
+
+  app.use("/uploads", (req, res, next) => {
+    const filename = path.basename(req.path);
+    const ext = path.extname(filename).toLowerCase();
+    const contentType = CONTENT_TYPES[ext] || "application/octet-stream";
+    res.setHeader("Content-Type", contentType);
+    res.setHeader("Content-Disposition", `attachment; filename="${filename}"`);
+    next();
+  }, express.static(UPLOAD_DIR),
+     express.static(path.join(process.cwd(), "client/public/uploads")));
 
   app.post("/api/auth/register", async (req, res) => {
     try {

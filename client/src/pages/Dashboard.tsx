@@ -584,7 +584,10 @@ function StudentContentSection() {
   };
 
   const getFilename = (item: any) => {
-    const ext = item.fileType !== "link" ? `.${item.fileType}` : "";
+    const urlExt = item.fileUrl
+      ? "." + item.fileUrl.split(".").pop()?.split("?")[0]?.toLowerCase()
+      : "";
+    const ext = urlExt && urlExt !== "." ? urlExt : item.fileType !== "link" ? `.${item.fileType}` : "";
     return `${item.title.replace(/[^a-z0-9]/gi, "_")}${ext}`;
   };
 

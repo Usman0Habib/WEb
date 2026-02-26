@@ -32,6 +32,8 @@ export async function setupAuth(app: Express) {
     console.warn("WARNING: SESSION_SECRET not set, using random secret. Sessions will not persist across restarts.");
   }
 
+  app.set("trust proxy", 1);
+
   app.use(
     session({
       store: new PgStore({
@@ -42,10 +44,10 @@ export async function setupAuth(app: Express) {
       resave: false,
       saveUninitialized: false,
       cookie: {
-        maxAge: 30 * 24 * 60 * 60 * 1000,
+        maxAge: 24 * 60 * 60 * 1000,
         httpOnly: true,
         secure: process.env.NODE_ENV === "production",
-        sameSite: "lax",
+        sameSite: process.env.NODE_ENV === "production" ? "none" : "lax",
       },
     })
   );

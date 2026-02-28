@@ -380,7 +380,7 @@ export default function Services() {
                     <BookOpen className="w-5 h-5" />
                   </div>
                   <div>
-                    <h4 className="font-bold text-slate-900 text-sm">Maths, Science & More</h4>
+                    <h4 className="font-bold text-slate-900 text-sm">All Subjects Covered</h4>
                     <p className="text-xs text-slate-500">Class 9th to 12th Covered!</p>
                   </div>
                 </div>

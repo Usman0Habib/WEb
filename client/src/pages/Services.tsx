@@ -8,6 +8,10 @@ import ytPlaylists from "@assets/Screenshot_2026-02-28_102553_1772254577154.png"
 import ytTeacher from "@assets/WhatsApp_Image_2026-02-28_at_10.48.21_AM_1772256280128.jpeg";
 import ytTeacher2 from "@assets/WhatsApp_Image_2026-02-28_at_11.07.58_AM_1772257197597.jpeg";
 import ytTeacher3 from "@assets/WhatsApp_Image_2026-02-28_at_11.07.36_AM_1772257208820.jpeg";
+import quizPayments from "@assets/Screenshot_2026-02-28_111805_1772257920835.png";
+import quizWinners1 from "@assets/Screenshot_2026-02-28_111942_1772257920836.png";
+import quizWinners2 from "@assets/Screenshot_2026-02-28_112009_1772257920837.png";
+import quizRewardPoster from "@assets/WhatsApp_Image_2026-02-28_at_11.16.44_AM_1772257920842.jpeg";
 
 // Library images
 import libBuilding from "@assets/WhatsApp_Image_2026-02-25_at_10.43.08_AM_1771997291123.jpeg";

@@ -6,6 +6,8 @@ import { SiYoutube } from "react-icons/si";
 import ytBanner from "@assets/Screenshot_2026-02-28_102441_1772254577153.png";
 import ytPlaylists from "@assets/Screenshot_2026-02-28_102553_1772254577154.png";
 import ytTeacher from "@assets/WhatsApp_Image_2026-02-28_at_10.48.21_AM_1772256280128.jpeg";
+import ytTeacher2 from "@assets/WhatsApp_Image_2026-02-28_at_11.07.58_AM_1772257197597.jpeg";
+import ytTeacher3 from "@assets/WhatsApp_Image_2026-02-28_at_11.07.36_AM_1772257208820.jpeg";
 
 // Library images
 import libBuilding from "@assets/WhatsApp_Image_2026-02-25_at_10.43.08_AM_1771997291123.jpeg";
@@ -415,14 +417,25 @@ export default function Services() {
               viewport={{ once: true }}
               className="relative"
             >
-              {/* Teacher image — hero */}
-              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white mb-4">
-                <img src={ytTeacher} alt="CGA teacher in class" className="w-full aspect-[4/3] object-cover" />
-                <div className="absolute inset-0 pointer-events-none rounded-3xl ring-1 ring-inset ring-black/5" />
-              </div>
-              {/* Channel banner strip */}
-              <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white">
-                <img src={ytBanner} alt="CGA YouTube channel banner" className="w-full object-cover" />
+              {/* 3-image staggered teacher grid */}
+              <div className="grid grid-cols-2 gap-3 mb-4">
+                <div className="space-y-3">
+                  <div className="rounded-2xl overflow-hidden shadow-xl border-4 border-white rotate-[-2deg]">
+                    <img src={ytTeacher} alt="CGA faculty teaching" className="w-full aspect-[4/3] object-cover" />
+                  </div>
+                  <div className="rounded-2xl overflow-hidden shadow-xl border-4 border-white rotate-[1deg]">
+                    <img src={ytTeacher3} alt="CGA faculty – economics" className="w-full aspect-[4/3] object-cover" />
+                  </div>
+                </div>
+                <div className="pt-6 space-y-3">
+                  <div className="rounded-2xl overflow-hidden shadow-xl border-4 border-white rotate-[2deg]">
+                    <img src={ytTeacher2} alt="CGA faculty – geography" className="w-full aspect-[4/3] object-cover" />
+                  </div>
+                  {/* Channel banner in second column */}
+                  <div className="rounded-xl overflow-hidden shadow-md border-2 border-white rotate-[-1deg]">
+                    <img src={ytBanner} alt="CGA YouTube channel banner" className="w-full object-cover" />
+                  </div>
+                </div>
               </div>
 
               {/* Floating badge */}

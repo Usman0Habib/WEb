@@ -28,7 +28,7 @@ import result12th_new3 from "@assets/Class_12th_(3)_1772261124599.jpeg";
 import result12th_new4 from "@assets/Class_12th_(4)_1772261124600.jpeg";
 
 const PosterSection = ({ images }: { images: string[] }) => (
-  <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-12 items-start">
+  <div className="columns-1 md:columns-2 gap-4">
     {images.map((img, idx) => (
       <motion.div
         key={idx}
@@ -36,8 +36,9 @@ const PosterSection = ({ images }: { images: string[] }) => (
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ delay: idx * 0.1 }}
+        className="break-inside-avoid mb-4"
       >
-        <Card className="overflow-hidden border-8 border-white shadow-2xl hover:shadow-primary/10 transition-shadow duration-500 rounded-3xl">
+        <Card className="overflow-hidden border-4 border-white shadow-xl hover:shadow-primary/10 transition-shadow duration-500 rounded-2xl">
           <img 
             src={img} 
             alt={`Result Poster ${idx + 1}`}

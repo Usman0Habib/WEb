@@ -381,7 +381,7 @@ export default function Services() {
                   </div>
                   <div>
                     <h4 className="font-bold text-slate-900 text-sm">Maths, Science & More</h4>
-                    <p className="text-xs text-slate-500">Class 9th & 10th focus</p>
+                    <p className="text-xs text-slate-500">Class 9th to 12th Covered!</p>
                   </div>
                 </div>
                 <div className="flex items-start gap-3 p-4 bg-white rounded-2xl shadow-sm border border-yellow-100 group hover:border-yellow-200 hover:shadow-md transition-all">

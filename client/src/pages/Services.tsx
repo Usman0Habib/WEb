@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Book, Clock, Wifi, Coffee, ShieldCheck, MapPin, Heart, Sparkles, Users, Baby, PlayCircle, Video, BookOpen, Zap } from "lucide-react";
+import { Book, Clock, Wifi, Coffee, ShieldCheck, MapPin, Heart, Sparkles, Users, Baby, PlayCircle, Video, BookOpen, Zap, Trophy, IndianRupee } from "lucide-react";
 import { SiYoutube } from "react-icons/si";
 
 import ytBanner from "@assets/Screenshot_2026-02-28_102441_1772254577153.png";
@@ -481,6 +481,83 @@ export default function Services() {
                   View All Playlists on YouTube
                 </a>
               </div>
+            </div>
+          </motion.div>
+
+          {/* Cash Prize Quizzes subsection */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="mt-14"
+          >
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row items-center gap-4 mb-8">
+              <div className="flex items-center gap-3 bg-yellow-50 border border-yellow-200 rounded-2xl px-5 py-3">
+                <Trophy className="w-6 h-6 text-yellow-500" />
+                <span className="font-bold text-yellow-700 text-sm uppercase tracking-wide">Win Real Cash</span>
+              </div>
+              <div>
+                <h3 className="text-2xl font-display font-bold text-slate-800">Quiz Competitions with Cash Prizes</h3>
+                <p className="text-slate-500 text-sm mt-0.5">
+                  Occasional MCQ quizzes are hosted on our YouTube channel — answer correctly and win real prize money sent directly to your UPI!
+                </p>
+              </div>
+            </div>
+
+            {/* Highlights row */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-4 mb-8">
+              <div className="bg-gradient-to-br from-yellow-50 to-orange-50 border border-yellow-200 rounded-2xl p-4 flex items-start gap-3">
+                <IndianRupee className="w-5 h-5 text-orange-500 mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-bold text-slate-800 text-sm">Direct UPI Transfers</p>
+                  <p className="text-slate-500 text-xs mt-0.5">Prize money sent instantly to winners' UPI IDs — ₹100 to ₹150 per winner</p>
+                </div>
+              </div>
+              <div className="bg-gradient-to-br from-red-50 to-pink-50 border border-red-200 rounded-2xl p-4 flex items-start gap-3">
+                <SiYoutube className="w-5 h-5 text-red-500 mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-bold text-slate-800 text-sm">Live on YouTube</p>
+                  <p className="text-slate-500 text-xs mt-0.5">Quizzes announced on the channel — open to all subscribers, free to participate</p>
+                </div>
+              </div>
+              <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-2xl p-4 flex items-start gap-3">
+                <Trophy className="w-5 h-5 text-green-500 mt-0.5 shrink-0" />
+                <div>
+                  <p className="font-bold text-slate-800 text-sm">Multiple Winners</p>
+                  <p className="text-slate-500 text-xs mt-0.5">Every quiz crowns multiple winners — more chances to win across all branches</p>
+                </div>
+              </div>
+            </div>
+
+            {/* 4-image grid */}
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                <img src={quizPayments} alt="Cash prize UPI payments to quiz winners" className="w-full h-full object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                <img src={quizWinners1} alt="Quiz winners Class 10th" className="w-full h-full object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                <img src={quizWinners2} alt="Quiz winners across CGA branches" className="w-full h-full object-cover" />
+              </div>
+              <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                <img src={quizRewardPoster} alt="Score 90+ and get rewards poster" className="w-full h-full object-cover" />
+              </div>
+            </div>
+
+            {/* CTA */}
+            <div className="text-center mt-6">
+              <a
+                href="https://www.youtube.com/@cga10th"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-yellow-500 hover:bg-yellow-600 text-white font-bold px-6 py-3 rounded-xl shadow-lg transition-all hover:scale-105 text-sm"
+              >
+                <Trophy className="w-4 h-4" />
+                Subscribe to Participate in Quizzes
+              </a>
+              <p className="text-xs text-slate-400 mt-2">Stay subscribed — quiz announcements are made on the community tab</p>
             </div>
           </motion.div>
         </section>

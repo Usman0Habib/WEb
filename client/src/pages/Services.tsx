@@ -1,6 +1,11 @@
 import { motion } from "framer-motion";
 import { Card, CardContent } from "@/components/ui/card";
-import { Book, Clock, Wifi, Coffee, ShieldCheck, MapPin, Heart, Sparkles, Users, Baby } from "lucide-react";
+import { Book, Clock, Wifi, Coffee, ShieldCheck, MapPin, Heart, Sparkles, Users, Baby, PlayCircle, Video, BookOpen, Zap } from "lucide-react";
+import { SiYoutube } from "react-icons/si";
+
+import ytBanner from "@assets/Screenshot_2026-02-28_102441_1772254577153.png";
+import ytPlaylists from "@assets/Screenshot_2026-02-28_102553_1772254577154.png";
+import ytTeacher from "@assets/WhatsApp_Image_2026-02-28_at_10.48.21_AM_1772256280128.jpeg";
 
 // Library images
 import libBuilding from "@assets/WhatsApp_Image_2026-02-25_at_10.43.08_AM_1771997291123.jpeg";
@@ -326,6 +331,141 @@ export default function Services() {
               ))}
             </div>
           </div>
+        </section>
+
+        {/* YouTube Channel Section */}
+        <section className="max-w-6xl mx-auto mb-24">
+          {/* Section header */}
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+
+            {/* Text Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-red-100 text-red-600 text-sm font-bold mb-6">
+                <SiYoutube className="w-4 h-4" />
+                Free Online Classes
+              </div>
+              <h2 className="text-3xl md:text-4xl font-display font-extrabold text-slate-900 mb-4">
+                Learn Anywhere,{" "}
+                <span className="text-red-600">Anytime</span> — Free!
+              </h2>
+              <p className="text-slate-600 text-lg mb-8 leading-relaxed">
+                Our YouTube channel <strong>CGA 9th to 12th</strong> brings classroom-quality teaching directly to your screen — completely free. Expert lessons on Maths, Science, English, Social Science and more, taught by our experienced faculty. With <strong>696+ videos</strong> and over <strong>1,700 subscribers</strong>, thousands of students are already learning with us online.
+              </p>
+
+              <div className="grid grid-cols-2 gap-4 mb-8">
+                <div className="flex items-start gap-3 p-4 bg-white rounded-2xl shadow-sm border border-red-100 group hover:border-red-200 hover:shadow-md transition-all">
+                  <div className="p-2 bg-red-50 rounded-lg text-red-500 group-hover:scale-110 transition-transform">
+                    <Video className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm">696+ Videos</h4>
+                    <p className="text-xs text-slate-500">Full syllabus covered</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-white rounded-2xl shadow-sm border border-rose-100 group hover:border-rose-200 hover:shadow-md transition-all">
+                  <div className="p-2 bg-rose-50 rounded-lg text-rose-500 group-hover:scale-110 transition-transform">
+                    <Users className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm">1.72K Subscribers</h4>
+                    <p className="text-xs text-slate-500">& growing every day</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-white rounded-2xl shadow-sm border border-orange-100 group hover:border-orange-200 hover:shadow-md transition-all">
+                  <div className="p-2 bg-orange-50 rounded-lg text-orange-500 group-hover:scale-110 transition-transform">
+                    <BookOpen className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm">Maths, Science & More</h4>
+                    <p className="text-xs text-slate-500">Class 9th & 10th focus</p>
+                  </div>
+                </div>
+                <div className="flex items-start gap-3 p-4 bg-white rounded-2xl shadow-sm border border-yellow-100 group hover:border-yellow-200 hover:shadow-md transition-all">
+                  <div className="p-2 bg-yellow-50 rounded-lg text-yellow-600 group-hover:scale-110 transition-transform">
+                    <Zap className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <h4 className="font-bold text-slate-900 text-sm">Live + Recorded</h4>
+                    <p className="text-xs text-slate-500">Learn at your own pace</p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Subscribe CTA */}
+              <a
+                href="https://www.youtube.com/@cga10th"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold px-8 py-4 rounded-2xl shadow-lg shadow-red-200 hover:shadow-red-300 transition-all text-lg"
+              >
+                <SiYoutube className="w-7 h-7 group-hover:scale-110 transition-transform" />
+                Subscribe & Watch Free Classes
+              </a>
+              <p className="mt-3 text-sm text-slate-400">Opens YouTube · <span className="font-semibold text-slate-500">@cga10th</span></p>
+            </motion.div>
+
+            {/* Images Side */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.95 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              className="relative"
+            >
+              {/* Teacher image — hero */}
+              <div className="rounded-3xl overflow-hidden shadow-2xl border-4 border-white mb-4">
+                <img src={ytTeacher} alt="CGA teacher in class" className="w-full aspect-[4/3] object-cover" />
+                <div className="absolute inset-0 pointer-events-none rounded-3xl ring-1 ring-inset ring-black/5" />
+              </div>
+              {/* Channel banner strip */}
+              <div className="rounded-2xl overflow-hidden shadow-lg border-2 border-white">
+                <img src={ytBanner} alt="CGA YouTube channel banner" className="w-full object-cover" />
+              </div>
+
+              {/* Floating badge */}
+              <motion.div
+                animate={{ y: [0, -8, 0] }}
+                transition={{ repeat: Infinity, duration: 3, ease: "easeInOut" }}
+                className="absolute -top-4 -right-4 bg-red-600 text-white rounded-2xl px-4 py-3 shadow-xl flex items-center gap-2 font-bold text-sm"
+              >
+                <SiYoutube className="w-5 h-5" />
+                100% Free
+              </motion.div>
+
+              {/* Decorative blobs */}
+              <div className="absolute -bottom-6 -left-6 w-32 h-32 bg-red-200/40 rounded-full blur-2xl -z-10" />
+              <div className="absolute -top-6 -right-6 w-24 h-24 bg-orange-200/40 rounded-full blur-2xl -z-10" />
+            </motion.div>
+          </div>
+
+          {/* Playlists preview */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+          >
+            <div className="text-center mb-6">
+              <h3 className="text-2xl font-display font-bold text-slate-800">Explore Our Playlists</h3>
+              <p className="text-slate-500">Chapter-wise, topic-wise, and exam-ready playlists for every student</p>
+            </div>
+            <div className="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white group cursor-pointer">
+              <img src={ytPlaylists} alt="YouTube playlists preview" className="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent flex items-end justify-center pb-8">
+                <a
+                  href="https://www.youtube.com/@cga10th"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-3 bg-red-600 hover:bg-red-700 text-white font-bold px-7 py-3.5 rounded-2xl shadow-2xl transition-all hover:scale-105 text-base"
+                >
+                  <PlayCircle className="w-6 h-6" />
+                  View All Playlists on YouTube
+                </a>
+              </div>
+            </div>
+          </motion.div>
         </section>
       </div>
     </div>

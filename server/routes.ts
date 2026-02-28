@@ -439,7 +439,7 @@ async function seedDatabase() {
   if (existingLocations.length === 0) {
     await storage.createLocation({
       name: "Om Enclave Centre",
-      address: "Plot No. 1, Om Enclave, Part-1, Near Vinay Nagar, New Delhi",
+      address: "Street no. 4, Part-2, near Shani Mandir, Om enclave, Faridabad-Haryana - 121003",
       latitude: "28.5135",
       longitude: "77.3001",
     });

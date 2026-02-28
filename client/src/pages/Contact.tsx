@@ -84,7 +84,7 @@ export default function Contact() {
               { 
                 icon: MapPin, 
                 title: "Main Centre", 
-                desc: "Om Enclave Centre, Plot No. 1, Om Enclave, Part-1, Near Vinay Nagar, New Delhi" 
+                desc: "Street no. 4, Part-2, near Shani Mandir, Om enclave, Faridabad-Haryana - 121003" 
               },
               { 
                 icon: Phone, 

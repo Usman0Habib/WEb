@@ -176,7 +176,8 @@ export function Footer() {
                 <span className="text-slate-400">
                   Main Centre: Om Enclave Centre
                   <br />
-                  30 Feet Road, Om Enclave Part 1, Faridabad, Harayana 121013
+                  Street no. 4 , Part-2 , near Shani Mandir , Om enclave ,
+                  Faridabad-Haryana - 121003
                 </span>
               </li>
               <li className="flex items-start gap-3">

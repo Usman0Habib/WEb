@@ -22,6 +22,15 @@ import result12th_accounts_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.
 import result12th_physics_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.57_AM_(4)_1771971325002.jpeg";
 import result10th_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_1771931727439.jpeg";
 
+// Junior Faculty images
+import divyaMam1 from "@assets/DivyaMam_1772374468156.png";
+import divyaMam2 from "@assets/DivyaMam_(2)_1772374468155.png";
+import jyotiMam from "@assets/JyotiMam_1772374468157.png";
+import monuSir from "@assets/Monusir_1772374468158.png";
+import rajeshSir from "@assets/RajeshJha_1772374468158.png";
+import adityaSir from "@assets/AdityaSir_1772374468159.png";
+import deveshSir from "@assets/DeveshSir_1772374468160.png";
+
 export default function About() {
   const [, setLocation] = useLocation();
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -147,6 +156,55 @@ export default function About() {
       branch: "Nikhil Vihar",
       phone: "N/A",
       image: "/faculty/Shahabuddin.png",
+    },
+    {
+      name: "Divya Mam",
+      role: "Junior Teacher",
+      branch: "CGA",
+      phone: "N/A",
+      image: divyaMam1,
+    },
+    {
+      name: "Divya Mam",
+      role: "Junior Teacher",
+      branch: "CGA",
+      phone: "N/A",
+      image: divyaMam2,
+    },
+    {
+      name: "Jyoti Mam",
+      role: "Junior Teacher",
+      branch: "CGA",
+      phone: "N/A",
+      image: jyotiMam,
+    },
+    {
+      name: "Monu Sir",
+      role: "Junior Teacher",
+      branch: "CGA",
+      phone: "N/A",
+      image: monuSir,
+    },
+    {
+      name: "Rajesh Jha",
+      role: "Junior Teacher",
+      branch: "CGA",
+      phone: "N/A",
+      image: rajeshSir,
+    },
+    {
+      name: "Aditya Sir",
+      role: "Junior Teacher",
+      branch: "CGA",
+      phone: "N/A",
+      image: adityaSir,
+    },
+    {
+      name: "Devesh Sir",
+      role: "Junior Teacher",
+      branch: "CGA",
+      phone: "N/A",
+      image: deveshSir,
     },
   ];
 

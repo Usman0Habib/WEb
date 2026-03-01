@@ -30,6 +30,7 @@ import monuSir from "@assets/Monusir_1772374468158.png";
 import rajeshSir from "@assets/RajeshJha_1772374468158.png";
 import adityaSir from "@assets/AdityaSir_1772374468159.png";
 import deveshSir from "@assets/DeveshSir_1772374468160.png";
+import defaultAvatar from "@assets/image_1772375121058.png";
 
 export default function About() {
   const [, setLocation] = useLocation();
@@ -160,51 +161,72 @@ export default function About() {
     {
       name: "Divya Mam",
       role: "Junior Teacher",
-      branch: "CGA",
-      phone: "N/A",
       image: divyaMam1,
     },
     {
       name: "Divya Mam",
       role: "Junior Teacher",
-      branch: "CGA",
-      phone: "N/A",
       image: divyaMam2,
     },
     {
       name: "Jyoti Mam",
       role: "Junior Teacher",
-      branch: "CGA",
-      phone: "N/A",
       image: jyotiMam,
     },
     {
       name: "Monu Sir",
       role: "Junior Teacher",
-      branch: "CGA",
-      phone: "N/A",
       image: monuSir,
     },
     {
       name: "Rajesh Jha",
       role: "Junior Teacher",
-      branch: "CGA",
-      phone: "N/A",
       image: rajeshSir,
     },
     {
       name: "Aditya Sir",
       role: "Junior Teacher",
-      branch: "CGA",
-      phone: "N/A",
       image: adityaSir,
     },
     {
       name: "Devesh Sir",
       role: "Junior Teacher",
-      branch: "CGA",
-      phone: "N/A",
       image: deveshSir,
+    },
+    {
+      name: "Rohan Sir",
+      role: "Junior Teacher",
+      image: defaultAvatar,
+    },
+    {
+      name: "Mamta Mam",
+      role: "Junior Teacher",
+      image: defaultAvatar,
+    },
+    {
+      name: "Preeti Mam",
+      role: "Junior Teacher",
+      image: defaultAvatar,
+    },
+    {
+      name: "Anjani Mam",
+      role: "Junior Teacher",
+      image: defaultAvatar,
+    },
+    {
+      name: "Rashmi Mam",
+      role: "Junior Teacher",
+      image: defaultAvatar,
+    },
+    {
+      name: "Shrishti Mam",
+      role: "Junior Teacher",
+      image: defaultAvatar,
+    },
+    {
+      name: "Yogesh Sir",
+      role: "Junior Teacher",
+      image: defaultAvatar,
     },
   ];
 
@@ -432,20 +454,22 @@ export default function About() {
                   <h3 className="text-3xl font-display font-bold text-white mb-2">
                     {f.name}
                   </h3>
-                  <div className="text-slate-300 font-body opacity-0 group-hover:opacity-100 transition-opacity duration-500 space-y-1">
-                    <p className="flex items-center gap-2">
-                      <span className="text-primary font-bold uppercase text-[10px]">
-                        Branch:
-                      </span>{" "}
-                      {f.branch}
-                    </p>
-                    <p className="flex items-center gap-2">
-                      <span className="text-primary font-bold uppercase text-[10px]">
-                        Phone:
-                      </span>{" "}
-                      {f.phone}
-                    </p>
-                  </div>
+                  {f.role !== "Junior Teacher" && (
+                    <div className="text-slate-300 font-body opacity-0 group-hover:opacity-100 transition-opacity duration-500 space-y-1">
+                      <p className="flex items-center gap-2">
+                        <span className="text-primary font-bold uppercase text-[10px]">
+                          Branch:
+                        </span>{" "}
+                        {f.branch}
+                      </p>
+                      <p className="flex items-center gap-2">
+                        <span className="text-primary font-bold uppercase text-[10px]">
+                          Phone:
+                        </span>{" "}
+                        {f.phone}
+                      </p>
+                    </div>
+                  )}
                 </div>
               </motion.div>
             ))}

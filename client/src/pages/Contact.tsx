@@ -84,7 +84,7 @@ export default function Contact() {
               { 
                 icon: MapPin, 
                 title: "Main Centre", 
-                desc: "Street no. 4, Part-2, near Shani Mandir, Om enclave, Faridabad-Haryana - 121003" 
+                desc: "CGA Om enclave Branch (Main Office) plot no. D-861, Gali no. 2 , Part -2, Near shani mandir Agwanpur Road, Faridabad-Haryana" 
               },
               { 
                 icon: Phone, 

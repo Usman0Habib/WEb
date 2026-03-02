@@ -174,10 +174,10 @@ export function Footer() {
               <li className="flex items-start gap-3">
                 <MapPin className="w-5 h-5 text-primary shrink-0 mt-0.5" />
                 <span className="text-slate-400">
-                  Main Centre: Om Enclave Centre
+                  CGA Om enclave Branch (Main Office)
                   <br />
-                  Street no. 4 , Part-2 , near Shani Mandir , Om enclave ,
-                  Faridabad-Haryana - 121003
+                  plot no. D-861, Gali no. 2 , Part -2, Near shani mandir
+                  Agwanpur Road, Faridabad-Haryana
                 </span>
               </li>
               <li className="flex items-start gap-3">

@@ -1,19 +1,29 @@
-import { useCourses, useLocations, useReviews } from "@/hooks/use-coaching-data";
+import {
+  useCourses,
+  useLocations,
+  useReviews,
+} from "@/hooks/use-coaching-data";
 import { Button } from "@/components/ui/button";
 import { Link } from "wouter";
 import { CourseCard } from "@/components/CourseCard";
-import { 
-  ArrowRight, 
-  MapPin, 
-  Users, 
-  Award, 
-  Trophy, 
+import {
+  ArrowRight,
+  MapPin,
+  Users,
+  Award,
+  Trophy,
   Star,
   Quote,
-  ExternalLink
+  ExternalLink,
 } from "lucide-react";
 import { motion } from "framer-motion";
-import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "@/components/ui/carousel";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from "@/components/ui/carousel";
 import { Card, CardContent } from "@/components/ui/card";
 
 export default function Home() {
@@ -30,36 +40,48 @@ export default function Home() {
         <div className="absolute inset-0 hero-pattern" />
         <div className="container mx-auto px-4 relative">
           <div className="flex flex-col items-center text-center max-w-4xl mx-auto space-y-8">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5 }}
             >
               <h1 className="text-5xl md:text-7xl font-display font-bold tracking-tight text-slate-900 leading-[1.1]">
-                Shape Your Future with <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">Career Goal Academy</span>
+                Shape Your Future with{" "}
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-blue-600">
+                  Career Goal Academy
+                </span>
               </h1>
             </motion.div>
-            
-            <motion.p 
+
+            <motion.p
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.1 }}
               className="text-xl text-slate-600 max-w-2xl"
             >
-              India's premier academic coaching institute. 
-              Join 12,000+ successful students in their journey to school excellence.
+              India's premier academic coaching institute. Join 12,000+
+              successful students in their journey to school excellence.
             </motion.p>
-            
-            <motion.div 
+
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.5, delay: 0.2 }}
               className="flex flex-col sm:flex-row gap-4 w-full justify-center"
             >
-              <Button size="lg" className="text-lg h-14 px-8 shadow-xl shadow-primary/20 hover:scale-105 transition-transform" asChild>
+              <Button
+                size="lg"
+                className="text-lg h-14 px-8 shadow-xl shadow-primary/20 hover:scale-105 transition-transform"
+                asChild
+              >
                 <Link href="/courses">Explore Courses</Link>
               </Button>
-              <Button size="lg" variant="outline" className="text-lg h-14 px-8 hover:scale-105 transition-transform" asChild>
+              <Button
+                size="lg"
+                variant="outline"
+                className="text-lg h-14 px-8 hover:scale-105 transition-transform"
+                asChild
+              >
                 <Link href="/contact">Book Free Demo</Link>
               </Button>
             </motion.div>
@@ -70,12 +92,20 @@ export default function Home() {
         <div className="container mx-auto px-4 mt-20">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[
-              { icon: Users, label: "16,870+ Students", sub: "Trusted by parents" },
-              { icon: Trophy, label: "1500+ Selections", sub: "In School Toppers" },
+              {
+                icon: Users,
+                label: "16,870+ Students",
+                sub: "Trusted by parents",
+              },
+              { icon: Trophy, label: "1500+ Toppers", sub: "Created by Career Goal Academy" },
               { icon: Award, label: "15+ Years", sub: "Of Excellence" },
-              { icon: MapPin, label: "5 Centres", sub: "Across Faridabad,Haryana" },
+              {
+                icon: MapPin,
+                label: "5 Centres",
+                sub: "Across Faridabad,Haryana",
+              },
             ].map((stat, i) => (
-              <motion.div 
+              <motion.div
                 key={i}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
@@ -86,7 +116,9 @@ export default function Home() {
                 <div className="p-3 bg-primary/10 rounded-full mb-4">
                   <stat.icon className="w-6 h-6 text-primary" />
                 </div>
-                <h3 className="font-bold text-2xl text-slate-900">{stat.label}</h3>
+                <h3 className="font-bold text-2xl text-slate-900">
+                  {stat.label}
+                </h3>
                 <p className="text-slate-500 text-sm mt-1">{stat.sub}</p>
               </motion.div>
             ))}
@@ -99,15 +131,18 @@ export default function Home() {
         <div className="container mx-auto px-4">
           <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-4">
             <div>
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">Our Popular Courses</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">
+                Our Popular Courses
+              </h2>
               <p className="text-slate-500 max-w-xl">
-                Comprehensive study material, regular tests, and personalized attention 
-                designed to help you crack the toughest exams.
+                Comprehensive study material, regular tests, and personalized
+                attention designed to help you crack the toughest exams.
               </p>
             </div>
             <Button variant="ghost" className="group" asChild>
               <Link href="/courses">
-                View All Courses <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                View All Courses{" "}
+                <ArrowRight className="ml-2 w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </Link>
             </Button>
           </div>
@@ -115,7 +150,10 @@ export default function Home() {
           {coursesLoading ? (
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
               {[1, 2, 3].map((n) => (
-                <div key={n} className="h-[400px] bg-slate-100 rounded-2xl animate-pulse" />
+                <div
+                  key={n}
+                  className="h-[400px] bg-slate-100 rounded-2xl animate-pulse"
+                />
               ))}
             </div>
           ) : (
@@ -132,8 +170,13 @@ export default function Home() {
       <section className="py-24 bg-slate-50">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">Nearest Centres</h2>
-            <p className="text-slate-500">Find a learning center near you in Delhi. Click on markers to view on Google Maps.</p>
+            <h2 className="text-3xl md:text-4xl font-display font-bold text-slate-900 mb-4">
+              Nearest Centres
+            </h2>
+            <p className="text-slate-500">
+              Find a learning center near you in Delhi. Click on markers to view
+              on Google Maps.
+            </p>
           </div>
 
           {/* 2x2 Branch Map Grid */}
@@ -164,16 +207,22 @@ export default function Home() {
                   </div>
                   <div className="flex-1 min-w-0">
                     <div className="flex justify-between items-start gap-2">
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">{loc.name}</h4>
+                      <h4 className="font-bold text-slate-900 text-sm leading-tight">
+                        {loc.name}
+                      </h4>
                       <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-primary transition-colors shrink-0 mt-0.5" />
                     </div>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed line-clamp-2">{loc.address}</p>
+                    <p className="text-xs text-slate-500 mt-1 leading-relaxed line-clamp-2">
+                      {loc.address}
+                    </p>
                   </div>
                 </div>
               </a>
             ))}
             {!locations?.length && (
-              <div className="col-span-2 text-center p-8 text-muted-foreground">Loading locations...</div>
+              <div className="col-span-2 text-center p-8 text-muted-foreground">
+                Loading locations...
+              </div>
             )}
           </div>
         </div>
@@ -187,8 +236,12 @@ export default function Home() {
 
         <div className="container mx-auto px-4 relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">Success Stories</h2>
-            <p className="text-primary-foreground/80 text-lg">Hear from our students who achieved academic excellence</p>
+            <h2 className="text-3xl md:text-4xl font-display font-bold mb-4">
+              Success Stories
+            </h2>
+            <p className="text-primary-foreground/80 text-lg">
+              Hear from our students who achieved academic excellence
+            </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
@@ -201,7 +254,10 @@ export default function Home() {
             >
               <CarouselContent>
                 {reviews?.map((review) => (
-                  <CarouselItem key={review.id} className="md:basis-1/2 lg:basis-1/2 pl-6">
+                  <CarouselItem
+                    key={review.id}
+                    className="md:basis-1/2 lg:basis-1/2 pl-6"
+                  >
                     <Card className="bg-white text-slate-900 border-none shadow-xl h-full">
                       <CardContent className="p-8 flex flex-col h-full">
                         <Quote className="w-10 h-10 text-primary/20 mb-4" />
@@ -214,11 +270,16 @@ export default function Home() {
                           </div>
                           <div>
                             <h4 className="font-bold">{review.name}</h4>
-                            <p className="text-sm text-slate-500">{review.role}</p>
+                            <p className="text-sm text-slate-500">
+                              {review.role}
+                            </p>
                           </div>
                           <div className="ml-auto flex gap-0.5">
                             {[...Array(review.rating)].map((_, i) => (
-                              <Star key={i} className="w-4 h-4 fill-yellow-400 text-yellow-400" />
+                              <Star
+                                key={i}
+                                className="w-4 h-4 fill-yellow-400 text-yellow-400"
+                              />
                             ))}
                           </div>
                         </div>
@@ -242,15 +303,27 @@ export default function Home() {
           <div className="bg-slate-900 rounded-3xl p-8 md:p-16 text-center relative overflow-hidden">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,#4f46e5,#06b6d4)] opacity-20" />
             <div className="relative z-10 max-w-2xl mx-auto space-y-6">
-              <h2 className="text-3xl md:text-4xl font-display font-bold text-white">Ready to Start Your Journey?</h2>
+              <h2 className="text-3xl md:text-4xl font-display font-bold text-white">
+                Ready to Start Your Journey?
+              </h2>
               <p className="text-slate-300 text-lg">
-                Join Career Goal Academy today and get access to top-notch study material and expert guidance.
+                Join Career Goal Academy today and get access to top-notch study
+                material and expert guidance.
               </p>
               <div className="flex flex-col sm:flex-row gap-4 justify-center pt-4">
-                <Button size="lg" className="bg-white text-slate-900 hover:bg-slate-100 text-lg h-14 px-8" asChild>
+                <Button
+                  size="lg"
+                  className="bg-white text-slate-900 hover:bg-slate-100 text-lg h-14 px-8"
+                  asChild
+                >
                   <Link href="/contact">Enquire Now</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-slate-700 text-white hover:bg-slate-800 text-lg h-14 px-8" asChild>
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-slate-700 text-white hover:bg-slate-800 text-lg h-14 px-8"
+                  asChild
+                >
                   <Link href="/fees">View Fee Structure</Link>
                 </Button>
               </div>
@@ -263,5 +336,9 @@ export default function Home() {
 }
 
 function Badge({ variant, className, children }: any) {
-    return <span className={`px-2 py-1 rounded-md text-sm font-medium ${className}`}>{children}</span>
+  return (
+    <span className={`px-2 py-1 rounded-md text-sm font-medium ${className}`}>
+      {children}
+    </span>
+  );
 }

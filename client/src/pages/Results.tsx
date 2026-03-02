@@ -8,6 +8,7 @@ import { Link } from "wouter";
 import result10th_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_1771931727439.jpeg";
 import result10th_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.55_AM_1771931727434.jpeg";
 import result10th_2023_alt from "@assets/WhatsApp_Image_2026-03-02_at_1.13.10_PM_1772437752204.jpeg";
+import result10th_2025 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.57_AM_(3)_1772438110237.jpeg";
 
 import result12th_science from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_(1)_1771931727437.jpeg";
 import result12th_accounts_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.57_AM_(2)_1771971254687.jpeg";
@@ -100,7 +101,7 @@ const ResultsPage = () => {
                <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 10th Results</h2>
                <p className="text-slate-600">Our foundation batch excellence</p>
             </div>
-            <PosterSection images={[result10th_new1, result10th_new2, result10th_new3, result10th_2024, result10th_2023, result10th_2023_alt]} />
+            <PosterSection images={[result10th_2025, result10th_new1, result10th_new2, result10th_new3, result10th_2024, result10th_2023, result10th_2023_alt]} />
           </TabsContent>
 
           <TabsContent value="class12" className="space-y-12">

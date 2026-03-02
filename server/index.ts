@@ -86,7 +86,7 @@ app.use((req, res, next) => {
   }
 
   const port = process.env.PORT || "3000";
-  httpServer.listen(Number(port), "0.0.0.0", () => {
+  httpServer.listen(port, "0.0.0.0", () => {
     log(`serving on port ${port}`);
   });
 })();

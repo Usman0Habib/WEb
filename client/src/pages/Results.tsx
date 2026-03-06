@@ -101,7 +101,7 @@ const ResultsPage = () => {
                <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 10th Results</h2>
                <p className="text-slate-600">Our foundation batch excellence</p>
             </div>
-            <PosterSection images={[result10th_2025, result10th_new1, result10th_new2, result10th_new3, result10th_2024, result10th_2023, result10th_2023_alt]} />
+            <PosterSection images={[result10th_2025, result10th_2024, result10th_2023, result10th_2023_alt, result10th_new1, result10th_new3, result10th_new2]} />
           </TabsContent>
 
           <TabsContent value="class12" className="space-y-12">
@@ -110,16 +110,16 @@ const ResultsPage = () => {
                <p className="text-slate-600">Science & Commerce Streams</p>
             </div>
             <PosterSection images={[
-              result12th_new1,
-              result12th_new2,
-              result12th_new3,
-              result12th_new4,
-              result12th_science, 
+              result12th_science,
               result12th_accounts_2024,
               result12th_physics_2024,
-              result12th_economics_2024, 
-              result12th_accounts_2023, 
-              result12th_economics_2023
+              result12th_economics_2024,
+              result12th_accounts_2023,
+              result12th_economics_2023,
+              result12th_new3,
+              result12th_new1,
+              result12th_new4,
+              result12th_new2,
             ]} />
           </TabsContent>
         </Tabs>

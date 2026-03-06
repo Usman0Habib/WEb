@@ -105,14 +105,14 @@ export default function About() {
     {
       name: "Ajit Mishra",
       role: "Biology & Chemistry (11th-12th)",
-      branch: "Roshan nagar + Nikhil Vihar",
+      branch: "Roshan nagar + Om Enclave",
       phone: "9354055230",
       image: "/faculty/Ajit_Mishra.png",
     },
     {
       name: "Vikash Sir",
       role: "Pol. Science & History (11th-12th), S.ST (9th-10th)",
-      branch: "Om Enclave + Roshan nagar + Nikhil Vihar",
+      branch: "Om Enclave + Roshan nagar + Vinay Nagar",
       phone: "7678191864",
       image: "/faculty/Vikash.jpg",
     },
@@ -148,14 +148,14 @@ export default function About() {
       name: "CA Anand Sir",
       role: "Accounts (11th-12th)",
       branch: "Vinay nagar",
-      phone: "N/A",
+      phone: "9899927424",
       image: "/faculty/Anand.jpg",
     },
     {
       name: "Shahabuddin Sir",
       role: "English (9th-10th)",
       branch: "Nikhil Vihar",
-      phone: "N/A",
+      phone: "7503504046",
       image: "/faculty/Shahabuddin.png",
     },
     {
@@ -180,7 +180,9 @@ export default function About() {
     },
     {
       name: "Rajesh Jha",
-      role: "Junior Teacher",
+      role: "Science (9th & 10th)",
+      branch: "Nikhil Vihar",
+      phone: "8651936359",
       image: rajeshSir,
     },
     {
@@ -213,11 +215,7 @@ export default function About() {
       role: "Junior Teacher",
       image: defaultAvatar,
     },
-    {
-      name: "Rashmi Mam",
-      role: "Junior Teacher",
-      image: defaultAvatar,
-    },
+
     {
       name: "Shrishti Mam",
       role: "Junior Teacher",

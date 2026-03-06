@@ -40,8 +40,8 @@ const PosterSection = ({ images }: { images: string[] }) => (
         className="break-inside-avoid mb-4"
       >
         <Card className="overflow-hidden border-4 border-white shadow-xl hover:shadow-primary/10 transition-shadow duration-500 rounded-2xl">
-          <img 
-            src={img} 
+          <img
+            src={img}
             alt={`Result Poster ${idx + 1}`}
             className="w-full h-auto object-contain bg-slate-100"
           />
@@ -98,28 +98,36 @@ const ResultsPage = () => {
 
           <TabsContent value="class10" className="space-y-12">
             <div className="text-center">
-               <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 10th Results</h2>
-               <p className="text-slate-600">Our foundation batch excellence</p>
+              <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 10th Results</h2>
+              <p className="text-slate-600">Our foundation batch excellence</p>
             </div>
-            <PosterSection images={[result10th_2025, result10th_new1, result10th_new2, result10th_new3, result10th_2024, result10th_2023, result10th_2023_alt]} />
+            <PosterSection images={[
+              result10th_2024,       /* 2024-25 S.ST */
+              result10th_2025,       /* 2024-25 Maths & Science */
+              result10th_2023,       /* 2023-24 Maths & Science */
+              result10th_2023_alt,   /* 2023-24 S.ST & English */
+              result10th_new1,       /* 2022-23 */
+              result10th_new3,       /* 2021-22 */
+              result10th_new2,       /* 2018-19 */
+            ]} />
           </TabsContent>
 
           <TabsContent value="class12" className="space-y-12">
             <div className="text-center">
-               <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 12th Results</h2>
-               <p className="text-slate-600">Science & Commerce Streams</p>
+              <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 12th Results</h2>
+              <p className="text-slate-600">Science & Commerce Streams</p>
             </div>
             <PosterSection images={[
-              result12th_new1,
-              result12th_new2,
-              result12th_new3,
-              result12th_new4,
-              result12th_science, 
-              result12th_accounts_2024,
-              result12th_physics_2024,
-              result12th_economics_2024, 
-              result12th_accounts_2023, 
-              result12th_economics_2023
+              result12th_science,         /* 2024-25 Mathematics */
+              result12th_accounts_2024,   /* 2024-25 Accounts */
+              result12th_physics_2024,    /* 2024-25 Physics/Chem/Bio */
+              result12th_economics_2024,  /* 2024-25 Economics */
+              result12th_accounts_2023,   /* 2023-24 Accounts */
+              result12th_economics_2023,  /* 2023-24 Economics */
+              result12th_new3,            /* 2022-23 12th Class */
+              result12th_new4,            /* 2022-23 Account Results */
+              result12th_new1,            /* 2022-23 Economics */
+              result12th_new2,            /* 2021-22 Commerce + Science */
             ]} />
           </TabsContent>
         </Tabs>

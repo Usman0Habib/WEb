@@ -101,7 +101,7 @@ export default function Home() {
               { icon: Award, label: "15+ Years", sub: "Of Excellence" },
               {
                 icon: MapPin,
-                label: "5 Centres",
+                label: "4 Centres",
                 sub: "Across Faridabad,Haryana",
               },
             ].map((stat, i) => (
@@ -181,44 +181,53 @@ export default function Home() {
 
           {/* 2x2 Branch Map Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-            {locations?.map((loc) => (
-              <a
-                key={loc.id}
-                href={`https://www.google.com/maps/search/?api=1&query=${loc.latitude},${loc.longitude}`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="group block rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-xl hover:border-primary/40 transition-all"
-              >
-                <div className="relative h-48 pointer-events-none">
-                  <iframe
-                    title={loc.name}
-                    width="100%"
-                    height="100%"
-                    style={{ border: 0 }}
-                    loading="lazy"
-                    src={`https://maps.google.com/maps?q=${loc.latitude},${loc.longitude}&z=15&output=embed`}
-                  />
-                  {/* Transparent overlay so the anchor handles the click */}
-                  <div className="absolute inset-0" />
-                </div>
-                <div className="bg-white p-4 flex items-start gap-3">
-                  <div className="p-2 bg-primary/10 text-primary rounded-lg shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
-                    <MapPin className="w-4 h-4" />
+            {locations?.slice(0, 4).map((loc) => {
+              const mapUrls: Record<string, string> = {
+                "Om Enclave Centre": "https://maps.app.goo.gl/DarWj4KqGKHpiM8X9?g_st=aw",
+                "Vinay Nagar Centre": "https://maps.app.goo.gl/FyyPapn9a3CWdG6b6?g_st=aw",
+                "Roshan Nagar Centre": "https://maps.app.goo.gl/KsKRDj6k5Fi4Es3S9?g_st=aw",
+                "Nikhil Vihar Centre": "https://maps.app.goo.gl/ppvNJ8Us9EmXDUrr5?g_st=aw",
+              };
+              const href = mapUrls[loc.name] || `https://www.google.com/maps/search/?api=1&query=${loc.latitude},${loc.longitude}`;
+              return (
+                <a
+                  key={loc.id}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group block rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-xl hover:border-primary/40 transition-all"
+                >
+                  <div className="relative h-48 pointer-events-none">
+                    <iframe
+                      title={loc.name}
+                      width="100%"
+                      height="100%"
+                      style={{ border: 0 }}
+                      loading="lazy"
+                      src={`https://maps.google.com/maps?q=${loc.latitude},${loc.longitude}&z=15&output=embed`}
+                    />
+                    {/* Transparent overlay so the anchor handles the click */}
+                    <div className="absolute inset-0" />
                   </div>
-                  <div className="flex-1 min-w-0">
-                    <div className="flex justify-between items-start gap-2">
-                      <h4 className="font-bold text-slate-900 text-sm leading-tight">
-                        {loc.name}
-                      </h4>
-                      <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-primary transition-colors shrink-0 mt-0.5" />
+                  <div className="bg-white p-4 flex items-start gap-3">
+                    <div className="p-2 bg-primary/10 text-primary rounded-lg shrink-0 group-hover:bg-primary group-hover:text-white transition-colors">
+                      <MapPin className="w-4 h-4" />
                     </div>
-                    <p className="text-xs text-slate-500 mt-1 leading-relaxed line-clamp-2">
-                      {loc.address}
-                    </p>
+                    <div className="flex-1 min-w-0">
+                      <div className="flex justify-between items-start gap-2">
+                        <h4 className="font-bold text-slate-900 text-sm leading-tight">
+                          {loc.name}
+                        </h4>
+                        <ExternalLink className="w-3.5 h-3.5 text-slate-400 group-hover:text-primary transition-colors shrink-0 mt-0.5" />
+                      </div>
+                      <p className="text-xs text-slate-500 mt-1 leading-relaxed line-clamp-2">
+                        {loc.address}
+                      </p>
+                    </div>
                   </div>
-                </div>
-              </a>
-            ))}
+                </a>
+              );
+            })}
             {!locations?.length && (
               <div className="col-span-2 text-center p-8 text-muted-foreground">
                 Loading locations...

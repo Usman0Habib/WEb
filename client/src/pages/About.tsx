@@ -63,7 +63,7 @@ export default function About() {
     {
       name: "Vivek Jha",
       role: "Economics (11th-12th), Maths (9th-10th)",
-      branch: "Om Enclave + Roshan nagar + Nikhil Vihar",
+      branch: "Om Enclave + Roshan nagar + Vinay Nagar",
       phone: "8802807397",
       image: "/faculty/Vivek_Jha.jpg",
     },
@@ -159,6 +159,13 @@ export default function About() {
       image: "/faculty/Shahabuddin.png",
     },
     {
+      name: "Rajesh Jha",
+      role: "Science (9th & 10th)",
+      branch: "Nikhil Vihar",
+      phone: "8651936359",
+      image: rajeshSir,
+    },
+    {
       name: "Divya Mam",
       role: "Junior Teacher",
       image: divyaMam1,
@@ -178,13 +185,7 @@ export default function About() {
       role: "Junior Teacher",
       image: monuSir,
     },
-    {
-      name: "Rajesh Jha",
-      role: "Science (9th & 10th)",
-      branch: "Nikhil Vihar",
-      phone: "8651936359",
-      image: rajeshSir,
-    },
+
     {
       name: "Aditya Sir",
       role: "Junior Teacher",

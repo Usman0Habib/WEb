@@ -117,32 +117,11 @@ export default function About() {
       image: "/faculty/Vikash.jpg",
     },
     {
-      name: "Anjali Mam",
-      role: "History (11th-12th)",
-      branch: "Vinay nagar",
-      phone: "8368184330",
-      image: "/faculty/Anjali.png",
-    },
-    {
       name: "Ankush Sir",
       role: "Pol. Science (11th-12th)",
       branch: "Vinay nagar",
       phone: "9311019383",
       image: "/faculty/Ankush.png",
-    },
-    {
-      name: "Akash Sir",
-      role: "Economics (11th-12th), English & S.ST (9th-10th)",
-      branch: "Om Enclave + Vinay nagar",
-      phone: "9205088610",
-      image: "/faculty/Akash.jpg",
-    },
-    {
-      name: "Nidhi Mam",
-      role: "Science (9th-10th)",
-      branch: "Nikhil Vihar",
-      phone: "8178765101",
-      image: "/faculty/Nidhi_Ojha.jpg",
     },
     {
       name: "CA Anand Sir",
@@ -201,28 +180,7 @@ export default function About() {
       image: defaultAvatar,
     },
     {
-      name: "Mamta Mam",
-      role: "Junior Teacher",
-      image: defaultAvatar,
-    },
-    {
       name: "Preeti Mam",
-      role: "Junior Teacher",
-      image: defaultAvatar,
-    },
-    {
-      name: "Anjani Mam",
-      role: "Junior Teacher",
-      image: defaultAvatar,
-    },
-    
-    {
-      name: "Shrishti Mam",
-      role: "Junior Teacher",
-      image: defaultAvatar,
-    },
-    {
-      name: "Yogesh Sir",
       role: "Junior Teacher",
       image: defaultAvatar,
     },

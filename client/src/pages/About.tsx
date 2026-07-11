@@ -117,13 +117,6 @@ export default function About() {
       image: "/faculty/Vikash.jpg",
     },
     {
-      name: "Ankush Sir",
-      role: "Pol. Science (11th-12th)",
-      branch: "Vinay nagar",
-      phone: "9311019383",
-      image: "/faculty/Ankush.png",
-    },
-    {
       name: "CA Anand Sir",
       role: "Accounts (11th-12th)",
       branch: "Vinay nagar",

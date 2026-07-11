@@ -4,6 +4,12 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Award, GraduationCap } from "lucide-react";
 import { Link } from "wouter";
 
+// 2025-26 posters
+import result12th_eco_2026 from "@assets/class12(3)_1783749426285.jpeg";
+import result12th_chem_2026 from "@assets/Class12_1783749426287.jpeg";
+import result12th_acc_2026 from "@assets/Class12(2)_1783749426287.jpeg";
+import result10th_2026 from "@assets/Class12(4)_1783749426286.jpeg";
+
 // Import all poster images
 import result10th_2024 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_1771931727439.jpeg";
 import result10th_2023 from "@assets/WhatsApp_Image_2026-02-12_at_1.20.55_AM_1771931727434.jpeg";
@@ -101,7 +107,7 @@ const ResultsPage = () => {
                <h2 className="text-3xl font-display font-bold text-slate-900 mb-2">Class 10th Results</h2>
                <p className="text-slate-600">Our foundation batch excellence</p>
             </div>
-            <PosterSection images={[result10th_2025, result10th_2024, result10th_2023, result10th_2023_alt, result10th_new1, result10th_new3, result10th_new2]} />
+            <PosterSection images={[result10th_2026, result10th_2025, result10th_2024, result10th_2023, result10th_2023_alt, result10th_new1, result10th_new3, result10th_new2]} />
           </TabsContent>
 
           <TabsContent value="class12" className="space-y-12">
@@ -110,6 +116,9 @@ const ResultsPage = () => {
                <p className="text-slate-600">Science & Commerce Streams</p>
             </div>
             <PosterSection images={[
+              result12th_acc_2026,
+              result12th_eco_2026,
+              result12th_chem_2026,
               result12th_science,
               result12th_accounts_2024,
               result12th_physics_2024,

@@ -15,6 +15,7 @@ import { Button } from "@/components/ui/button";
 import { useState, useRef } from "react";
 import { useLocation } from "wouter";
 import founderImg from "@/assets/images/founder.png";
+import cgaInfoCard from "@assets/WhatsApp_Image_2026-07-05_at_8.44.57_PM_1783796122030.jpeg";
 
 // Import poster images for the results preview
 import result12th_science from "@assets/WhatsApp_Image_2026-02-12_at_1.20.58_AM_(1)_1771931727437.jpeg";
@@ -338,6 +339,120 @@ export default function About() {
                 <p className="text-primary font-bold">
                   Founder & Managing Director
                 </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* Academy at a Glance */}
+      <section className="py-24 relative overflow-hidden bg-gradient-to-br from-slate-900 via-primary/90 to-blue-900">
+        {/* Decorative blobs */}
+        <div className="absolute top-0 left-0 w-full h-full pointer-events-none overflow-hidden">
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-white/5 rounded-full blur-3xl" />
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-blue-400/10 rounded-full blur-3xl" />
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/10 rounded-full blur-[120px]" />
+          {/* Decorative grid lines */}
+          <div className="absolute inset-0 opacity-[0.03]" style={{backgroundImage: 'linear-gradient(white 1px, transparent 1px), linear-gradient(90deg, white 1px, transparent 1px)', backgroundSize: '60px 60px'}} />
+        </div>
+
+        <div className="container mx-auto px-4 relative z-10">
+          {/* Header */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="inline-block px-5 py-2 bg-white/10 text-white/80 text-sm font-bold rounded-full tracking-widest uppercase mb-5 border border-white/20">
+              ✦ Everything You Need to Know ✦
+            </span>
+            <h2 className="text-4xl md:text-6xl font-display font-bold text-white leading-tight">
+              Academy at a <span className="text-blue-300">Glance</span>
+            </h2>
+            <p className="text-white/60 mt-4 text-lg max-w-xl mx-auto font-body">
+              Your complete guide to Career Goal Academy — branches, classes & faculty.
+            </p>
+          </motion.div>
+
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-20">
+            {/* Decorative left side */}
+            <motion.div
+              initial={{ opacity: 0, x: -40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="w-full lg:w-1/2 flex justify-center"
+            >
+              <div className="relative">
+                {/* Outer glow ring */}
+                <div className="absolute -inset-6 rounded-3xl bg-gradient-to-br from-blue-400/30 via-primary/20 to-white/10 blur-2xl" />
+                {/* Corner accents */}
+                <div className="absolute -top-4 -left-4 w-10 h-10 border-t-4 border-l-4 border-blue-300/60 rounded-tl-xl" />
+                <div className="absolute -top-4 -right-4 w-10 h-10 border-t-4 border-r-4 border-blue-300/60 rounded-tr-xl" />
+                <div className="absolute -bottom-4 -left-4 w-10 h-10 border-b-4 border-l-4 border-blue-300/60 rounded-bl-xl" />
+                <div className="absolute -bottom-4 -right-4 w-10 h-10 border-b-4 border-r-4 border-blue-300/60 rounded-br-xl" />
+                {/* Badge */}
+                <div className="absolute -top-5 left-1/2 -translate-x-1/2 z-20 bg-primary text-white text-xs font-bold px-5 py-2 rounded-full shadow-lg border border-white/20 tracking-widest uppercase whitespace-nowrap">
+                  ⭐ Since 2013
+                </div>
+                {/* Image card */}
+                <div className="relative rounded-2xl overflow-hidden shadow-[0_30px_80px_rgba(0,0,0,0.5)] border-2 border-white/20">
+                  <img
+                    src={cgaInfoCard}
+                    alt="CGA Academy Info Card"
+                    className="w-full max-w-[380px] object-cover"
+                  />
+                  {/* Subtle overlay shimmer */}
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/5 pointer-events-none" />
+                </div>
+              </div>
+            </motion.div>
+
+            {/* Right side — key highlights */}
+            <motion.div
+              initial={{ opacity: 0, x: 40 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.7 }}
+              className="w-full lg:w-1/2 space-y-6"
+            >
+              {[
+                { num: "01", title: "CGA Om Enclave", sub: "Main Branch — Faridabad", color: "from-blue-400 to-primary" },
+                { num: "02", title: "CGA Roshan Nagar", sub: "Co-owner: Neeraj Verma", color: "from-indigo-400 to-blue-500" },
+                { num: "03", title: "CGA Vinay Nagar", sub: "Faridabad Branch", color: "from-sky-400 to-indigo-500" },
+                { num: "04", title: "CGA Nikhil Vihar", sub: "Co-owner: CA Nikunj Sharma", color: "from-cyan-400 to-sky-500" },
+              ].map((branch, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ delay: i * 0.1 }}
+                  className="flex items-center gap-5 p-5 rounded-2xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all group backdrop-blur-sm"
+                >
+                  <div className={`w-14 h-14 rounded-xl bg-gradient-to-br ${branch.color} flex items-center justify-center text-white font-display font-bold text-lg shadow-lg flex-shrink-0`}>
+                    {branch.num}
+                  </div>
+                  <div>
+                    <h4 className="text-white font-display font-bold text-lg group-hover:text-blue-200 transition-colors">
+                      {branch.title}
+                    </h4>
+                    <p className="text-white/50 text-sm font-body">{branch.sub}</p>
+                  </div>
+                  <div className="ml-auto opacity-0 group-hover:opacity-100 transition-opacity text-blue-300">→</div>
+                </motion.div>
+              ))}
+
+              {/* Contact strip */}
+              <div className="mt-4 p-5 rounded-2xl bg-white/10 border border-white/20 flex items-center gap-4 backdrop-blur-sm">
+                <div className="w-12 h-12 rounded-xl bg-white/20 flex items-center justify-center text-white text-xl">
+                  📞
+                </div>
+                <div>
+                  <p className="text-white/60 text-xs font-bold uppercase tracking-widest">Contact — Vivek Jha</p>
+                  <p className="text-white font-display font-bold text-2xl">8802807397</p>
+                </div>
               </div>
             </motion.div>
           </div>

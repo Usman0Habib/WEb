@@ -26,12 +26,16 @@ import {
   content,
 } from "@shared/schema";
 import { db } from "./db";
-import { eq, desc, and } from "drizzle-orm";
+import { eq, desc, and, isNull, sql } from "drizzle-orm";
 
 export interface IStorage {
   getCourses(): Promise<Course[]>;
   getCourse(id: number): Promise<Course | undefined>;
   getLocations(): Promise<Location[]>;
+  backfillLocationPlace(
+    name: string,
+    place: Pick<Location, "googlePlaceCid" | "latitude" | "longitude">,
+  ): Promise<void>;
   getReviews(): Promise<Review[]>;
   createInquiry(inquiry: InsertInquiry): Promise<Inquiry>;
   createUser(user: InsertUser): Promise<User>;
@@ -68,6 +72,22 @@ export class DatabaseStorage implements IStorage {
 
   async getLocations(): Promise<Location[]> {
     return await db.select().from(locations);
+  }
+
+  // Fills in the Google place for a branch seeded before the column existed.
+  // Rows that already have a place are left alone.
+  async backfillLocationPlace(
+    name: string,
+    place: Pick<Location, "googlePlaceCid" | "latitude" | "longitude">,
+  ): Promise<void> {
+    // The deploy may skip `db:push`, so make sure the column exists first
+    await db.execute(
+      sql`ALTER TABLE locations ADD COLUMN IF NOT EXISTS google_place_cid text`,
+    );
+    await db
+      .update(locations)
+      .set(place)
+      .where(and(eq(locations.name, name), isNull(locations.googlePlaceCid)));
   }
 
   async getReviews(): Promise<Review[]> {

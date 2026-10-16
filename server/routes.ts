@@ -435,32 +435,48 @@ async function seedDatabase() {
     }
   }
 
-  const existingLocations = await storage.getLocations();
-  if (existingLocations.length === 0) {
-    await storage.createLocation({
+  // googlePlaceCid is the branch's Google Maps listing ID (the hex after the
+  // colon in a place URL's "!1s0x...:0x..." part, converted to decimal)
+  const branches = [
+    {
       name: "Om Enclave Centre",
       address: "Street no. 4, Part-2, near Shani Mandir, Om enclave, Faridabad-Haryana - 121003",
-      latitude: "28.5135",
-      longitude: "77.3001",
-    });
-    await storage.createLocation({
+      latitude: "28.4918331",
+      longitude: "77.3295376",
+      googlePlaceCid: "12994917146429820309",
+    },
+    {
       name: "Vinay Nagar Centre",
       address: "Vinay Nagar, Sector 37, Faridabad (Bordering Delhi)",
-      latitude: "28.5085",
-      longitude: "77.3045",
-    });
-    await storage.createLocation({
+      latitude: "28.4821113",
+      longitude: "77.3391699",
+      googlePlaceCid: "12810850269645188625",
+    },
+    {
       name: "Roshan Nagar Centre",
       address: "Roshan Nagar, Agwanpur, Faridabad",
-      latitude: "28.4982",
-      longitude: "77.2954",
-    });
-    await storage.createLocation({
+      latitude: "28.4885345",
+      longitude: "77.341807",
+      googlePlaceCid: "13421909091679269917",
+    },
+    {
       name: "Nikhil Vihar Centre",
       address: "Nikhil Vihar, Near Mithapur, Badarpur, New Delhi",
-      latitude: "28.5021",
-      longitude: "77.3105",
-    });
+      latitude: "28.493055",
+      longitude: "77.3410471",
+      googlePlaceCid: "10033127329222916086",
+    },
+  ];
+
+  for (const { name, latitude, longitude, googlePlaceCid } of branches) {
+    await storage.backfillLocationPlace(name, { latitude, longitude, googlePlaceCid });
+  }
+
+  const existingLocations = await storage.getLocations();
+  if (existingLocations.length === 0) {
+    for (const branch of branches) {
+      await storage.createLocation(branch);
+    }
   }
 
   const existingReviews = await storage.getReviews();

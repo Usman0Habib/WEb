@@ -45,6 +45,8 @@ export const locations = pgTable("locations", {
   address: text("address").notNull(),
   latitude: text("latitude").notNull(),
   longitude: text("longitude").notNull(),
+  // Google Maps place CID, so links open the business listing instead of a bare pin
+  googlePlaceCid: text("google_place_cid"),
 });
 
 export const reviews = pgTable("reviews", {

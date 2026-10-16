@@ -184,7 +184,11 @@ export default function Home() {
             {locations?.map((loc) => (
               <a
                 key={loc.id}
-                href={`https://www.google.com/maps/search/?api=1&query=${loc.latitude},${loc.longitude}`}
+                href={
+                  loc.googlePlaceCid
+                    ? `https://www.google.com/maps?cid=${loc.googlePlaceCid}`
+                    : `https://www.google.com/maps/search/?api=1&query=${loc.latitude},${loc.longitude}`
+                }
                 target="_blank"
                 rel="noopener noreferrer"
                 className="group block rounded-2xl overflow-hidden shadow-lg border border-slate-200 hover:shadow-xl hover:border-primary/40 transition-all"
@@ -196,7 +200,11 @@ export default function Home() {
                     height="100%"
                     style={{ border: 0 }}
                     loading="lazy"
-                    src={`https://maps.google.com/maps?q=${loc.latitude},${loc.longitude}&z=15&output=embed`}
+                    src={`https://maps.google.com/maps?${
+                      loc.googlePlaceCid
+                        ? `cid=${loc.googlePlaceCid}`
+                        : `q=${loc.latitude},${loc.longitude}`
+                    }&z=15&output=embed`}
                   />
                   {/* Transparent overlay so the anchor handles the click */}
                   <div className="absolute inset-0" />
